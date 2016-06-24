@@ -7,7 +7,7 @@ public class Board {
 	private String board_writ_date; //게시글 작성 시간
 	private String board_content; //게시글 내용
 	private String board_img; //게시글 이미지
-	private String user_nickName; //작성자 닉네임
+
 	
 	@Override
 	public String toString() {
