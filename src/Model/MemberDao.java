@@ -6,31 +6,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class MemberDao extends SuperDao {
 
 	public MemberDao() {
 	}
-
-	public int InsertData(Member bean) {
-		System.out.println(bean.toString());
-		String sql = ""; //insert sql
+	
+	//회원삭제
+	public int DeleteUser(String id, String password) {
+		
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-
+		String sql = "delete from members where user_id=? and user_password=?" ;
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
-			conn.setAutoCommit(false);
 			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
 
 			cnt = pstmt.executeUpdate();
-			conn.commit();
 
 		} catch (Exception e) {
 			SQLException err = (SQLException) e;
-			cnt = err.getErrorCode(); // 오라클 오류 상수가 리턴
-			// 예 : not null 이면 1400
+			cnt = -err.getErrorCode(); // 오라클 오류 상수가 리턴
 			e.printStackTrace();
 			try {
 				conn.rollback();
@@ -42,104 +43,166 @@ public class MemberDao extends SuperDao {
 				if (pstmt != null) {
 					pstmt.close();
 				}
-			} catch (Exception e3) {
-				e3.printStackTrace();
+			} catch (Exception e2) {
+				e2.printStackTrace();
 			}
-
 		}
 		return cnt;
 	}
-
-	public int UpdateData(Member bean) {
-		// 데이터 수정
+	
+	//회원정보 수정
+	public int UpdateUser(Member member) {
+		
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = ""; // update sql
+		String sql = "update members set(user_password=?, user_name=?, user_email=?, user_nickName=?, user_img=? where user_id=?)" ;
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
-			conn.setAutoCommit(false);
 			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setString(1, member.getUser_password());
+			pstmt.setString(2, member.getUser_name());
+			pstmt.setString(3, member.getUser_email());
+			pstmt.setString(4, member.getUser_nickname());
+			pstmt.setString(5, member.getUser_img());
 
 			cnt = pstmt.executeUpdate();
-			conn.commit();
 
 		} catch (Exception e) {
 			SQLException err = (SQLException) e;
-			cnt = err.getErrorCode(); // 오라클 오류 상수가 리턴
+			cnt = -err.getErrorCode(); // 오라클 오류 상수가 리턴
 			e.printStackTrace();
 			try {
 				conn.rollback();
 			} catch (Exception e2) {
 				e2.printStackTrace();
-			} finally {
-				try {
-					if (pstmt != null) {
-						pstmt.close();
-					}
-				} catch (Exception e3) {
-					e3.printStackTrace();
+			}
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
 				}
-
+			} catch (Exception e2) {
+				e2.printStackTrace();
 			}
 		}
 		return cnt;
+		
 	}
 
-	public int DeleteData(String pmkey) {
-		// 데이터 수정
+	//회원가입
+	public int Signup(Member member) {
+				
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = ""; // delete sql
+		
+		String sql = " insert into members(user_id, user_password, user_name, user_email, user_nickname, user_img, sign_date)"
+				+ " values(?, ?, ?, ?, ?, ?, to_date(?, 'yyyy/MM/dd'))";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
-			conn.setAutoCommit(false);
 			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setString(1, member.getUser_id());
+			pstmt.setString(2, member.getUser_password());
+			pstmt.setString(3, member.getUser_name());
+			pstmt.setString(4, member.getUser_email());
+			pstmt.setString(5, member.getUser_nickname());
+			pstmt.setString(6, member.getUser_img());			
+			pstmt.setString(7, member.getSign_date());
 
 			cnt = pstmt.executeUpdate();
-			conn.commit();
 
 		} catch (Exception e) {
 			SQLException err = (SQLException) e;
-			cnt = err.getErrorCode(); // 오라클 오류 상수가 리턴
+			cnt = -(err.getErrorCode()); // 오라클 오류 상수가 리턴
 			e.printStackTrace();
 			try {
 				conn.rollback();
 			} catch (Exception e2) {
 				e2.printStackTrace();
-			} finally {
-				try {
-					if (pstmt != null) {
-						pstmt.close();
-					}
-				} catch (Exception e3) {
-					e3.printStackTrace();
+			}
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
 				}
-
+			} catch (Exception e2) {
+				e2.printStackTrace();
 			}
 		}
 		return cnt;
+
 	}
 
-	public List<Member> SelectDateList() {
-		// 모든 데이터 조회
+	//로그인
+	public Member Login(String id, String password) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select user_id, user_img, user_nickname from members where user_id=?, user_password=?";
+		Member member = new Member();
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+
+			rs = pstmt.executeQuery();
+
+			member.setUser_id(rs.getString("user_id"));
+			member.setUser_img(rs.getString("user_img"));
+			member.setUser_nickname(rs.getString("user_nickname"));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return member;
+	}
+
+	// 중복체크 
+	// str - 아이디 OR 닉네임
+	// chk - 아이디는 1, 아니면 닉네임
+	public boolean OverlapCheck(String str, int chk) {
+
+		Boolean Check = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "";
-		List<Member> members_list = new ArrayList<Member>();
+		if (chk == 1) {
+			sql = "select user_id from members where user_id=?";
+		} else {
+			sql = "select user_id from members where user_nickname=?";
+		}
+
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Member bean = new Member();
+			pstmt.setString(1, str);
 
-				members_list.add(bean);
+			rs = pstmt.executeQuery();
+
+			if (rs == null) {
+				Check = true; // 사용가능한 아이디 OR 닉네임
+			} else {
+				Check = false; // 이미 사용중인 아디이 OR 닉네임
 			}
 
 		} catch (Exception e) {
@@ -157,7 +220,9 @@ public class MemberDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		return members_list;
+
+		return Check;
+
 	}
 
 }
