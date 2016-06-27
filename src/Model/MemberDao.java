@@ -63,7 +63,7 @@ public class MemberDao extends SuperDao {
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setString(1, member.getUser_password());
 			pstmt.setString(2, member.getUser_name());
-			pstmt.setString(3, member.getUser_email());
+			pstmt.setString(3, member.getUser_emali());
 			pstmt.setString(4, member.getUser_nickname());
 			pstmt.setString(5, member.getUser_img());
 
