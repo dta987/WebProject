@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+
 public class SuperDao {
 	
 	protected String driver = "oracle.jdbc.driver.OracleDriver";
 	protected String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	protected String id = "proman";
+	protected String id = "yamaman_db";
 	protected String password = "oracle";	
 	protected Connection conn = null;
 	
