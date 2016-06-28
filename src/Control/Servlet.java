@@ -35,7 +35,7 @@ public class Servlet extends HttpServlet {
 		System.out.println("contextPath : " + contextPath);
 		System.out.println("commend : " + commend);
 
-		if (commend.equals("/Loing.servlet")) {
+		if (commend.equals("/Login.servlet")) {
 			// forward = new ActionForward();
 			// forward.setRedirect(false);
 			action = new LoginAction();

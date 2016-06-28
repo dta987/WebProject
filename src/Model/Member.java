@@ -10,8 +10,7 @@ public class Member {
 	private String user_img;
 	private String user_title;
 	private String sign_date;
-	private String user_emali;
-	private String user_signdate;
+	
 	
 	@Override
 	public String toString() {
@@ -19,9 +18,8 @@ public class Member {
 				+ user_password + ", user_name=" + user_name + ", user_email="
 				+ user_email + ", user_nickname=" + user_nickname
 				+ ", user_img=" + user_img + ", user_title=" + user_title
-				+ ", sign_date=" + sign_date + ", user_emali=" + user_emali
-				+ ", user_signdate=" + user_signdate + "]";
-	}	
+				+ ", sign_date=" + sign_date + "]";
+	}
 	
 	public String getUser_id() {
 		return user_id;
@@ -71,17 +69,4 @@ public class Member {
 	public void setSign_date(String sign_date) {
 		this.sign_date = sign_date;
 	}
-	public String getUser_emali() {
-		return user_emali;
-	}
-	public void setUser_emali(String user_emali) {
-		this.user_emali = user_emali;
-	}
-	public String getUser_signdate() {
-		return user_signdate;
-	}
-	public void setUser_signdate(String user_signdate) {
-		this.user_signdate = user_signdate;
-	}
-
 }

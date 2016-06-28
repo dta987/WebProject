@@ -63,7 +63,7 @@ public class MemberDao extends SuperDao {
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setString(1, member.getUser_password());
 			pstmt.setString(2, member.getUser_name());
-			pstmt.setString(3, member.getUser_emali());
+			pstmt.setString(3, member.getUser_email());
 			pstmt.setString(4, member.getUser_nickname());
 			pstmt.setString(5, member.getUser_img());
 
@@ -141,7 +141,7 @@ public class MemberDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select user_id, user_img, user_nickname from members where user_id=?, user_password=?";
+		String sql = "select user_id, user_img, user_nickname from members where user_id=? and user_password=?";
 		Member member = new Member();
 		try {
 			if (conn == null) {
@@ -152,10 +152,12 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(2, password);
 
 			rs = pstmt.executeQuery();
-
-			member.setUser_id(rs.getString("user_id"));
-			member.setUser_img(rs.getString("user_img"));
-			member.setUser_nickname(rs.getString("user_nickname"));
+			while(rs.next()) {
+				member.setUser_id(rs.getString("user_id"));
+				member.setUser_img(rs.getString("user_img"));
+				member.setUser_nickname(rs.getString("user_nickname"));
+			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

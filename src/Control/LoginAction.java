@@ -28,9 +28,15 @@ public class LoginAction implements Action {
 		Member member = dao.Login(id, password);
 
 		member.toString();
+		
+		if(member != null) {
+			forward.setRedirect(true);
+			forward.setPath("/WebProject/Main.jsp");
+		} else {
+			System.out.println("아디이와 비밀번호를 확인해주세요");
+		}
 
-		forward.setRedirect(true);
-		forward.setPath("/WebProject/Index.jsp");
+		
 		return forward;
 
 	}

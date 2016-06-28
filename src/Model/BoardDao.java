@@ -6,10 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 import com.sun.org.apache.xpath.internal.operations.Bool;
->>>>>>> branch 'master' of https://hameunhey@dev.naver.com/git/yamaman.git
 
 public class BoardDao extends SuperDao {
 
