@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../View/layout/style.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
 	<div>
-		<%@ include file="TOP.jsp"%>
+		<%@ include file="rvTOP.jsp"%>
 	</div>
 
 </body>

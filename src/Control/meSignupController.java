@@ -4,19 +4,21 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Model.Member;
 import Model.MemberDao;
 
-public class SignupAction implements Action {
+public class meSignupController implements SuperController {
 
 	@Override
-	public ActionForward execute(HttpServletRequest req,
-			HttpServletResponse resp) throws IOException {
+	public ControllerForward doProcess(HttpServletRequest req,
+			HttpServletResponse resp) throws ServletException, IOException {
 
-		ActionForward forward = new ActionForward();
+
+		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
 
 		Member member = new Member();
@@ -27,13 +29,6 @@ public class SignupAction implements Action {
 		member.setUser_nickname(req.getParameter("nickname"));
 		member.setUser_email(req.getParameter("email"));
 		member.setUser_img(req.getParameter("user_img"));
-
-		Date date = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-		String strdate = format.format(date);
-
-		member.setSign_date(strdate);
-		member.setUser_title("");
 
 		System.out.println(member.toString());
 
@@ -47,7 +42,7 @@ public class SignupAction implements Action {
 			forward.setPath("/WebProject/Login.jsp");
 			return forward;
 		}
-
+		
 	}
 
 }

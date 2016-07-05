@@ -1,6 +1,6 @@
 package Control;
 
-public class ActionForward {
+public class ControllerForward {
 	
 	private boolean isRedirect = false;
 	private String path = null;
