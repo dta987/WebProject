@@ -6,38 +6,37 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.Member;
 import Model.MemberDao;
 
-public class meLoginController implements SuperController {
+public class meDeleteController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
-
+		
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 
-		Member member = dao.Login(id, password);
-
-		if (member.equals("")) {
-			System.out.println("로그인이 됨");
-			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/rvMain.jsp");
-		} else {
-			PrintWriter out = resp.getWriter();
+		int cnt = dao.DeleteMember(id, password);
+		
+		if(cnt > 0 ) {
 			forward.setRedirect(true);
 			forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
-			
-			System.out.println("아이디와 비밀번호를 확인해주세요");
-			
+		} else {
+			forward.setRedirect(false);
+			String result = "회원 탈퇴 중 오류코드 : " + cnt + "이(가) 발생하였습니다";
+			req.setAttribute("errmsg", result);
+			forward.setPath(req.getContextPath() + "/View/reErrPage.jsp");
 		}
 
 		return forward;
+
 	}
 
 }

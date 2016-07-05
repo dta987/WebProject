@@ -10,11 +10,10 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class MemberDao extends SuperDao {
 
-	public MemberDao() {
-	}
+	public MemberDao() {}
 	
 	//회원삭제
-	public int DeleteUser(String id, String password) {
+	public int DeleteMember(String id, String password) {
 		
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
@@ -28,6 +27,8 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(2, password);
 
 			cnt = pstmt.executeUpdate();
+			
+			conn.commit();
 
 		} catch (Exception e) {
 			SQLException err = (SQLException) e;
@@ -225,6 +226,52 @@ public class MemberDao extends SuperDao {
 
 		return Check;
 
+	}
+
+	public List<Member> MemberList() {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from members";
+		List<Member> member_lists = new ArrayList<Member>();
+		
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Member member = new Member();
+				member.setUser_id(rs.getString("user_id"));
+				member.setUser_password(rs.getString("user_password"));
+				member.setUser_name(rs.getString("user_name"));
+				member.setUser_email(rs.getString("user_email"));
+				member.setUser_nickname(rs.getString("user_nickname"));
+				member.setUser_img(rs.getString("user_img"));
+				member.setSign_date(rs.getString("sign_date"));
+				member.setUser_title(rs.getString("user_title"));
+				member_lists.add(member);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return member_lists;
 	}
 
 }

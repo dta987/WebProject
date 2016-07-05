@@ -17,7 +17,6 @@ public class meSignupController implements SuperController {
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 
-
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
 
@@ -35,14 +34,18 @@ public class meSignupController implements SuperController {
 		int cnt = dao.Signup(member);
 
 		if (cnt < 0) {
-			System.out.println("errCode : " + cnt);
-			return null;
+			forward.setRedirect(false);
+			String result = "회원 가입 중 오류코드 : " + cnt + "이(가) 발생하였습니다";
+			req.setAttribute("errmsg", result);
+			forward.setPath(req.getContextPath() + "/View/reErrPage.jsp");
 		} else {
 			forward.setRedirect(true);
 			forward.setPath("/WebProject/Login.jsp");
-			return forward;
+
 		}
-		
+
+		return forward;
+
 	}
 
 }

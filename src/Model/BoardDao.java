@@ -12,13 +12,13 @@ public class BoardDao extends SuperDao {
 
 	public BoardDao() {
 	}
-	
-	//게시물 삭제
+
+	// 게시물 삭제
 	public int DeleteBoard(String board_writer, int boards_no) {
-		
+
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "delete from boards where board_no=? and board_writer=?" ;
+		String sql = "delete from boards where board_no=? and board_writer=?";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -28,7 +28,7 @@ public class BoardDao extends SuperDao {
 			pstmt.setString(2, board_writer);
 
 			cnt = pstmt.executeUpdate();
-			
+
 			conn.commit();
 
 		} catch (Exception e) {
@@ -51,27 +51,27 @@ public class BoardDao extends SuperDao {
 		}
 		return cnt;
 	}
-	
-	//게시물 수정
+
+	// 게시물 수정
 	public int UpdateBoard(Board board) {
-		
+
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "update boards set(board_title=?, board_update=?, board_content=?, board_img=?) wherd board_no=? and board_writer=?" ;
+		String sql = "update boards set(board_title=?, board_update=to_date(sysdate, 'yyyy/MM/dd HH:mm:ss'), board_content=?, board_img=?, user_nickname=?) wherd board_no=?";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
+			
 			pstmt.setString(1, board.getBoard_title());
-			pstmt.setString(2, board.getBoard_update());
-			pstmt.setString(3, board.getBoard_content());
-			pstmt.setString(4, board.getBoard_img());
+			pstmt.setString(2, board.getBoard_content());
+			pstmt.setString(3, board.getBoard_img());
+			pstmt.setString(4, board.getUser_nickname());
 			pstmt.setInt(5, board.getBoard_no());
-			pstmt.setString(6, board.getBoard_writer());
 
 			cnt = pstmt.executeUpdate();
-			
+
 			conn.commit();
 
 		} catch (Exception e) {
@@ -93,30 +93,32 @@ public class BoardDao extends SuperDao {
 			}
 		}
 		return cnt;
-		
+
 	}
 
-	//게시물 작성
-	public int Signup(Member member) {
-				
+	// 게시글 작성
+	public int InsertBoard(Board board) {
+
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		
-		String sql = "";
+
+		String sql = "insert into boards(board_no, board_writ_date, board_update, board_category, board_writer, user_nickname, board_title, board_content, board_img)"
+				+ " values(board_no_seq.nextval, to_date(sysdate, 'yyyy/MM/dd HH:mm:ss'), to_date(sysdate, 'yyyy/MM/dd HH:mm:ss'), ?, ?, ?, ?, ?, ?)";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setString(1, member.getUser_id());
-			pstmt.setString(2, member.getUser_password());
-			pstmt.setString(3, member.getUser_name());
-			pstmt.setString(4, member.getUser_email());
-			pstmt.setString(5, member.getUser_nickname());
-			pstmt.setString(6, member.getUser_img());			
-			pstmt.setString(7, member.getSign_date());
+			pstmt.setInt(1, board.getBoard_category());
+			pstmt.setString(2, board.getBoard_writer());
+			pstmt.setString(3, board.getUser_nickname());
+			pstmt.setString(4, board.getBoard_title());
+			pstmt.setString(5, board.getBoard_content());
+			pstmt.setString(6, board.getBoard_img());
 
 			cnt = pstmt.executeUpdate();
+
+			conn.commit();
 
 		} catch (Exception e) {
 			SQLException err = (SQLException) e;
@@ -140,26 +142,32 @@ public class BoardDao extends SuperDao {
 
 	}
 
-	//로그인
-	public Member Login(String id, String password) {
+	public List<Board> BoardList() {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select user_id, user_img, user_nickname from members where user_id=?, user_password=?";
-		Member member = new Member();
+		String sql = "select board_no, board_title, board_writ_date, board_update, board_readhit, user_nickname from boards";
+
+		List<Board> board_lists = new ArrayList<Board>();
+
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, password);
 
 			rs = pstmt.executeQuery();
 
-			member.setUser_id(rs.getString("user_id"));
-			member.setUser_img(rs.getString("user_img"));
-			member.setUser_nickname(rs.getString("user_nickname"));
+			while (rs.next()) {
+				Board board = new Board();
+				board.setBoard_no(rs.getInt("board_no"));
+				board.setBoard_title(rs.getString("board_title"));
+				board.setBoard_writ_date(rs.getString("board_writ_date"));
+				board.setBoard_update(rs.getString("board_update"));
+				board.setBoard_readhit(rs.getString("board_readhit"));
+				board.setUser_nickname(rs.getString("user_nickname"));
+				board_lists.add(board);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,37 +184,42 @@ public class BoardDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		return member;
+		return board_lists;
 	}
 
-	// 중복체크 
-	// str - 아이디 OR 닉네임
-	// chk - 아이디는 1, 아니면 닉네임
-	public boolean OverlapCheck(String str, int chk) {
+	public List<Board> SelectBoard(int no, String title) {
 
-		Boolean Check = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "";
-		if (chk == 1) {
-			sql = "select user_id from members where user_id=?";
-		} else {
-			sql = "select user_id from members where user_nickname=?";
-		}
+		String sql = "select board_no, board_title, board_writer, board_writ_date, board_update, board_readhit, user_nickname, board_content, board_img, order_no"
+				+ " from boards where board_no=? and board_title=? and group_no=?";
+
+		List<Board> board_lists = new ArrayList<Board>();
 
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setString(1, str);
-
+			pstmt.setInt(1, no);
+			pstmt.setString(2, title);
+			pstmt.setInt(3, no);
+			
 			rs = pstmt.executeQuery();
 
-			if (rs == null) {
-				Check = true; // 사용가능한 아이디 OR 닉네임
-			} else {
-				Check = false; // 이미 사용중인 아디이 OR 닉네임
+			while (rs.next()) {
+				Board board = new Board();
+				board.setBoard_no(rs.getInt("board_no"));
+				board.setBoard_title(rs.getString("board_title"));
+				board.setBoard_writer(rs.getString("board_writer"));
+				board.setBoard_writ_date(rs.getString("board_writ_date"));
+				board.setBoard_update(rs.getString("board_update"));
+				board.setBoard_readhit(rs.getString("board_readhit"));
+				board.setUser_nickname(rs.getString("user_nickname"));
+				board.setBoard_content(rs.getString("board_content"));
+				board.setBoard_img(rs.getString("board_img"));
+				board.setOrder_no(rs.getInt("order_no"));
+				board_lists.add(board);
 			}
 
 		} catch (Exception e) {
@@ -224,9 +237,7 @@ public class BoardDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-
-		return Check;
-
+		return board_lists;
 	}
 
 }

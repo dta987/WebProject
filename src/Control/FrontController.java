@@ -28,7 +28,7 @@ public class FrontController extends HttpServlet {
 	private Map<String, SuperController> ActionMap = new HashMap<String, SuperController>();
 
 	public void init() throws ServletException {
-		String configFile = getInitParameter("configFile");
+		String configFile = getInitParameter("configFile"); //meLogin=Control.meLoginController
 		Properties prop = new Properties();
 		FileInputStream fis = null;
 		try {
@@ -57,7 +57,7 @@ public class FrontController extends HttpServlet {
 				// 각 요청 업무에 따르는 Controller들은 SuperController의 하위 클래스이다.
 				SuperController handlerInstance = (SuperController) handlerClass
 						.newInstance();
-
+				
 				// 객체로 만들어서 자바의 맵 구조에 추가한다.
 				ActionMap.put(command, handlerInstance);
 			} catch (ClassNotFoundException e) {
@@ -98,7 +98,6 @@ public class FrontController extends HttpServlet {
 		}
 		// 해당 커맨드에 맞는 컨트롤러를 찾아서 해당 컨트롤러의 doProcess() 메소드를 호출한다.
 		SuperController controller = ActionMap.get(command);
-		System.out.println(controller);
 		if (controller != null) {
 			forward = controller.doProcess(req, resp);
 		}

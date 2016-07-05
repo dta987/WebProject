@@ -51,6 +51,7 @@ public class Paging {
 
 		if( this.totalPage < this.endPage ){ this.endPage = this.totalPage ;  } 
 		
+		
 		this.pagingHtml = this.getPagingHtml( url ) ;
 		
 		this.pagingStatus = "ÃÑ " + totalCount + "°Ç[" 
