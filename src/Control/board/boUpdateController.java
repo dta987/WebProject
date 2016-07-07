@@ -40,7 +40,7 @@ public class boUpdateController implements SuperController {
 			forward.setRedirect(false);
 			req.setAttribute("board_no", req.getParameter("board_no"));
 			req.setAttribute("board_title", req.getParameter("board_title"));
-			forward.setPath(req.getContextPath() + "/MiniShopCtrl?command=boSelect");
+			forward.setPath(req.getContextPath() + "/YamaManCtrl?command=boSelect");
 			
 		} else {
 			forward.setRedirect(true);

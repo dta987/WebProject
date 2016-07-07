@@ -1,4 +1,4 @@
-create user yamanam_db identified by oracle account unlock;
+create user yamaman_db identified by oracle account unlock;
 
 grant connect, resource to yamaman_db;
 
@@ -11,7 +11,7 @@ create table members(
 	user_email varchar2(30),
 	user_nickname varchar2(20) UNIQUE,
 	user_img varchar2(50),
-	sign_date date
+	sign_date date,
 	user_title varchar2(1000)
 );
 
@@ -70,13 +70,13 @@ create table title(
 
 
 -- create table user_title(
-	user_title_no number primary key,
-	user_id varchar2(15),
-	title_no number,
-	constraint user_title_no_fk
-	foreign key(title_no) references Title(title_no)
-	on delete set null
-);
+--	user_title_no number primary key,
+--	user_id varchar2(15),
+--	title_no number,
+--	constraint user_title_no_fk
+--	foreign key(title_no) references Title(title_no)
+--	on delete set null
+--);
 
 //////<MemberDao>//////
 -로그인
@@ -201,20 +201,20 @@ order by hiking_date desc;
 
 /////// 시쿼스 생성 ////////
 
-mountain_no
-- create sequence mountain_no_seq start with 1 increment by 1 nocache;
+--mountain_no
+create sequence mountain_no_seq start with 1 increment by 1 nocache;
 
-board_no
-- create sequence board_no_seq start with 1 increment by 1 nocache;
+--board_no
+create sequence board_no_seq start with 1 increment by 1 nocache;
 
-history_no
-- create sequence history_no_seq start with 1 increment by 1 nocache;
+--history_no
+create sequence history_no_seq start with 1 increment by 1 nocache;
 
-title_no
-- create sequence title_no_seq start with 1 increment by 1 nocache;
+--title_no
+create sequence title_no_seq start with 1 increment by 1 nocache;
 
-user_title_no
-- create sequence user_title_no_seq start with 1 increment by 1 nocache;
+--user_title_no
+create sequence user_title_no_seq start with 1 increment by 1 nocache;
 
 
 
