@@ -26,7 +26,7 @@ public class meLogoutController implements SuperController {
 		session.invalidate();
 		
 		forward.setRedirect(true);
-		forward.setPath("View/member/meLoginForm.jsp");
+		forward.setPath("/View/member/meLoginForm.jsp");
 		
 		return forward;
 	}
