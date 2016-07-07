@@ -3,7 +3,7 @@
   <display-name>WebProject</display-name>
   
   <welcome-file-list>
-    <welcome-file>Main.jsp</welcome-file>
+    <welcome-file>rvMain.jsp</welcome-file>
   </welcome-file-list>
   
   <session-config>

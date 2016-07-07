@@ -10,14 +10,15 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class MemberDao extends SuperDao {
 
-	public MemberDao() {}
-	
-	//회원삭제
+	public MemberDao() {
+	}
+
+	// 회원삭제
 	public int DeleteMember(String id, String password) {
-		
+
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "delete from members where user_id=? and user_password=?" ;
+		String sql = "delete from members where user_id=? and user_password=?";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -27,7 +28,7 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(2, password);
 
 			cnt = pstmt.executeUpdate();
-			
+
 			conn.commit();
 
 		} catch (Exception e) {
@@ -50,13 +51,13 @@ public class MemberDao extends SuperDao {
 		}
 		return cnt;
 	}
-	
-	//회원정보 수정
+
+	// 회원정보 수정
 	public int UpdateUser(Member member) {
-		
+
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "update members set(user_password=?, user_name=?, user_email=?, user_nickName=?, user_img=? where user_id=?)" ;
+		String sql = "update members set(user_password=?, user_name=?, user_email=?, user_nickName=?, user_img=? where user_id=?)";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -89,15 +90,15 @@ public class MemberDao extends SuperDao {
 			}
 		}
 		return cnt;
-		
+
 	}
 
-	//회원가입
+	// 회원가입
 	public int Signup(Member member) {
-				
+
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		
+
 		String sql = " insert into members(user_id, user_password, user_name, user_email, user_nickname, user_img, sign_date)"
 				+ " values(?, ?, ?, ?, ?, ?, to_date(?, 'yyyy/MM/dd'))";
 		try {
@@ -110,7 +111,7 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(3, member.getUser_name());
 			pstmt.setString(4, member.getUser_email());
 			pstmt.setString(5, member.getUser_nickname());
-			pstmt.setString(6, member.getUser_img());			
+			pstmt.setString(6, member.getUser_img());
 			pstmt.setString(7, member.getSign_date());
 
 			cnt = pstmt.executeUpdate();
@@ -137,13 +138,13 @@ public class MemberDao extends SuperDao {
 
 	}
 
-	//로그인
+	// 로그인
 	public Member Login(String id, String password) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select user_id, user_img, user_nickname from members where user_id=? and user_password=?";
-		Member member = new Member();
+		Member member = null;
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -153,12 +154,12 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(2, password);
 
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
+				member = new Member();
 				member.setUser_id(rs.getString("user_id"));
 				member.setUser_img(rs.getString("user_img"));
 				member.setUser_nickname(rs.getString("user_nickname"));
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -178,7 +179,7 @@ public class MemberDao extends SuperDao {
 		return member;
 	}
 
-	// 중복체크 
+	// 중복체크
 	// str - 아이디 OR 닉네임
 	// chk - 아이디는 1, 아니면 닉네임
 	public boolean OverlapCheck(String str, int chk) {
@@ -229,21 +230,21 @@ public class MemberDao extends SuperDao {
 	}
 
 	public List<Member> MemberList() {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from members";
 		List<Member> member_lists = new ArrayList<Member>();
-		
+
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			
+
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				Member member = new Member();
 				member.setUser_id(rs.getString("user_id"));
 				member.setUser_password(rs.getString("user_password"));
@@ -255,7 +256,7 @@ public class MemberDao extends SuperDao {
 				member.setUser_title(rs.getString("user_title"));
 				member_lists.add(member);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 

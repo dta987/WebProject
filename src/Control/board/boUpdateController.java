@@ -1,4 +1,4 @@
-package Control;
+package Control.board;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Control.ControllerForward;
+import Control.SuperController;
 import Model.Board;
 import Model.BoardDao;
 
@@ -35,22 +37,14 @@ public class boUpdateController implements SuperController {
 
 		if (cnt > 0) {
 			
-			List<Board> board_lists = new ArrayList<Board>();
-			
-			int no = Integer.parseInt(req.getParameter("board_no"));
-			String title = req.getParameter("board_title");
-			board_lists = dao.SelectBoard(no, title);
-			
-			req.setAttribute("board_lists", board_lists);
-			
 			forward.setRedirect(false);
-			forward.setPath(req.getContextPath() + "/View/boReadFrom.jsp");
+			req.setAttribute("board_no", req.getParameter("board_no"));
+			req.setAttribute("board_title", req.getParameter("board_title"));
+			forward.setPath(req.getContextPath() + "/MiniShopCtrl?command=boSelect");
 			
 		} else {
-			forward.setRedirect(false);
-			String result = "게시글 " + req.getParameter("board_title") + "을(를) 수정 하지 못했습니다.";
-			req.setAttribute("errmsg", result);
-			forward.setPath(req.getContextPath() + "/View/rvErrPage.jsp");
+			forward.setRedirect(true);
+			forward.setPath("/View/review/rvErrPage.jsp");
 
 		}
 

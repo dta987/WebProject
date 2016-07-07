@@ -1,4 +1,4 @@
-package Control;
+package Control.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Control.ControllerForward;
+import Control.SuperController;
 import Model.Member;
 import Model.MemberDao;
 

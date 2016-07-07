@@ -105,7 +105,7 @@ public class FrontController extends HttpServlet {
 		
 		//결과값 이동
 		if (forward.isRedirect()) {
-			resp.sendRedirect(forward.getPath());
+			resp.sendRedirect(req.getContextPath() + forward.getPath());
 		} else {
 			RequestDispatcher dispatcher = req.getRequestDispatcher(forward
 					.getPath());

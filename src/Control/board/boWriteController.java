@@ -1,4 +1,4 @@
-package Control;
+package Control.board;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Control.ControllerForward;
+import Control.SuperController;
 import Model.Board;
 import Model.BoardDao;
 import Model.Member;
@@ -42,12 +44,10 @@ public class boWriteController implements SuperController {
 			
 			if(cnt > 0 ) {
 				forward.setRedirect(false);
-				forward.setPath(req.getContextPath() + "/View/boListForm.jsp");
+				forward.setPath("/MiniShopCtrl?command=boList");
 			} else {
-				forward.setRedirect(false);
-				String result = "게시글 등록 중 오류코드 : " + cnt + "이(가) 발생하였습니다";
-				req.setAttribute("errmsg", result);
-				forward.setPath(req.getContextPath() + "/View/reErrPage.jsp");
+				forward.setRedirect(true);
+				forward.setPath("/View/review/reErrPage.jsp");
 			}
 
 		}

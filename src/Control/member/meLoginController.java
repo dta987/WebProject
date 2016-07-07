@@ -1,17 +1,20 @@
-package Control;
+package Control.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Control.ControllerForward;
+import Control.SuperController;
 import Model.Member;
 import Model.MemberDao;
 
-public class meDeleteController implements SuperController {
+public class meLoginController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
@@ -19,24 +22,31 @@ public class meDeleteController implements SuperController {
 
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
-		
+
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 
-		int cnt = dao.DeleteMember(id, password);
-		
-		if(cnt > 0 ) {
-			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
-		} else {
+		Member bean = dao.Login(id, password);
+
+		if (bean != null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("loginfo", bean);
+
+			String massage = bean.getUser_nickname() + "님 어서오세요!";
+			req.setAttribute("massage", massage);
+
 			forward.setRedirect(false);
-			String result = "회원 탈퇴 중 오류코드 : " + cnt + "이(가) 발생하였습니다";
-			req.setAttribute("errmsg", result);
-			forward.setPath(req.getContextPath() + "/View/reErrPage.jsp");
+			forward.setPath("/View/Main.jsp");
+		} else {
+			String massage = "아이디와 비밀번호를 확인해주세요";
+			req.setAttribute("errmsg", massage);
+
+			forward.setRedirect(false);
+			forward.setPath("/View/member/meLoginForm.jsp");
+
 		}
 
 		return forward;
-
 	}
 
 }

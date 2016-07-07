@@ -1,4 +1,4 @@
-package Control;
+package Control.member;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Control.ControllerForward;
+import Control.SuperController;
 import Model.Member;
 import Model.MemberDao;
 
@@ -19,7 +21,6 @@ public class meSignupController implements SuperController {
 
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
-
 		Member member = new Member();
 
 		member.setUser_id(req.getParameter("id"));
@@ -29,18 +30,14 @@ public class meSignupController implements SuperController {
 		member.setUser_email(req.getParameter("email"));
 		member.setUser_img(req.getParameter("user_img"));
 
-		System.out.println(member.toString());
-
 		int cnt = dao.Signup(member);
 
 		if (cnt < 0) {
-			forward.setRedirect(false);
-			String result = "회원 가입 중 오류코드 : " + cnt + "이(가) 발생하였습니다";
-			req.setAttribute("errmsg", result);
-			forward.setPath(req.getContextPath() + "/View/reErrPage.jsp");
+			forward.setRedirect(true);
+			forward.setPath("/View/review/reErrPage.jsp");
 		} else {
 			forward.setRedirect(true);
-			forward.setPath("/WebProject/Login.jsp");
+			forward.setPath("/View/member/meLoginForm.jsp");
 
 		}
 
