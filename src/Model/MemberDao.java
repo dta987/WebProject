@@ -182,13 +182,13 @@ public class MemberDao extends SuperDao {
 	// 중복체크
 	// str - 아이디 OR 닉네임
 	// chk - 아이디는 1, 아니면 닉네임
-	public int OverlapCheck(String str, int chk) {
+	public boolean OverlapCheck(String str, int no) {
 
-		int Check = 0;
+		boolean Check = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "";
-		if (chk == 1) {
+		if (no == 1) {
 			sql = "select user_id from members where user_id=?";
 		} else {
 			sql = "select user_id from members where user_nickname=?";
@@ -202,11 +202,11 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(1, str);
 
 			rs = pstmt.executeQuery();
-
-			if (rs == null) {
-				Check = 0; // 사용가능한 아이디 OR 닉네임
+			
+			if (!rs.next()) {
+				Check = true; // 사용가능한 아이디 OR 닉네임
 			} else {
-				Check = 1; // 이미 사용중인 아디이 OR 닉네임
+				Check = false; // 이미 사용중인 아디이 OR 닉네임
 			}
 
 		} catch (Exception e) {

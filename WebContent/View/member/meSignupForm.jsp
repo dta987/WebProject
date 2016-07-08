@@ -10,41 +10,12 @@
 	
 	String pwOverlapCheck = ""; 
 %>
-
-<script>
-	$(document).ready(function() {
-		$("#id").keyup(function() {
-
-			if ($("#id").val().length > 4) {
-				var id = $("#id").val();
-				$("#idcheck").html("<div class='alert-success col-sm-3' > 6글자이상 입니다</div>");
-				$.ajax({
-					type : "post",
-					url : "<%=MyCtrlCommand%>meIDcheck",
-					dataType : "JSON",
-					data : {
-						"id" : $("#id").val(),
-					},
-					success : function(obj) {
-						var result = JSON.parse(obj);
-						if(result.check) {
-							$("#idcheck").html("<div class='alert-success col-sm-3' > 사용가능한 아이디 입니다</div>");
-						} else {
-							$("#idcheck").html("<div class='alert-danger col-sm-3' > 이미 사용중입 아이디입니다</div>");
-						}
-					}
-				});
-			} else {
-				$("#idcheck").html("<div class='alert-danger col-sm-3'> 6글자이상 입력해주세요</div>");
-			}
-		});
-	});
-</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<script type="text/javascript" src="../../View/script/script.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -54,7 +25,7 @@
 		<form class="form-horizontal" action="<%=MyCtrlByForm%>" method="post">
 			<input type="hidden" name="command" value="meSignup">
 
-			<div class="form-group">
+			<div id="iddiv" class="form-group">
 				<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
 				<div class="col-sm-<%=input%>">
 					<input type="text" class="form-control" id="id" name="id" placeholder="id">
@@ -63,10 +34,19 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="passoword" class="col-sm-<%=label%> control-label">Password</label>
+				<label for="passoword" class="col-sm-<%=label%> control-label">PW</label>
 				<div class="col-sm-<%=input%>">
 					<input type="password" class="form-control" id="password" name="password"
 						placeholder="password">
+				</div>
+			</div>
+			<div id="pwdiv" class="form-group">
+				<label for="passoword2" class="col-sm-<%=label%> control-label">PW 확인</label>
+				<div class="col-sm-<%=input%>">
+					<input type="password" class="form-control" id="password2" name="password2"
+						placeholder="passwordCheck">
+				</div>
+				<div id="pwcheck">
 				</div>
 			</div>
 			<div class="form-group">
@@ -81,13 +61,12 @@
 					<input type="text" class="form-control" id="email" name="email" placeholder="email">
 				</div>
 			</div>
-			<div class="form-group">
+			<div id="nicknamediv" class="form-group">
 				<label for="nickname" class="col-sm-<%=label%> control-label">Nickname</label>
 				<div class="col-sm-<%=input%>">
 					<input type="text" class="form-control" id="nickname" name="nickname" placeholder="nickname">
 				</div>
-				<div>
-					<button type="button" class="btn btn-default">중복체크</button>
+				<div id="nicknamecheck">
 				</div>
 				<br>
 				<div class="form-group">
@@ -98,5 +77,75 @@
 				</div>
 		</form>
 	</div>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#id").keyup(function() {
+			if ($("#id").val().length > 4) {
+				$.ajax({
+					type : "post",
+					url : "<%=MyCtrlCommand%>meOverlapcheck",
+					dataType : "JSON",
+					data : {
+						"id" : $("#id").val(),
+					},
+					success : function(result) {
+						if(result.check) {
+							$("#iddiv").switchClass("has-error has-feedback", "has-success has-feedback");
+							$("#idcheck").html("<div class='alert-success col-sm-3' > 사용가능한 아이디 입니다</div>");
+						} else {
+							$("#iddiv").switchClass("has-success has-feedback", "has-error has-feedback");
+							$("#idcheck").html("<div class='alert-danger col-sm-3' > 이미 사용중인 아이디입니다</div>");
+						}
+					}
+				});
+			} else {
+				$("#idcheck").html("<div class='alert-danger col-sm-3'> 6글자이상 입력해주세요</div>");
+				$("#iddiv").addClass("has-error has-feedback");	
+			}
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#nickname").keyup(function() {
+			if($("#nickname").val().length > 1) {
+				$.ajax({
+					type : "post",
+					url : "<%=MyCtrlCommand%>meOverlapcheck",
+					dataType : "JSON",
+					data : {
+						"nickname" : $("#nickname").val(),
+					},
+					success : function(result) {
+						if(result.check) {
+							$("#nicknamediv").switchClass("has-error has-feedback", "has-success has-feedback");
+							$("#nicknamecheck").html("<div class='alert-success col-sm-3' > 사용가능한 닉네임 입니다</div>");
+						} else {
+							$("#nicknamediv").switchClass("has-success has-feedback", "has-error has-feedback");
+							$("#nicknamecheck").html("<div class='alert-danger col-sm-3' > 이미 사용중인 닉네임 입니다</div>");
+						}
+						
+					}
+				});
+			} else {
+				$("#nicknamecheck").html("<div class='alert-danger col-sm-3'> 닉네임은 2글자 이상입니다</div>");
+				$("#nicknamediv").addClass("has-error has-feedback");	
+			}
+			
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#password2").keyup(function() {
+			if($("#password").val() == $("#password2").val()) {
+				$("#pwdiv").switchClass("has-error has-feedback", "has-success has-feedback");
+				$("#pwcheck").html("<div class='alert-success col-sm-3' > 사용가능</div>");
+			} else {
+				$("#pwdiv").addClass("has-error has-feedback");
+				$("#pwcheck").html("<div class='alert-danger col-sm-3' > 비밀번호를 확인해주세요</div>");
+			}
+		});
+	});
+	</script>
 </body>
 </html>

@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+import com.sun.swing.internal.plaf.basic.resources.basic;
+
 import jdk.nashorn.internal.ir.debug.JSONWriter;
 import Control.ControllerForward;
 import Control.SuperController;
 import Model.MemberDao;
 
-public class meIDcheckController implements SuperController {
+public class meOverlapcheckController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
@@ -25,20 +27,23 @@ public class meIDcheckController implements SuperController {
 		PrintWriter out = resp.getWriter();
 		MemberDao dao = new MemberDao();
 		int no = 0;
-		int check = 0;
+		boolean check = false;
 		// 0이면 사용가능 1이면 이미사용중인 아이디
 		forward.setRedirect(false);
 		forward.setPath("");
 
-		System.out.println(req.getParameter("id"));
+		
 		if (req.getParameter("id") != null) {
+			System.out.println("id : " + req.getParameter("id"));
 			no = 1;
 			check = dao.OverlapCheck(req.getParameter("id"), no);
+			System.out.println(check);
 			jsonobj.put("check", check);
 			out.print(jsonobj);
 			out.flush();
 			out.close();
 		} else {
+			System.out.println("nickname : " + req.getParameter("nickname"));
 			no = 2;
 			check = dao.OverlapCheck(req.getParameter("nickname"), no);
 			jsonobj.put("check", check);
