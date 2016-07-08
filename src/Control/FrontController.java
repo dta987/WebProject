@@ -107,9 +107,7 @@ public class FrontController extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + forward.getPath());
 
 		} else {
-			
 			if (!(forward.getPath().equals(""))) {
-				System.out.println("¿©±â·Î¿È");
 				RequestDispatcher dispatcher = req.getRequestDispatcher(forward
 						.getPath());
 				dispatcher.forward(req, resp);
