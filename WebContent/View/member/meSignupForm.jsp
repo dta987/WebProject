@@ -5,7 +5,41 @@
 	int mywidth = twelve - 2 * myoffset;
 	int label = 4;
 	int input = twelve - 2 * label;
+	
+	String idOverlapCheck = ""; 
+	
+	String pwOverlapCheck = ""; 
 %>
+
+<script>
+	$(document).ready(function() {
+		$("#id").keyup(function() {
+
+			if ($("#id").val().length > 4) {
+				var id = $("#id").val();
+				$("#idcheck").html("<div class='alert-success col-sm-3' > 6글자이상 입니다</div>");
+				$.ajax({
+					type : "post",
+					url : "<%=MyCtrlCommand%>meIDcheck",
+					dataType : "JSON",
+					data : {
+						"id" : $("#id").val(),
+					},
+					success : function(obj) {
+						var result = JSON.parse(obj);
+						if(result.check) {
+							$("#idcheck").html("<div class='alert-success col-sm-3' > 사용가능한 아이디 입니다</div>");
+						} else {
+							$("#idcheck").html("<div class='alert-danger col-sm-3' > 이미 사용중입 아이디입니다</div>");
+						}
+					}
+				});
+			} else {
+				$("#idcheck").html("<div class='alert-danger col-sm-3'> 6글자이상 입력해주세요</div>");
+			}
+		});
+	});
+</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,10 +57,9 @@
 			<div class="form-group">
 				<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
 				<div class="col-sm-<%=input%>">
-					<input type="id" class="form-control" id="id" name="id" placeholder="id">
+					<input type="text" class="form-control" id="id" name="id" placeholder="id">
 				</div class="col-sm-1">
-				<div>
-					<button type="button" class="btn btn-default">중복체크</button>
+				<div id="idcheck">
 				</div>
 			</div>
 			<div class="form-group">

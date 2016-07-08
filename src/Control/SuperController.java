@@ -12,4 +12,5 @@ public interface SuperController {
 	//모든 비즈니스 로직을 수행하기 위한 추상 메소드를 정의한다.
 	public ControllerForward doProcess(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException;
+	
 }

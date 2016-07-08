@@ -28,7 +28,7 @@ public class FrontController extends HttpServlet {
 	private Map<String, SuperController> ActionMap = new HashMap<String, SuperController>();
 
 	public void init() throws ServletException {
-		String configFile = getInitParameter("configFile"); //meLogin=Control.meLoginController
+		String configFile = getInitParameter("configFile"); // meLogin=Control.meLoginController
 		Properties prop = new Properties();
 		FileInputStream fis = null;
 		try {
@@ -57,7 +57,7 @@ public class FrontController extends HttpServlet {
 				// 각 요청 업무에 따르는 Controller들은 SuperController의 하위 클래스이다.
 				SuperController handlerInstance = (SuperController) handlerClass
 						.newInstance();
-				
+
 				// 객체로 만들어서 자바의 맵 구조에 추가한다.
 				ActionMap.put(command, handlerInstance);
 			} catch (ClassNotFoundException e) {
@@ -71,11 +71,11 @@ public class FrontController extends HttpServlet {
 		System.out.println("맵 사이즈 : " + ActionMap.size());
 	}
 
-	protected void doProcess(HttpServletRequest req,
-			HttpServletResponse resp) throws ServletException, IOException {
+	protected void doProcess(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 
 		ControllerForward forward = null;
-		
+
 		// 파일 업로드를 이용하기 위하여 multipart/form-data을 사용하게 되면
 		// request 객체를 직접 이용하지 못한다.
 		String command = req.getParameter("command");
@@ -93,7 +93,7 @@ public class FrontController extends HttpServlet {
 				command = multi.getParameter("command");
 				req.setAttribute("multi", multi); // request에 바인딩
 				req.setAttribute("uploadedPath", uploadedPath); // request에
-																	// 바인딩
+																// 바인딩
 			}
 		}
 		// 해당 커맨드에 맞는 컨트롤러를 찾아서 해당 컨트롤러의 doProcess() 메소드를 호출한다.
@@ -101,15 +101,21 @@ public class FrontController extends HttpServlet {
 		if (controller != null) {
 			forward = controller.doProcess(req, resp);
 		}
-		
-		
-		//결과값 이동
+
+		// 결과값 이동
 		if (forward.isRedirect()) {
 			resp.sendRedirect(req.getContextPath() + forward.getPath());
+
 		} else {
-			RequestDispatcher dispatcher = req.getRequestDispatcher(forward
-					.getPath());
-			dispatcher.forward(req, resp);
+			
+			if (!(forward.getPath().equals(""))) {
+				System.out.println("여기로옴");
+				RequestDispatcher dispatcher = req.getRequestDispatcher(forward
+						.getPath());
+				dispatcher.forward(req, resp);
+			}
+			
+
 		}
 
 	}
