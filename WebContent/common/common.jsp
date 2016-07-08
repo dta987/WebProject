@@ -20,9 +20,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script  src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+
 
 <link rel="stylesheet" href="<%=contextPath%>/View/layout/style.css">
-<script src="<%=contextPath%>/View/script/script.js"></script>
+
 
 
 <title>Insert title here</title>
