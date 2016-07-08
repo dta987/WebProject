@@ -20,7 +20,7 @@ import Utility.MyFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 
-@WebServlet(urlPatterns = { "/MiniShopCtrl" }, initParams = { @WebInitParam(name = "configFile", value = "/WEB-INF/commandList.properties") })
+@WebServlet(urlPatterns = { "/YamaManCtrl" }, initParams = { @WebInitParam(name = "configFile", value = "/WEB-INF/commandList.properties") })
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

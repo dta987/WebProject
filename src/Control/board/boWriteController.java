@@ -44,7 +44,7 @@ public class boWriteController implements SuperController {
 			
 			if(cnt > 0 ) {
 				forward.setRedirect(false);
-				forward.setPath("/MiniShopCtrl?command=boList");
+				forward.setPath("/YamaManCtrl?command=boList");
 			} else {
 				forward.setRedirect(true);
 				forward.setPath("/View/review/reErrPage.jsp");

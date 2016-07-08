@@ -30,7 +30,7 @@
 	<nav class="navbar  navbar-default navbar-fixed-top ">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img alt="Brand" src="...">
+			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded" alt="Brand" src="<%=contextPath%>/View/images/yamaman01.jpg" style="width:150px;height:50px">
 			</a>
 		</div>
 		<ul class="nav nav-pills navbar-right">
@@ -39,7 +39,7 @@
 				<li role="presentation"><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li>
 
 			</c:if>
-			<c:if test="${whologin == 1}">
+			<c:if test="${whologin != 0}">
 				<li role="presentation"><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
 				<li role="presentation"><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
 

@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div></div>
-
+<br>
+<br>
+<br>
+<br>
+		<h1 align="center">메인 홈페이지입니다.</h1>
 </body>
 </html>
