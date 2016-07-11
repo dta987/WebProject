@@ -12,5 +12,6 @@
 <br>
 <br>
 		<h1 align="center">메인 홈페이지입니다.</h1>
+		ggggg
 </body>
 </html>
