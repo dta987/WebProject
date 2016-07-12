@@ -8,17 +8,19 @@ public class Paging {
 	//ex) 34/pageCount+1
 	
 	private int pageNumber = 0 ; //보여줄 페이지 넘버(표현 가능한 페이지는 1부터 totalPage까지이다.)
+	//17	
 	private int pageSize = 0 ; //한 페이지에 보여줄 건수
+	//10
 	private int beginRow = 0 ; //현재 페이지의 시작 행
-	//pageNumber*pageCount-(pageCount-1)
+	//pageNumber*pageSize-(pageSize-1) // boginRow = (pageNumber-1) * pageSize +1
 	private int endRow = 0 ; //현재 페이지의 끝 행
-	//pageNumber*pageCount
+	//pageNumber*pageCount // endRow = pageNumber * pageSize 
 	
 	private int pageCount = 10 ; //보여줄 페이지 링크 수
 	private int beginPage = 0 ; //페이징 처리 시작 페이지 번호
-	//
+	// beginPage = (pageNumber - 1) / pageCount * pageCount + 1
 	private int endPage = 0 ; //페이징 처리 끝 페이지 번호
-	//
+	// endPage = beginPage 
 	
 	private String url = "" ; //예시 ==>  http://localhost:8989/MyServlet/list.do
 	private String pagingHtml = "";//하단의 숫자 페이지 링크
@@ -31,6 +33,7 @@ public class Paging {
 	//pagination Size 변수
 	private String paginationSize = " pagination-sm" ; //  pagination-lg   pagination-sm    pagination-xs
 
+	
 	public Paging(String _pageNumber, String _pageSize, int totalCount, String url, String mode, String keyword) {
 		if ( _pageNumber == null || _pageNumber.equals("null")) {
 			_pageNumber = "1" ; 
@@ -38,7 +41,7 @@ public class Paging {
 		this.pageNumber = Integer.parseInt( _pageNumber ) ;
 		
 		if ( _pageSize == null || _pageSize.equals("null")) {
-			_pageSize = "5" ; 
+			_pageSize = "10" ; 
 		}
 		this.pageSize = Integer.parseInt( _pageSize ) ;
 		
@@ -80,19 +83,19 @@ public class Paging {
 			//result += "맨처음&nbsp;&nbsp;";
 			//result += "이전&nbsp;&nbsp;";			
 		} else {
-			result += "<li><a href='" + url + "?pageNumber=" + 1 + 
+			result += "<li><a href='" + url + "&pageNumber=" + 1 + 
 				"&pageSize=" + pageSize + add_param + "'>맨처음</a></li>&nbsp;&nbsp;";
 			
-			result += "<li><a href='" + url + "?pageNumber=" + (beginPage - 1) + 
+			result += "<li><a href='" + url + "&pageNumber=" + (beginPage - 1) + 
 				"&pageSize=" + pageSize + add_param + "'>이전</a></li>&nbsp;&nbsp;";
 		}		
 		//페이지 시작 번호 부터 ~ 끝 번호 까지 표시
 		
 		for (int i = beginPage ; i <= endPage ; i++) {
-			if(i == pageNumber){ //현재 페이지이면 링크는 없고, 빨간색으로 표시
-				result += "<li class='active'><a><font color='red'><b>" + i + "</b></font></a></li>&nbsp;";
+			if(i == pageNumber){ //현재 페이지이면 링크는 없고
+				result += "<li class='active'><a><b>" + i + "</b></a></li>&nbsp;";
 			}else{
-				result += "<li><a href='" + url + "?pageNumber=" + i + 
+				result += "<li><a href='" + url + "&pageNumber=" + i + 
 					"&pageSize=" + pageSize + add_param + "'>" + i + "</li></a>&nbsp;";	
 			}			
 		}
@@ -102,10 +105,10 @@ public class Paging {
 			//result += "다음&nbsp;&nbsp;";
 			//result += "맨 끝&nbsp;&nbsp;";	
 		} else {			
-			result += "<li><a href='" + url + "?pageNumber=" + (endPage + 1) + 
+			result += "<li><a href='" + url + "&pageNumber=" + (endPage + 1) + 
 				"&pageSize=" + pageSize + add_param + "'>다음</a></li>&nbsp;&nbsp;";
 			
-			result += "<li><a href='" + url + "?pageNumber=" + totalPage + 
+			result += "<li><a href='" + url + "&pageNumber=" + totalPage + 
 				"&pageSize=" + pageSize + add_param + "'>맨 끝</a></li>";
 		}
 		result += "</ul>"; 

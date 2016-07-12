@@ -20,6 +20,10 @@
 	//out.println("whologin : " + whologin);
 	session.setAttribute("whologin", whologin);
 %>
+
+<% 
+  String Brandimg = contextPath + "/View/images/GreenSanIcon.png";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +34,7 @@
 	<nav class="navbar  navbar-default navbar-fixed-top ">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded" alt="Brand" src="<%=contextPath%>/View/images/yamaman01.jpg" style="width:150px;height:50px">
+			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded" alt="Brand" src="<%=Brandimg%>" style="width:100%; height:100%">
 			</a>
 		</div>
 		<ul class="nav nav-pills navbar-right">

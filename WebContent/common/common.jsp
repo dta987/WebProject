@@ -21,12 +21,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script  src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
-
-
-
-<link rel="stylesheet" href="<%=contextPath%>/View/layout/style.css">
-
-
+<link rel="stylesheet" href="<%=contextPath%>/View/layout/Style.css">
 
 <title>Insert title here</title>
 </head>

@@ -25,7 +25,7 @@ public class meDeleteController implements SuperController {
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 
-		int cnt = dao.DeleteMember(id, password);
+		int cnt = dao.DeleteDate(id, password);
 		
 		if(cnt > 0 ) {
 			forward.setRedirect(true);

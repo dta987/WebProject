@@ -14,7 +14,7 @@ public class MemberDao extends SuperDao {
 	}
 
 	// 회원삭제
-	public int DeleteMember(String id, String password) {
+	public int DeleteDate(String id, String password) {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
@@ -53,7 +53,7 @@ public class MemberDao extends SuperDao {
 	}
 
 	// 회원정보 수정
-	public int UpdateUser(Member member) {
+	public int UpdateData(Member member) {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
@@ -94,13 +94,13 @@ public class MemberDao extends SuperDao {
 	}
 
 	// 회원가입
-	public int Signup(Member member) {
+	public int InsertData(Member member) {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
 
-		String sql = " insert into members(user_id, user_password, user_name, user_email, user_nickname, user_img, sign_date)"
-				+ " values(?, ?, ?, ?, ?, ?, to_date(?, 'yyyy/MM/dd'))";
+		String sql = " insert into members(user_id, user_password, user_name, user_email, user_nickname, user_img)"
+				+ " values(?, ?, ?, ?, ?, ?)";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -112,7 +112,6 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(4, member.getUser_email());
 			pstmt.setString(5, member.getUser_nickname());
 			pstmt.setString(6, member.getUser_img());
-			pstmt.setString(7, member.getSign_date());
 
 			cnt = pstmt.executeUpdate();
 
@@ -139,7 +138,7 @@ public class MemberDao extends SuperDao {
 	}
 
 	// 로그인
-	public Member Login(String id, String password) {
+	public Member SelectDate(String id, String password) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -229,11 +228,17 @@ public class MemberDao extends SuperDao {
 
 	}
 
-	public List<Member> MemberList() {
+	public List<Member> SelectDataList(int beginRow, int endRow) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from members";
+		String sql = "select user_id, user_name, user_email, user_nickname, sign_date, user_title, ranking"
+				+ " from"
+				+ " ("
+				+ " select user_id, user_name, user_email, user_nickname, sign_date, user_title, rank() over( order by user_id desc ) as ranking"
+				+ " from members"
+				+ " )"
+				+ " where ranking between ? and ? ";
 		List<Member> member_lists = new ArrayList<Member>();
 
 		try {
@@ -241,18 +246,18 @@ public class MemberDao extends SuperDao {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setInt(1, beginRow);
+			pstmt.setInt(2, endRow);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Member member = new Member();
 				member.setUser_id(rs.getString("user_id"));
-				member.setUser_password(rs.getString("user_password"));
 				member.setUser_name(rs.getString("user_name"));
 				member.setUser_email(rs.getString("user_email"));
 				member.setUser_nickname(rs.getString("user_nickname"));
-				member.setUser_img(rs.getString("user_img"));
-				member.setSign_date(rs.getString("sign_date"));
+				member.setSign_date(String.valueOf((rs.getDate("sign_date"))));
 				member.setUser_title(rs.getString("user_title"));
 				member_lists.add(member);
 			}

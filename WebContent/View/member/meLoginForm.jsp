@@ -25,13 +25,13 @@
 			<div class="form-group">
 				<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
 				<div class="col-sm-<%=input%>">
-					<input type="id" class="form-control" id="id" name="id" placeholder="id">
+					<input type="id" class="form-control" id="id" name="id" placeholder="id" value="admin">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="passoword" class="col-sm-<%=label%> control-label">Password</label>
 				<div class="col-sm-<%=input%>">
-					<input type="password" class="form-control" id="password" name="password" placeholder="password">
+					<input type="password" class="form-control" id="password" name="password" placeholder="password" value="1234">
 				</div>
 			</div>
 

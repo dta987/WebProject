@@ -26,7 +26,7 @@ public class meLoginController implements SuperController {
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 
-		Member bean = dao.Login(id, password);
+		Member bean = dao.SelectDate(id, password);
 
 		if (bean != null) {
 			HttpSession session = req.getSession();

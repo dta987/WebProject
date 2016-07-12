@@ -30,7 +30,7 @@ public class meSignupController implements SuperController {
 		member.setUser_email(req.getParameter("email"));
 		member.setUser_img(req.getParameter("user_img"));
 
-		int cnt = dao.Signup(member);
+		int cnt = dao.InsertData(member);
 
 		if (cnt < 0) {
 			forward.setRedirect(true);

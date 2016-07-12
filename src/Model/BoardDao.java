@@ -187,7 +187,7 @@ public class BoardDao extends SuperDao {
 		return board_lists;
 	}
 
-	public List<Board> SelectBoard(int no, String title) {
+	public List<Board> SelectBoard(int pk, String title) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -201,9 +201,9 @@ public class BoardDao extends SuperDao {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, pk);
 			pstmt.setString(2, title);
-			pstmt.setInt(3, no);
+			pstmt.setInt(3, pk);
 			
 			rs = pstmt.executeQuery();
 

@@ -1,7 +1,6 @@
 package Control.member;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,8 +11,9 @@ import Control.ControllerForward;
 import Control.SuperController;
 import Model.Member;
 import Model.MemberDao;
+import Utility.Paging;
 
-public class meListController implements SuperController{
+public class meListController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
@@ -21,23 +21,33 @@ public class meListController implements SuperController{
 
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
+
+		String _pageNumber = req.getParameter("pageNumber");
+		String _pageSize = req.getParameter("pageSize");
+		String mode = null;
+		String keyword = null;
+		int totalCount = 1008;
+
+		String myurl = req.getContextPath() + "/YamaManCtrl?command=meList";
 		
-		List<Member> member_lists = dao.MemberList();
+		Paging pageInfo = new Paging(_pageNumber, _pageSize, totalCount, myurl, mode, keyword);
+
+		List<Member> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow());
+		req.setAttribute("lists", lists);
+		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
+		req.setAttribute("pagingStatus", pageInfo.getPagingStatus());
 		
-		if (member_lists.size() > 0 ) {
-			req.setAttribute("member_lists", member_lists);
-			forward.setRedirect(true);
-			//forward.setPath(req.getContextPath() + "/View/rvMain.jsp");
-		} else {
+		if (lists.size() > 0) {
 			forward.setRedirect(false);
-			//forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
-			
+			forward.setPath("/View/member/meList.jsp");
+		} else {
+			forward.setRedirect(true);
+			// forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
+
 		}
 
 		return forward;
-		
+
 	}
-	
-	
 
 }
