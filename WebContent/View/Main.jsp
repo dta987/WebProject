@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../View/review/rvTOP.jsp"%>
-
+<%!String[] carousel_img = { "/View/images/산타니05.jpg",
+			"/View/images/산타니05.jpg", "/View/images/산타니05.jpg",
+			"/View/images/산타니05.jpg" };%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,21 +22,19 @@
 
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
-			<div class="item active" align="center">
-				<img src="../View/images/산타니05.jpg" alt="Chania">
-			</div>
+			<c:forEach var="carousel_img" items="<%=carousel_img%>" varStatus="status">
+				<c:if test="${status.first}">
+					<div class="item active" align="center">
+						<img src="<%=contextPath%>${carousel_img}" alt="Chania" width="300px" height="100px">
+					</div>
+				</c:if>
+				<c:if test="${not status.first}">
+					<div class="item" align="center">
+						<img src="<%=contextPath%>${carousel_img}" alt="Chania" width="300px" height="100px">
+					</div>
+				</c:if>
+			</c:forEach>
 
-			<div class="item" align="center">
-				<img src="../View/images/산타니05.jpg" alt="Chania">
-			</div>
-
-			<div class="item" align="center">
-				<img src="../View/images/산타니05.jpg" alt="Flower">
-			</div>
-
-			<div class="item" align="center">
-				<img src="../View/images/산타니05.jpg" alt="Flower">
-			</div>
 		</div>
 
 		<!-- Left and right controls -->

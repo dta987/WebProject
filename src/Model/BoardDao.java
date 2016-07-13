@@ -63,7 +63,7 @@ public class BoardDao extends SuperDao {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, board.getBoard_title());
 			pstmt.setString(2, board.getBoard_content());
 			pstmt.setString(3, board.getBoard_img());
@@ -142,11 +142,17 @@ public class BoardDao extends SuperDao {
 
 	}
 
-	public List<Board> BoardList() {
+	public List<Board> SelectDataList(int beginRow, int endRow) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select board_no, board_title, board_writ_date, board_update, board_readhit, user_nickname from boards";
+		String sql = "select board_no, board_title, board_writ_date, board_readhit, user_nickname, ranking"
+				+ " from"
+				+ " ("
+				+ " select board_no, board_title, board_writ_date, board_readhit, user_nickname, rank() over( order by board_no desc ) as ranking"
+				+ " from boards where group_no <> null"
+				+ " )" 
+				+ " where ranking between ? and ? ";
 
 		List<Board> board_lists = new ArrayList<Board>();
 
@@ -155,6 +161,9 @@ public class BoardDao extends SuperDao {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setInt(1, beginRow);
+			pstmt.setInt(2, endRow);
+			
 
 			rs = pstmt.executeQuery();
 
@@ -204,7 +213,7 @@ public class BoardDao extends SuperDao {
 			pstmt.setInt(1, pk);
 			pstmt.setString(2, title);
 			pstmt.setInt(3, pk);
-			
+
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -240,4 +249,74 @@ public class BoardDao extends SuperDao {
 		return board_lists;
 	}
 
+	public int selectCount() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) as cnt from boards";
+
+		int cnt = 0;
+
+		List<Board> board_lists = new ArrayList<Board>();
+
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+
+	public void updatereadhit(int no, String title) {
+		PreparedStatement pstmt = null;
+		int cnt = 0;
+		String sql = "update boards set board_readhit=board_readhit+1 whwere board_no=? and board_title=? ";
+
+
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.setString(2, title);
+
+			cnt = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return;
+		
+	}
 }

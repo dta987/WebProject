@@ -24,27 +24,23 @@ public class meListController implements SuperController {
 
 		String _pageNumber = req.getParameter("pageNumber");
 		String _pageSize = req.getParameter("pageSize");
-		String mode = null;
-		String keyword = null;
-		int totalCount = 1008;
+		String mode = req.getParameter("mode");
+		String keyword = req.getParameter("keyword");
+		int totalCount = dao.selectCount();
+		System.out.println("totalCount : " + totalCount);
 
 		String myurl = req.getContextPath() + "/YamaManCtrl?command=meList";
-		
+
 		Paging pageInfo = new Paging(_pageNumber, _pageSize, totalCount, myurl, mode, keyword);
 
 		List<Member> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow());
+		
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
 		req.setAttribute("pagingStatus", pageInfo.getPagingStatus());
-		
-		if (lists.size() > 0) {
-			forward.setRedirect(false);
-			forward.setPath("/View/member/meList.jsp");
-		} else {
-			forward.setRedirect(true);
-			// forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
 
-		}
+		forward.setRedirect(false);
+		forward.setPath("/View/member/meList.jsp");
 
 		return forward;
 

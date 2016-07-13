@@ -83,7 +83,8 @@ public class FrontController extends HttpServlet {
 		if (command == null) { // 파일 업로드를 위한 케이스이다.
 			// String uploadedPath = context.getRealPath("upload") ; //실제 업로드될
 			// 웹서버 경로
-			String uploadedPath = "c:\\temp\\";
+			System.out.println("파일 업로드를 수행합니다.");
+			String uploadedPath = context.getRealPath("/upload/");
 			System.out.println("uploadedPath : " + uploadedPath);
 
 			// 그래서, 파일 업로드를 위한 MultipartRequest 객체를 구해주는 메소드를 호출한다.

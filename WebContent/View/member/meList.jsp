@@ -20,20 +20,18 @@
 					<th>가입일자</th>
 					<th>수정</th>
 					<th>삭제</th>
-					<th>답글</th>
 				</tr>
 			</thead>
 
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<tr>
 					<td>${bean.user_id}</td>
-					<td>${bean.user_name}</td>
+					<td><a href="<%=MyCtrlCommand%>meDetailView&id=${bean.user_id}">${bean.user_name}</a></td>
 					<td>${bean.user_email}</td>
 					<td>${bean.user_nickname}</td>
 					<td>${bean.sign_date}</td>
-					<td>수정</td>
-					<td>삭제</td>
-					<td>답글</td>
+					<td><a href="<%=MyCtrlCommand%>meUpdateFrom&id=${bean.user_id}">수정</a></td>
+					<td><a href="<%=MyCtrlCommand%>myDelete&id=${bean.user_id}">삭제</a></td>
 				</tr>
 			</c:forEach>
 

@@ -14,6 +14,7 @@ import Model.Board;
 import Model.BoardDao;
 import Model.Member;
 import Model.MemberDao;
+import Utility.Paging;
 
 public class boListController implements SuperController {
 
@@ -24,17 +25,27 @@ public class boListController implements SuperController {
 		ControllerForward forward = new ControllerForward();
 		BoardDao dao = new BoardDao();
 
-		List<Board> board_lists = dao.BoardList();
+		String _pageNumber = req.getParameter("pageNumber");
+		String _pageSize = req.getParameter("pageSize");
+		String mode = null;
+		String keyword = null;
+		int totalCount = dao.selectCount();
+		System.out.println("totalCount : " + totalCount);
 
-		if (board_lists.size() > 0) {
-			req.setAttribute("board_lists", board_lists);
-			forward.setRedirect(false);
-			forward.setPath("/View/board/boListFrom.jsp");
-		} else {
-			forward.setRedirect(true);
-			forward.setPath("/View/board/rvErrPage.jsp");
+		String myurl = req.getContextPath() + "/YamaManCtrl?command=boList";
 
-		}
+		Paging pageInfo = new Paging(_pageNumber, _pageSize, totalCount, myurl,
+				mode, keyword);
+
+		List<Board> lists = dao.SelectDataList(pageInfo.getBeginRow(),
+				pageInfo.getEndRow());
+
+		req.setAttribute("lists", lists);
+		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
+		req.setAttribute("pagingStatus", pageInfo.getPagingStatus());
+
+		forward.setRedirect(false);
+		forward.setPath("/View/board/boListFrom.jsp");
 
 		return forward;
 	}

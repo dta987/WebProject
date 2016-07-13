@@ -2,6 +2,7 @@ package Control.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +35,10 @@ public class meOverlapcheckController implements SuperController {
 
 		
 		if (req.getParameter("id") != null) {
+			//boolean patterncheck = Pattern.matches("", req.getParameter("id"));
 			System.out.println("id : " + req.getParameter("id"));
 			no = 1;
 			check = dao.OverlapCheck(req.getParameter("id"), no);
-			System.out.println(check);
 			jsonobj.put("check", check);
 			out.print(jsonobj);
 			out.flush();

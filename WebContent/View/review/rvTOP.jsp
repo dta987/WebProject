@@ -3,6 +3,24 @@
 <%@ include file="../../common/common.jsp"%>
 
 <%
+	String myurl = request.getRequestURI().toString();
+	String uri = request.getRequestURI();
+	int idx = myurl.indexOf(uri);
+
+	//웹 서버의 이미지를 올릴경로
+	String uploadPath = "/upload/";
+	String uploadedFolder = myurl.substring(0, idx) + contextPath
+			+ uploadPath;
+
+	/* out.print("url=" + myurl + "<br>");
+	out.print("uri=" + uri + "<br>");
+	out.print("uploadedFolder=" + uploadedFolder + "<br>");
+
+	String realPath1 = application.getRealPath(uploadPath);
+	out.print("realPath1=" + realPath1 + "<br>"); */
+%>
+
+<%
 	Member loginfo = (Member) session.getAttribute("loginfo");
 
 	int whologin = 0; // 0 : 미로그인,  1 : 회원 로그인, 2 : 관리자 로그인
@@ -21,8 +39,8 @@
 	session.setAttribute("whologin", whologin);
 %>
 
-<% 
-  String Brandimg = contextPath + "/View/images/GreenSanIcon.png";
+<%
+	String Brandimg = contextPath + "/View/images/GreenSanIcon.png";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,7 +52,8 @@
 	<nav class="navbar  navbar-default navbar-fixed-top ">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded" alt="Brand" src="<%=Brandimg%>" style="width:100%; height:100%">
+			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded"
+				alt="Brand" src="<%=Brandimg%>" style="width: 100%; height: 100%">
 			</a>
 		</div>
 		<ul class="nav nav-pills navbar-right">

@@ -4,21 +4,27 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-
 public class SuperDao {
-	
+
 	protected String driver = "oracle.jdbc.driver.OracleDriver";
 	protected String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	protected String id = "yamaman_db";
-	protected String password = "oracle";	
+	protected String password = "oracle";
 	protected Connection conn = null;
-	
+
 	public Connection getConnection() {
 		return conn;
 	}
-	
-	public SuperDao() {		
+
+	public void closeConnection() {
+		conn = null;
+		/*
+		 * if (conn != null) { try { conn.close(); } catch (SQLException e) {
+		 * e.printStackTrace(); } }
+		 */
+	}
+
+	public SuperDao() {
 		try {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, id, password);
@@ -27,7 +33,7 @@ public class SuperDao {
 			} else {
 				System.out.println("DB연결 실패");
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -36,7 +42,7 @@ public class SuperDao {
 		}
 
 	}
-	
+
 	public void getCloseConnection() {
 		try {
 			conn.close();

@@ -20,12 +20,12 @@ public class MyFileUpload {
 			multi = new MultipartRequest(request, uploadedPath, sizeLimit,
 					encType, new DefaultFileRenamePolicy());
 			
-			String imagesPath = request.getContextPath() + "/images/" ; 
+			/*String imagesPath = request.getContextPath() + "/images/" ; 
 			
 			File file = new File(uploadedPath);
 
 			String pathname = imagesPath + file.getName();
-			file.renameTo(new File(pathname));
+			file.renameTo(new File(pathname));*/
 			
 		} catch (IOException e) {
 			e.printStackTrace();

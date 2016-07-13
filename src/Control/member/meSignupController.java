@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import Control.ControllerForward;
 import Control.SuperController;
 import Model.Member;
@@ -18,17 +20,19 @@ public class meSignupController implements SuperController {
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
+		
+		MultipartRequest multi = (MultipartRequest)req.getAttribute("multi");
 
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
 		Member member = new Member();
 
-		member.setUser_id(req.getParameter("id"));
-		member.setUser_password(req.getParameter("password"));
-		member.setUser_name(req.getParameter("name"));
-		member.setUser_nickname(req.getParameter("nickname"));
-		member.setUser_email(req.getParameter("email"));
-		member.setUser_img(req.getParameter("user_img"));
+		member.setUser_id(multi.getParameter("id"));
+		member.setUser_password(multi.getParameter("password"));
+		member.setUser_name(multi.getParameter("name"));
+		member.setUser_nickname(multi.getParameter("nickname"));
+		member.setUser_email(multi.getParameter("email"));
+		member.setUser_img(multi.getFilesystemName("image"));
 
 		int cnt = dao.InsertData(member);
 

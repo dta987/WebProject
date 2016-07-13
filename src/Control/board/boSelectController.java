@@ -28,6 +28,7 @@ public class boSelectController implements SuperController {
 		String title = req.getParameter("board_title");
 		
 		board_lists = dao.SelectBoard(no, title);
+		dao.updatereadhit(no, title);
 		
 		if (board_lists.size() > 0) {
 			req.setAttribute("board_lists", board_lists);

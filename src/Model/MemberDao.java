@@ -178,6 +178,49 @@ public class MemberDao extends SuperDao {
 		return member;
 	}
 
+	public Member SelectDateByPK(String id) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select user_id, user_name, user_email, sign_date, user_title, user_img, user_nickname from members where user_id=?";
+		Member member = null;
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				member = new Member();
+				member.setUser_id(rs.getString("user_id"));
+				member.setUser_name(rs.getString("user_name"));
+				member.setUser_email(rs.getString("user_email"));
+				member.setSign_date(rs.getString("sign_date"));
+				member.setUser_img(rs.getString("user_img"));
+				member.setUser_title(rs.getString("user_title"));
+				member.setUser_nickname(rs.getString("user_nickname"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return member;
+	}
+
 	// 중복체크
 	// str - 아이디 OR 닉네임
 	// chk - 아이디는 1, 아니면 닉네임
@@ -201,7 +244,7 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(1, str);
 
 			rs = pstmt.executeQuery();
-			
+
 			if (!rs.next()) {
 				Check = true; // 사용가능한 아이디 OR 닉네임
 			} else {
@@ -236,9 +279,7 @@ public class MemberDao extends SuperDao {
 				+ " from"
 				+ " ("
 				+ " select user_id, user_name, user_email, user_nickname, sign_date, user_title, rank() over( order by user_id desc ) as ranking"
-				+ " from members"
-				+ " )"
-				+ " where ranking between ? and ? ";
+				+ " from members" + " )" + " where ranking between ? and ? ";
 		List<Member> member_lists = new ArrayList<Member>();
 
 		try {
@@ -278,6 +319,45 @@ public class MemberDao extends SuperDao {
 			}
 		}
 		return member_lists;
+	}
+
+	public int selectCount() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) as cnt from members";
+
+		int cnt = 0;
+		
+		List<Member> member_lists = new ArrayList<Member>();
+
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
 	}
 
 }
