@@ -11,7 +11,7 @@ create table members(
 	user_email varchar2(30),
 	user_nickname varchar2(20) UNIQUE,
 	user_img varchar2(50),
-	sign_date date,
+	sign_date date default sysdate,
 	user_title varchar2(1000)
 );
 

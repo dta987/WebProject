@@ -16,7 +16,7 @@ import Model.BoardDao;
 import Model.Member;
 import Model.MemberDao;
 
-public class boWriteController implements SuperController {
+public class boInsertController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,

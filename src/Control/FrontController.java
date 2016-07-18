@@ -55,8 +55,7 @@ public class FrontController extends HttpServlet {
 				Class<?> handlerClass = Class.forName(handlerClassName);
 
 				// 각 요청 업무에 따르는 Controller들은 SuperController의 하위 클래스이다.
-				SuperController handlerInstance = (SuperController) handlerClass
-						.newInstance();
+				SuperController handlerInstance = (SuperController) handlerClass.newInstance();
 
 				// 객체로 만들어서 자바의 맵 구조에 추가한다.
 				ActionMap.put(command, handlerInstance);

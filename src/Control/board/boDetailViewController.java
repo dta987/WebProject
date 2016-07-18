@@ -13,37 +13,34 @@ import Control.ControllerForward;
 import Control.SuperController;
 import Model.Board;
 import Model.BoardDao;
+import Model.Member;
+import Model.MemberDao;
 
-public class boSelectController implements SuperController {
+public class boDetailViewController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		ControllerForward forward = new ControllerForward();
 		BoardDao dao = new BoardDao();
-		List<Board> board_lists = new ArrayList<Board>();
+		List<Board> board_lists = null;
 		
-		int no = Integer.parseInt(req.getParameter("board_no"));
-		String title = req.getParameter("board_title");
+		int no = Integer.parseInt(req.getParameter("no"));
+		board_lists = dao.SelectBoard(no);
 		
-		board_lists = dao.SelectBoard(no, title);
-		dao.updatereadhit(no, title);
-		
-		if (board_lists.size() > 0) {
-			req.setAttribute("board_lists", board_lists);
-			forward.setRedirect(false);
-			forward.setPath("/View/board/boReadFrom.jsp");
-		} else {
-			forward.setRedirect(true);
-			forward.setPath("/View/board/rvErrPage.jsp");
-
+		Member loginfo = (Member)req.getSession().getAttribute("loginfo");
+		if(loginfo.getUser_id() != req.getParameter("id")) {
+			dao.updatereadhit(no);
 		}
+		
+		
+		req.setAttribute("lists", board_lists);
+		forward.setRedirect(false);
+		forward.setPath("/View/member/meDetailView.jsp");
 
 		return forward;
-		
+
 	}
-	
-	
 
 }

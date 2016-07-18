@@ -1,7 +1,6 @@
 package Control.board;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,8 +11,7 @@ import Control.ControllerForward;
 import Control.SuperController;
 import Model.Board;
 import Model.BoardDao;
-import Model.Member;
-import Model.MemberDao;
+import Utility.FlowParameters;
 import Utility.Paging;
 
 public class boListController implements SuperController {
@@ -25,27 +23,46 @@ public class boListController implements SuperController {
 		ControllerForward forward = new ControllerForward();
 		BoardDao dao = new BoardDao();
 
-		String _pageNumber = req.getParameter("pageNumber");
-		String _pageSize = req.getParameter("pageSize");
-		String mode = null;
-		String keyword = null;
+		String mode = req.getParameter("mode");
+		if (mode == null || mode.equals("null") || mode.equals("")) {
+			mode = "all";
+		}
+
+		// keyword는 메소드 호출 시점에 %를 붙이도록 하자
+		String keyword = req.getParameter("keyword");
+		if (keyword == null || keyword.equals("null")) {
+			keyword = "";
+		}
+
+		String pageNumber = req.getParameter("pageNumber");
+		String pageSize = req.getParameter("pageSize");
+		
+		FlowParameters parameters = new FlowParameters() ;
+		parameters.setKeyword(keyword);
+		parameters.setMode(mode);
+		parameters.setPageNumber(pageNumber);
+		parameters.setPageSize(pageSize);
+
 		int totalCount = dao.selectCount();
 		System.out.println("totalCount : " + totalCount);
 
 		String myurl = req.getContextPath() + "/YamaManCtrl?command=boList";
 
-		Paging pageInfo = new Paging(_pageNumber, _pageSize, totalCount, myurl,
-				mode, keyword);
+		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl, mode, keyword);
 
-		List<Board> lists = dao.SelectDataList(pageInfo.getBeginRow(),
-				pageInfo.getEndRow());
+		List<Board> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow());
 
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
 		req.setAttribute("pagingStatus", pageInfo.getPagingStatus());
+		
+		req.setAttribute("mode", mode);
+		req.setAttribute("keyword", keyword);
+		
+		req.setAttribute("parameters", parameters.toString());
 
 		forward.setRedirect(false);
-		forward.setPath("/View/board/boListFrom.jsp");
+		forward.setPath("/View/board/boList.jsp");
 
 		return forward;
 	}

@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->

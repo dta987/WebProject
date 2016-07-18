@@ -102,8 +102,8 @@ public class BoardDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
 
-		String sql = "insert into boards(board_no, board_writ_date, board_update, board_category, board_writer, user_nickname, board_title, board_content, board_img)"
-				+ " values(board_no_seq.nextval, to_date(sysdate, 'yyyy/MM/dd HH:mm:ss'), to_date(sysdate, 'yyyy/MM/dd HH:mm:ss'), ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into boards(board_no, board_writ_date, board_update, board_category, board_writer, user_nickname, board_title, board_content, board_img, group_no)"
+				+ " values(board_no_seq.nextval, ?, ?, ?, ?, ?, ?, board_no_seq.currval)";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -146,12 +146,12 @@ public class BoardDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select board_no, board_title, board_writ_date, board_readhit, user_nickname, ranking"
+		String sql = "select board_no, board_title, board_writ_date, board_readhit, user_nickname, board_writer, ranking"
 				+ " from"
 				+ " ("
-				+ " select board_no, board_title, board_writ_date, board_readhit, user_nickname, rank() over( order by board_no desc ) as ranking"
-				+ " from boards where group_no <> null"
-				+ " )" 
+				+ " select board_no, board_title, board_writ_date, board_readhit, user_nickname, board_writer, rank() over( order by board_no desc ) as ranking"
+				+ " from boards where order_no = 0"
+				+ " )"
 				+ " where ranking between ? and ? ";
 
 		List<Board> board_lists = new ArrayList<Board>();
@@ -163,7 +163,6 @@ public class BoardDao extends SuperDao {
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setInt(1, beginRow);
 			pstmt.setInt(2, endRow);
-			
 
 			rs = pstmt.executeQuery();
 
@@ -175,6 +174,7 @@ public class BoardDao extends SuperDao {
 				board.setBoard_update(rs.getString("board_update"));
 				board.setBoard_readhit(rs.getString("board_readhit"));
 				board.setUser_nickname(rs.getString("user_nickname"));
+				board.setBoard_writer("board_writer");
 				board_lists.add(board);
 			}
 
@@ -196,12 +196,12 @@ public class BoardDao extends SuperDao {
 		return board_lists;
 	}
 
-	public List<Board> SelectBoard(int pk, String title) {
+	public List<Board> SelectBoard(int pk) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select board_no, board_title, board_writer, board_writ_date, board_update, board_readhit, user_nickname, board_content, board_img, order_no"
-				+ " from boards where board_no=? and board_title=? and group_no=?";
+				+ " from boards where board_no=? order by orderno asc";
 
 		List<Board> board_lists = new ArrayList<Board>();
 
@@ -211,8 +211,6 @@ public class BoardDao extends SuperDao {
 			}
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setInt(1, pk);
-			pstmt.setString(2, title);
-			pstmt.setInt(3, pk);
 
 			rs = pstmt.executeQuery();
 
@@ -288,11 +286,11 @@ public class BoardDao extends SuperDao {
 		return cnt;
 	}
 
-	public void updatereadhit(int no, String title) {
+	//조회수 증가
+	public void updatereadhit(int no) { 
 		PreparedStatement pstmt = null;
 		int cnt = 0;
-		String sql = "update boards set board_readhit=board_readhit+1 whwere board_no=? and board_title=? ";
-
+		String sql = "update boards set board_readhit=board_readhit+1 whwere board_no=?";
 
 		try {
 			if (conn == null) {
@@ -300,7 +298,6 @@ public class BoardDao extends SuperDao {
 			}
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
-			pstmt.setString(2, title);
 
 			cnt = pstmt.executeUpdate();
 
@@ -317,6 +314,6 @@ public class BoardDao extends SuperDao {
 			}
 		}
 		return;
-		
+
 	}
 }

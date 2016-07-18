@@ -16,7 +16,7 @@
 				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Brand</a>
+			<a class="navbar-brand" href="<%=MyCtrlCommand%>meMypage">Brand</a>
 		</div>
 		<c:if test="${sessionScope.whologin == 2}" >
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

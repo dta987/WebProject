@@ -28,7 +28,7 @@
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<tr>
 					<td>${bean.board_no}</td>
-					<td>${bean.board_title}</td>
+					<td><a href="<%=MyCtrlCommand%>boDetailView&no=${bean.board_no}&id=${bean.user_writer}&${requestScope.parameters}">${bean.board_title}</a></td>
 					<td>${bean.user_nickname}</td>
 					<td>${bean.board_writ_date}</td>
 					<td>${bean.board_update}</td>
@@ -39,7 +39,35 @@
 				</tr>
 			</c:forEach>
 
+			<tr>
+				<td colspan="10" align="center">
+					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>/meList"
+						method="get">
+						<div class="form-group">
+							<select class="form-control" name="mode" id="mode">
+								<option value="-" selected="selected">-- 선택하세요---------
+								<option value="user_name">이름
+								<option value="user_id">아이디
+								<option value="user_nickname">닉네임
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control btn-xs" name="keyword" id="keyword"
+								placeholder="검색 키워드">
+						</div>
+						<button class="btn btn-default btn-warning" type="submit">검색</button>
+						<button class="btn btn-default btn-warning" type="button" onclick="searchAll();">전체
+							검색</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<p class="form-control-static">${requestScope.pagingStatus}</p>
+					</form>
+				</td>
+			</tr>
 
-			</div>
+		</table>
+		<div align="center">
+			<footer>${requestScope.pagingHtml}</footer>
+		</div>
+	</div>
 </body>
 </html>
