@@ -316,4 +316,38 @@ public class BoardDao extends SuperDao {
 		return;
 
 	}
+/**
+ * 
+ * @param groupno 게시글의 currval 값
+ * @return int sql문 결과 리턴값
+ *
+ * 한 게시글에 대한 리플 제한 수를 두기 위한 메소드. boReplyController.java 참조
+ */
+	public int SelectReplyCount(int groupno) {
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		String sql = "select count(*) as cnt from boards where groupno = ?" ;
+		
+		int cnt = 0 ; //없는 경우의 기본 값
+		try {
+			if( this.conn == null ){this.conn = this.getConnection() ;}
+			pstmt = this.conn.prepareStatement(sql) ;
+			pstmt.setInt(1, groupno);
+			rs = pstmt.executeQuery() ;
+			
+			if (rs.next()){
+				cnt = rs.getInt("cnt") ;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try{
+				if(rs != null){rs.close() ;}
+				if(pstmt != null){pstmt.close();}
+			}catch (Exception e2) {
+				e2.printStackTrace() ;
+			}
+		}
+		return cnt;
+    }
 }

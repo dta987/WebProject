@@ -8,6 +8,10 @@
 </head>
 <body>
 
+
+<!--  관리자만 게시물리스트에 직접 게시물 밑에 댓글형식의 게시글을 쓸 수 있다. 위 게시글의 상태나 변경을 리스트에서 바로 나타내도록
+   보통 유저들은 DetailView에서 Reply 가능 -->
+
 	<div class="panel panel-primary">
 		<div class="panel-heading">회원목록</div>
 		<table class="table table-striped table-hover">
@@ -45,15 +49,11 @@
 					</c:if> 
 					</td>
 					<td><c:if test="${sessionScope.loginfo.id != bean.writer}">삭제</c:if></td>
-
 					<td>
-					<!--  관리자만 게시물리스트에 직접 게시물 밑에 댓글형식의 게시글을 쓸 수 있다. 위 게시글의 상태나 변경을 리스트에서 바로 나타내도록
-   보통 유저들은 DetailView에서 Reply 가능 -->
-					<c:if test="${bean.depth <= 1 and sessionScope.loginfo.getUser_id().equals('admin') }">
+					<c:if test="${bean.depth <= 2}">
 						<a href="<%=MyCtrlCommand%>boReplyForm&no=${bean.no}&${requestScope.parameters}&groupno=${bean.groupno}&orderno=${bean.orderno}&depth=${bean.depth}"> 답글 </a>
-					</c:if> <c:if test="${bean.depth >= 2}">답글</c:if>
+					</c:if> <c:if test="${bean.depth >= 3}">답글</c:if>
 					</td>
-					
 				</tr>
 			</c:forEach>
 
@@ -84,5 +84,10 @@
 			<footer>${requestScope.pagingHtml}</footer>
 		</div>
 	</div>
+	
+	
+	
+	
+	
 </body>
 </html>
