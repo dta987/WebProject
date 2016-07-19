@@ -31,6 +31,7 @@ create table boards(
 	user_nickname varchar2(20),
 	group_no number default 0,
 	order_no number default 0,
+	depth number default 0,
 	constraint board_writer_fk 
 	foreign key(board_writer) references members(user_id) 
 	on delete set null
