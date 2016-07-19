@@ -2,6 +2,9 @@ create user yamaman_db identified by oracle account unlock;
 
 grant connect, resource to yamaman_db;
 
+--2016/07/19 수정 성진
+
+
 //////테이블 생성/////////////
 
 create table members(
@@ -20,8 +23,8 @@ create table boards(
 	board_category number,
 	board_title varchar2(30),
 	board_writer varchar2(15),
-	board_writ_date date,
-	board_update date,
+	board_writ_date date default sysdate,
+	board_update date default sysdate,
 	board_content varchar2(500),
 	board_img varchar2(1000),
 	board_readhit number default 0,
@@ -53,8 +56,7 @@ create table mountains_history(
 	on delete set null,
 	constraint history_mountain_no_fk
 	foreign key(mountain_no) references mountains(mountain_no) 
-	on delete set null,
-  	constraint mountains_history_pk primary key(history_no, hiking_date)
+	on delete set null
 );
 
 create table title(
