@@ -60,7 +60,7 @@
  		<ul class="nav nav-pills navbar-right"> 
  		
  		<li><a href="<%=MyCtrlCommand%>boList" >게시물</a></li>  
- 		
+ 		<li><a href="<%=MyCtrlCommand%>moList" >산</a></li>  
  		
  			<c:if test="${whologin == 0}"> 
  				<li role="presentation"><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li> 

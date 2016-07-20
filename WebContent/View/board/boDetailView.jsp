@@ -46,25 +46,16 @@
 				
 					<table class="table table-hover table-condensed">
 						<tr>
-							<td width="25%" align="center">글 번호</td>
-							<td width="75%" align="left">${bean.no}</td>
-							<td width="25%" align="center">작성자</td>
-							<td width="75%" align="left">${bean.writer}</td>
-						</tr>						
-						
-						<tr>
-							<td width="25%" align="center">제목</td>
-							<td width="75%" align="left">${bean.subject}</td>
+							<td width="20%" align="center">글 번호</td>
+							<td align="left">${bean.no}</td>
+							<td width="20%" align="center">제목</td>
+							<td align="left">${bean.subject}</td>
+							<td width="20%" align="center">작성자</td>
+							<td  align="left">${bean.writer}</td>
+							<td width="20%" align="center">조회수</td>
+							<td align="left">${bean.readhit}</td>
 						</tr>
-						<tr>
-							<td width="25%" align="center">글 내용</td>
-							<td width="75%" align="left">${bean.content}
-							</td>
-						</tr> 
-						<tr>
-							<td width="25%" align="center">조회수</td>
-							<td width="75%" align="left">${bean.readhit}</td>
-						</tr>
+						<tr> <td colspan="8" align="center">${bean.content} 근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나</td></tr>	
 					</table>
 				
 				<hr>
