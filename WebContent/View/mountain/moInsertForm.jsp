@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../review/rvTOP.jsp"%>
 <%
 	int myoffset = 2;
@@ -21,29 +20,23 @@
 	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<div class="panel panel-default panel-success">
 			<div class="panel-heading">
-				<h4>게시물 등록</h4>
+				<h4>산 등록</h4>
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" role="form"
-					action="<%=MyCtrlByForm%>" method="post"
-					enctype="multipart/form-data">
-					<input type="hidden" name="command" value="boWriter">
+				<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="command" value="moInsert">
 
 					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="subject">글
-							제목</label>
+						<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
 						<div class="col-sm-<%=formright%>">
-							<input type="text" class="form-control" name="subject"
-								id="subject" value="">
+							<input type="text" class="form-control" name="subject" id="subject" value="">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="content">글
-							내용</label>
+						<label class="control-label col-sm-<%=formleft%>" for="content">글 내용</label>
 						<div class="col-sm-<%=formright%>">
-							<textarea name="content" id="content" rows="20" cols=""
-								class="form-control"></textarea>
+							<textarea name="content" id="content" rows="20" cols="" class="form-control"></textarea>
 						</div>
 					</div>
 
