@@ -2,10 +2,13 @@ package Control.board;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
 import Control.ControllerForward;
 import Control.SuperController;
 

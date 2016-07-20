@@ -1,0 +1,90 @@
+====Edit====			
+Ctrl+Shift+Insert	Smart Insert Mode		
+Ctrl+Space	Content Assist		
+Ctrl+Shift+Space	Parameter Hints		
+Alt+/	Word Completion		
+Ctrl+1	Quick Fix		
+F2	show Tooltip Description		
+Ctrl+Shift+f	Format		
+syso+Ctrl+Space	System.out.println		
+Ctrl+D	Line remove		
+Shift+Enter	move to next line		
+Ctrl+Alt+Down	copy&paste Line		
+Ctrl+Shift+Y	lower Case		
+Ctrl+Shift+X	upper Case		
+			
+====Source====			
+Ctrl+/[7]	add/remove Toggle Comment		
+Ctrl+Shift+/	add Block Comment		
+Ctrl+Shift+\	remove Block Comment		
+Alt+Shift+J	generate Element Comment		
+Ctrl+Shift+O	organize Imports		
+Ctrl+I	correct Indentation		
+Alt+Shift+Z	surround with		
+			
+====Refactor====			
+Alt+Shift+R	rename		
+Alt+Shift+V	move		
+Alt+Shift+C	change Method Signature		
+Alt+Shift+M	extract Method		
+Alt+Shift+L	extract Local Variable		
+Alt+Shift+I	inline		
+			
+====Navigate====			
+Ctrl+Shift+Up	go to Next Member		
+Ctrl+Shift+Down	go to Previous Member		
+Ctrl+Shift+P	go to Matching Bracket		
+F3	open Declaration		
+F4	open Type Hierarchy		
+Ctrl+Alt+H	open Call Hierarchy		
+Shift+F2	open Attached JavaDoc		
+Shift+F12	switch Source/Design Editors		
+Ctrl+Shift+T	open Type		
+			
+			
+			
+Ctrl+O	Quick Outline 		
+Ctrl+T	Quick Type Hierarchy		
+Ctrl+.	Next Annotation		
+Ctrl+,	Previous Annotation		
+Ctrl+Q	Last Edit Location		
+Ctrl+L	go to Line		
+Alt+Left	Back		
+Alt+Right	Forward		
+Ctrl+Num/	enable Folding		
+Ctrl+Num*	expand All		
+Ctrl+Shift+Num/	collapse All		
+Ctrl+Shift+Num*	reset Structure		
+			
+====Search====			
+====Project====			
+====Run====			
+Ctrl+F10			
+====Window====			
+Ctrl+_	toggle Split Horizontal View		
+Ctrl+{	toggle Split Vertical View		
+Alt+Shift+Q,C	show View of Console		
+Alt+Shift+Q,O	show View of Outline		
+Alt+Shift+W	show in		
+Ctrl+Shift+W	close All Views		
+Ctrl+M	maximyze Active View or Editor		
+Alt+-	show System Menu		
+Ctrl+3	show Quick Access		
+Ctrl+F6	Next Editor		
+Ctrl+Shift+F6	Previous Editor		
+Ctrl+Shift+E	switch to Editor		
+Ctrl+F7	Next View		
+Ctrl+Shift+F7	Previous View		
+Ctrl+F8	Next Perspective		
+Ctrl+Shift+F8	Previous Perspective		
+			
+====Help====			
+Ctrl+Shift+L	show Short-cut-key lists		
+			
+Google Japanese Keyboard			
+Alt+Shift	Language Change		
+Window+Space	Language Change with View		
+Alt+Caps	カタカナ		
+Ctrl+Caps	ひらがな		
+Alt[Ctrl]+~	English <-> Japanese		
+Space	漢字転換		
