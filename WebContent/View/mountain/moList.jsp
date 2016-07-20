@@ -23,45 +23,36 @@
 
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<tr>
-					<td>${bean.MOUNTAIN_NO}</td>
-					<td><a href="<%=MyCtrlCommand%>boDetailView&no=${bean.board_no}&id=${bean.user_writer}&${requestScope.parameters}">${bean.board_title}</a></td>
-					<td>${bean.MOUNTAIN_NAME}</td>
-					<td>${bean.MOUNTAIN_AREA}</td>
-					<td>${bean.MOUNTAIN_ADDRESS}</td>
-					<td>${bean.MOUNTAIN_THEMA}</td>
+					<td>${bean.mountain_no}</td>
+					<td><a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}&${requestScope.parameters}">${bean.mountain_name}</a></td>
+					<td>${bean.mountain_area}</td>
+					<td>${bean.mountain_address}</td>
+					<td>${bean.mountain_thema}</td>
 					<td>
-					<c:if test="${sessionScope.loginfo.id == bean.writer}">
+					<c:if test="${ sessioScope.loginfo.getUser_id().equals('admin') }">
 						<a href="<%=MyCtrlCommand%>boUpdateForm&no=${bean.no}&${requestScope.parameters}"> 수정 </a>
 					</c:if>
-					<c:if test="${sessionScope.loginfo.id != bean.writer}">수정</c:if>
+					<c:if test="${ sessioScope.loginfo.getUser_id() != 'admin' }">수정</c:if>
 					</td>
 					<td>
 					<c:if test="${sessionScope.loginfo.id == bean.writer}">
 						<a href="<%=MyCtrlCommand%>boDelete&no=${bean.no}&${requestScope.parameters}"> 삭제 </a>
 					</c:if> 
 					</td>
-					<td><c:if test="${sessionScope.loginfo.id != bean.writer}">삭제</c:if></td>
-
-					<td>
-					<!--  관리자만 게시물리스트에 직접 게시물 밑에 댓글형식의 게시글을 쓸 수 있다. 위 게시글의 상태나 변경을 리스트에서 바로 나타내도록
-   보통 유저들은 DetailView에서 Reply 가능 -->
-					<c:if test="${bean.depth <= 1 and sessionScope.loginfo.getUser_id().equals('admin') }">
-						<a href="<%=MyCtrlCommand%>boReplyForm&no=${bean.no}&${requestScope.parameters}&groupno=${bean.groupno}&orderno=${bean.orderno}&depth=${bean.depth}"> 답글 </a>
-					</c:if> <c:if test="${bean.depth >= 2}">답글</c:if>
-					</td>
+					<td><c:if test="${ sessioScope.loginfo.getUser_id() != 'admin' }">삭제</c:if></td>
 					
 				</tr>
 			</c:forEach>
 
 			<tr>
 				<td colspan="10" align="center">
-					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>/meList" method="get">
+					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>/moList" method="get">
 						<div class="form-group">
 							<select class="form-control" name="mode" id="mode">
 								<option value="-" selected="selected">-- 선택하세요---------
-								<option value="board_no">글 번호
-								<option value="board_title">제목
-								<option value="user_nickname">닉네임
+								<option value="mountain_no">산 번호
+								<option value="mountain_name">산 이름
+								<option value="mountain_thema">산 분류
 							</select>
 						</div>
 						<div class="form-group">
@@ -76,6 +67,8 @@
 			</tr>
 
 		</table>
+		
+		<!-- 인식 안됨 -->
 		<div align="center">
 			<footer>${requestScope.pagingHtml}</footer>
 		</div>

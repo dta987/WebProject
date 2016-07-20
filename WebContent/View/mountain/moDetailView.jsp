@@ -17,7 +17,7 @@
 </style>
 <script type="text/javascript">
 	function gotoBack(){
-		location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
+		location.href='<%=MyCtrlCommand%>moList&${requestScope.parameters}';
 		//alert('${requestScope.parameter}') ;
 	}
 </script>
@@ -32,13 +32,13 @@
 	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<div class="panel panel-default panel-success">
 			<div class="panel-heading">
-				<h1 class="panel-title" align="left">게시물 상세 보기</h1>
+				<h1 class="panel-title" align="left">산 상세 보기</h1>
 			</div>
 			<div class="panel-body">
 				<div class="col-sm-<%=leftside%> col-sm-<%=leftside%>">
 					<table>
 						<tr>
-							<td align="center"><img align="middle" src="<%=contextPath%>/images/Koala.jpg"
+							<td align="center"><img align="middle" src="<%=uploadedFolder%>${bean.mountain_img}"
 								class="img-rounded" width="200" height="200"></td>
 						</tr>
 					</table>
@@ -46,25 +46,29 @@
 				<div class="col-sm-<%=rightside%> col-sm-<%=rightside%>">
 					<table class="table table-hover table-condensed">
 						<tr>
-							<td width="25%" align="center">글 번호</td>
-							<td width="75%" align="left">${bean.no}</td>
+							<td width="25%" align="center">산 관리번호</td>
+							<td width="75%" align="left">${bean.mountain_no}</td>
 						</tr>						
 						<tr>
-							<td width="25%" align="center">작성자</td>
-							<td width="75%" align="left">${bean.writer}</td>
+							<td width="25%" align="center">산 이름</td>
+							<td width="75%" align="left">${bean.mountain_name}</td>
 						</tr>
 						<tr>
-							<td width="25%" align="center">제목</td>
-							<td width="75%" align="left">${bean.subject}</td>
+							<td width="25%" align="center">산 지역</td>
+							<td width="75%" align="left">${bean.mountain_area}</td>
 						</tr>
 						<tr>
-							<td width="25%" align="center">글 내용</td>
-							<td width="75%" align="left">${bean.content}
+							<td width="25%" align="center">산 상세주소</td>
+							<td width="75%" align="left">${bean.mountain_address}
 							</td>
 						</tr> 
 						<tr>
-							<td width="25%" align="center">조회수</td>
-							<td width="75%" align="left">${bean.readhit}</td>
+							<td width="25%" align="center">산 소개글</td>
+							<td width="75%" align="left">${bean.mountain_introduce}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">산 분류</td>
+							<td width="75%" align="left">${bean.mountain_thema	}</td>
 						</tr>
 					</table>
 				</div>
