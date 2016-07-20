@@ -30,9 +30,9 @@
       </ul>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section5">테마별</a></li>
-        <li><a href="#section6">초심자 산</a></li>
-        <li><a href="#section7">마니아 산</a></li>
-        <li><a href="#section8">전문가 산</a></li>
+        <li><a href="#section6" color="white">초심자 산</a></li>
+        <li><a href="#section7" color="white">마니아 산</a></li>
+        <li><a href="#section8" color="white">전문가 산</a></li>
       </ul>
     
   
