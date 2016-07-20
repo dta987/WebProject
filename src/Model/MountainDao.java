@@ -55,7 +55,7 @@ public class MountainDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "update mountains set(board_title=?, board_update=to_date(sysdate, 'yyyy/MM/dd HH:mm:ss'), board_content=?, board_img=?, user_nickname=?) wherd board_no=?";
+		String sql = "update mountains set(MOUNTAIN_NAME, MOUNTAIN_AREA, MOUNTAIN_ADDRESS, MOUNTAIN_IMG, MOUNTAIN_INTRODUCE, MOUNTAIN_THEMA, updatedate =to_date(sysdate, 'yyyy/MM/dd HH:mm:ss') where board_no=?";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
