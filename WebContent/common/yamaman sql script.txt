@@ -44,7 +44,8 @@ create table Mountains(
 	mountain_address varchar2(60),
 	mountain_img varchar2(1000),
 	mountain_introduce varchar2(500),
-	mountain_thema number
+	mountain_thema number,
+	updatedate date default sysdate
 );
 
 create table mountains_history(

@@ -1,6 +1,6 @@
 package Model;
 
-public class Mountains {
+public class Mountain {
 
 	private int mountain_no;
 	private String mountain_name;
@@ -12,7 +12,7 @@ public class Mountains {
 
 	@Override
 	public String toString() {
-		return "Mountains [mountain_no=" + mountain_no + ", mountain_name="
+		return "Mountain [mountain_no=" + mountain_no + ", mountain_name="
 				+ mountain_name + ", mountain_address1=" + mountain_address1
 				+ ", mountain_address2=" + mountain_address2
 				+ ", mountain_img=" + mountain_img + ", mountain_introduce="
