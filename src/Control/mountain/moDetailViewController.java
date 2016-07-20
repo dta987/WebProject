@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import Control.ControllerForward;
 import Control.SuperController;
-import Model.Board;
-import Model.BoardDao;
 import Model.Member;
-import Model.Mountains;
+import Model.Mountain;
+import Model.MountainDao;
 
 public class moDetailViewController implements SuperController {
 
@@ -20,21 +19,15 @@ public class moDetailViewController implements SuperController {
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 		ControllerForward forward = new ControllerForward();
-		 dao = new BoardDao();
-		List<Mountains> mountain_lists = null;
+		MountainDao dao = new MountainDao();
+		List<Mountain> mountain_lists = null;
 		
 		int no = Integer.parseInt(req.getParameter("no"));
-		mountain_lists = dao.(no);
-		
-		Member loginfo = (Member)req.getSession().getAttribute("loginfo");
-		if(loginfo.getUser_id() != req.getParameter("id")) {
-			dao.updatereadhit(no);
-		}
-		
+		mountain_lists = dao.SelectMountain(no);
 		
 		req.setAttribute("lists", mountain_lists);
 		forward.setRedirect(false);
-		forward.setPath("/View/member/meDetailView.jsp");
+		forward.setPath("/View/mountain/moDetailView.jsp");
 
 		return forward;
 	}

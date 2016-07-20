@@ -14,8 +14,12 @@ public class moInsertFormController implements SuperController{
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ControllerForward forward = new ControllerForward();
+
+		forward.setRedirect(true);
+		forward.setPath("/View/mountain/moInsertForm.jsp");
+		return forward;
 	}
 
 }

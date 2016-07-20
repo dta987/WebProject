@@ -195,7 +195,7 @@ public class MountainDao extends SuperDao {
 		return mountain_lists;
 	}
 
-	public List<Mountain> Selectmountain(int pk) {
+	public List<Mountain> SelectMountain(int pk) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
