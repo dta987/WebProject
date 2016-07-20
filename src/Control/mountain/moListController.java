@@ -14,8 +14,14 @@ public class moListController implements SuperController {
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ControllerForward forward = new ControllerForward() ;
+		
+		forward.setRedirect(false);
+		forward.setPath("/View/mountain/moList.jsp");
+		
+		
+		return forward;
 	}
 
 }
