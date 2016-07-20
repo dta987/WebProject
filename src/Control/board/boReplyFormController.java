@@ -16,19 +16,22 @@ public class boReplyFormController implements SuperController {
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//depth >= 3, count(*) grupno
+
+		ControllerForward forward = new ControllerForward();
+		
+		// depth >= 3, count(*) grupno
 		BoardDao bdao = new BoardDao();
-		int cnt = bdao.SelectReplyCount(Integer.parseInt(req.getParameter("no")));
+		// int cnt = bdao.SelectReplyCount(Integer.parseInt(req.getParameter("no")));
+
+		//int cnt = bdao.SelectReplyCount(Integer.parseInt(req.getParameter("no")));
 		int depth = Integer.parseInt(req.getParameter("depth"));
-		if( cnt >=10 || depth >= 3){
+
+//		if (depth >= 3) {
+			forward.setRedirect(false);
+			forward.setPath(req.getContextPath() + "/YamaManCtrl?command=boList");
 			new boListController().doProcess(req, resp);
-		}else{
-			String url = "/board/boReplyForm.jsp";
-			RequestDispatcher dispatcher = req.getRequestDispatcher(url);
-			dispatcher.forward(req, resp);
-		}
-		return null;
+			
+		return forward;
 	}
 
 }

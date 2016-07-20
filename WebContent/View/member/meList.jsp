@@ -37,8 +37,8 @@
 
 			<tr>
 				<td colspan="10" align="center">
-					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>/meList"
-						method="get">
+					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>" method="get">
+					<input type="hidden" name="command" value="meList">
 						<div class="form-group">
 							<select class="form-control" name="mode" id="mode">
 								<option value="-" selected="selected">-- 선택하세요---------
