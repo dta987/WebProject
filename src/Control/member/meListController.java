@@ -11,6 +11,7 @@ import Control.ControllerForward;
 import Control.SuperController;
 import Model.Member;
 import Model.MemberDao;
+import Utility.FlowParameters;
 import Utility.Paging;
 
 public class meListController implements SuperController {
@@ -20,6 +21,7 @@ public class meListController implements SuperController {
 			HttpServletResponse resp) throws ServletException, IOException {
 
 		ControllerForward forward = new ControllerForward();
+		FlowParameters parameters = new FlowParameters();
 		MemberDao dao = new MemberDao();
 		
 		String mode = req.getParameter("mode");
@@ -36,11 +38,12 @@ public class meListController implements SuperController {
 
 		String _pageNumber = req.getParameter("pageNumber");
 		String _pageSize = req.getParameter("pageSize");
-		System.out.println(mode);
 		int totalCount = dao.selectCount();
 		System.out.println("totalCount : " + totalCount);
 
 		String myurl = req.getContextPath() + "/YamaManCtrl?command=meList";
+		
+		
 
 		Paging pageInfo = new Paging(_pageNumber, _pageSize, totalCount, myurl, mode, keyword);
 
@@ -52,6 +55,9 @@ public class meListController implements SuperController {
 		
 		req.setAttribute("mode", mode);
 		req.setAttribute("keyword", keyword);
+		
+		req.setAttribute("parameters", parameters.toString());
+		
 
 		forward.setRedirect(false);
 		forward.setPath("/View/member/meList.jsp");

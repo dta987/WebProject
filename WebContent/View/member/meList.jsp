@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<div class="panel panel-primary">
+	<div class="panel panel-success">
 		<div class="panel-heading">회원목록</div>
 		<table class="table table-striped table-hover">
 			<thead>
@@ -26,12 +26,12 @@
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<tr>
 					<td>${bean.user_id}</td>
-					<td><a href="<%=MyCtrlCommand%>meDetailView&id=${bean.user_id}">${bean.user_name}</a></td>
+					<td><a href="<%=MyCtrlCommand%>meDetailView&id=${bean.user_id}$${requestScope.parameters}">${bean.user_name}</a></td>
 					<td>${bean.user_email}</td>
 					<td>${bean.user_nickname}</td>
 					<td>${bean.sign_date}</td>
-					<td><a href="<%=MyCtrlCommand%>meUpdateFrom&id=${bean.user_id}">수정</a></td>
-					<td><a href="<%=MyCtrlCommand%>myDelete&id=${bean.user_id}">삭제</a></td>
+					<td><a href="<%=MyCtrlCommand%>meUpdateFrom&id=${bean.user_id}$${requestScope.parameters}">수정</a></td>
+					<td><a href="<%=MyCtrlCommand%>myDelete&id=${bean.user_id}$${requestScope.parameters}">삭제</a></td>
 				</tr>
 			</c:forEach>
 

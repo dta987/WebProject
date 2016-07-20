@@ -14,9 +14,13 @@ public class boInsertFormController implements SuperController {
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		
-		
-		return null;
+
+		ControllerForward forward = new ControllerForward();
+
+		forward.setRedirect(true);
+		forward.setPath("/View/board/boUpdateFrom.jsp");
+
+		return forward;
 	}
 
 }

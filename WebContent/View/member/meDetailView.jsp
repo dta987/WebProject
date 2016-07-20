@@ -23,18 +23,13 @@
 
 	<div class="col-md-offset-<%=myoffset%> col-md-<%=mywidth%>">
 	
-		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post"
-			enctype="multipart/form-data">
+		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="meSignup">
 			<div class="form-group" align="center">
 				<img id="user_img" src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded" alt="Cinque Terre" width="200px"
 					height="200px">
 			</div>
-			<div class="form-group" align="center">
-				<button type="button" id="image_add" class="btn btn-default">이미지 추가</button>
-				<button type="button" id="image_remove" class="btn btn-default">삭제</button>
-				<input type="file" name="image" id="image" class="hide">
-			</div>
+			
 			<div id="iddiv" class="form-group">
 				<label for="ID" class="col-sm-<%=label%> control-label">아이디</label>
 				<div class="col-sm-<%=input%>">
@@ -63,7 +58,8 @@
 			<div class="form-group">
 				<div class="col-sm-offset-<%=label%> col-sm-<%=twelve - label%>">
 					<button type="submit" class="btn btn-default">수 정</button>
-					<button type="reset" class="btn btn-default">취 소</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="reset" class="btn btn-default">뒤로가기</button>
 				</div>
 			</div>
 		</form>
