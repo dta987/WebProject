@@ -35,24 +35,23 @@
 				<h1 class="panel-title" align="left">게시물 상세 보기</h1>
 			</div>
 			<div class="panel-body">
-				<div class="col-sm-<%=leftside%> col-sm-<%=leftside%>">
+				<%-- <div class="col-sm-<%=leftside%> col-sm-<%=leftside%>">
 					<table>
 						<tr>
 							<td align="center"><img align="middle" src="<%=contextPath%>/images/Koala.jpg"
 								class="img-rounded" width="200" height="200"></td>
 						</tr>
 					</table>
-				</div>
-				<div class="col-sm-<%=rightside%> col-sm-<%=rightside%>">
+				</div> --%>
+				
 					<table class="table table-hover table-condensed">
 						<tr>
 							<td width="25%" align="center">글 번호</td>
 							<td width="75%" align="left">${bean.no}</td>
-						</tr>						
-						<tr>
 							<td width="25%" align="center">작성자</td>
 							<td width="75%" align="left">${bean.writer}</td>
-						</tr>
+						</tr>						
+						
 						<tr>
 							<td width="25%" align="center">제목</td>
 							<td width="75%" align="left">${bean.subject}</td>
@@ -67,7 +66,7 @@
 							<td width="75%" align="left">${bean.readhit}</td>
 						</tr>
 					</table>
-				</div>
+				
 				<hr>
 				<div class="col-sm-offset-5 col-sm-4">
 					<button class="btn btn-primary" onclick="gotoBack();">
