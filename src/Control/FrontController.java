@@ -112,8 +112,6 @@ public class FrontController extends HttpServlet {
 						.getPath());
 				dispatcher.forward(req, resp);
 			}
-			
-
 		}
 
 	}

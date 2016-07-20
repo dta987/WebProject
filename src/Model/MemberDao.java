@@ -271,15 +271,21 @@ public class MemberDao extends SuperDao {
 
 	}
 
-	public List<Member> SelectDataList(int beginRow, int endRow) {
+	public List<Member> SelectDataList(int beginRow, int endRow, String mode,
+			String keyword) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select user_id, user_name, user_email, user_nickname, sign_date, user_title, ranking"
-				+ " from"
-				+ " ("
-				+ " select user_id, user_name, user_email, user_nickname, sign_date, user_title, rank() over( order by user_id desc ) as ranking"
-				+ " from members" + " )" + " where ranking between ? and ? ";
+		String sql = "select user_id, user_name, user_email, user_nickname, sign_date, user_title, ranking";
+		sql += " from";
+		sql += " (";
+		sql += " select user_id, user_name, user_email, user_nickname, sign_date, user_title, rank() over( order by user_id desc ) as ranking";
+		sql += " from members";
+		if(!mode.equals("all")) {
+			sql += "where " + mode + "like '%" + keyword + "%'";
+		}
+		sql += " )";
+		sql += " where ranking between ? and ? ";
 		List<Member> member_lists = new ArrayList<Member>();
 
 		try {
@@ -327,7 +333,7 @@ public class MemberDao extends SuperDao {
 		String sql = "select count(*) as cnt from members";
 
 		int cnt = 0;
-		
+
 		List<Member> member_lists = new ArrayList<Member>();
 
 		try {

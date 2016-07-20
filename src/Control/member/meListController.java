@@ -21,11 +21,22 @@ public class meListController implements SuperController {
 
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
+		
+		String mode = req.getParameter("mode");
+		if ( mode == null || mode.equals("null") || mode.equals("") ) {
+			mode = "all" ;
+		}
+		
+		//keyword는 메소드 호출 시점에 %를 붙이도록 하자
+		String keyword = req.getParameter("keyword") ;
+		if ( keyword == null || keyword.equals("null")   ) {
+			keyword = "" ;
+		} 
+		
 
 		String _pageNumber = req.getParameter("pageNumber");
 		String _pageSize = req.getParameter("pageSize");
-		String mode = req.getParameter("mode");
-		String keyword = req.getParameter("keyword");
+		System.out.println(mode);
 		int totalCount = dao.selectCount();
 		System.out.println("totalCount : " + totalCount);
 
@@ -33,11 +44,14 @@ public class meListController implements SuperController {
 
 		Paging pageInfo = new Paging(_pageNumber, _pageSize, totalCount, myurl, mode, keyword);
 
-		List<Member> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow());
+		List<Member> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
 		
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
 		req.setAttribute("pagingStatus", pageInfo.getPagingStatus());
+		
+		req.setAttribute("mode", mode);
+		req.setAttribute("keyword", keyword);
 
 		forward.setRedirect(false);
 		forward.setPath("/View/member/meList.jsp");

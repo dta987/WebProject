@@ -63,8 +63,8 @@
 						<div class="form-group">
 							<select class="form-control" name="mode" id="mode">
 								<option value="-" selected="selected">-- 선택하세요---------
-								<option value="user_name">이름
-								<option value="user_id">아이디
+								<option value="board_no">글 번호
+								<option value="board_title">제목
 								<option value="user_nickname">닉네임
 							</select>
 						</div>

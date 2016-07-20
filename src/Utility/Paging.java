@@ -35,12 +35,12 @@ public class Paging {
 
 	
 	public Paging(String _pageNumber, String _pageSize, int totalCount, String url, String mode, String keyword) {
-		if ( _pageNumber == null || _pageNumber.equals("null")) {
+		if ( _pageNumber == null || _pageNumber.equals("null") || _pageNumber.equals("")) {
 			_pageNumber = "1" ; 
 		}
 		this.pageNumber = Integer.parseInt( _pageNumber ) ;
 		
-		if ( _pageSize == null || _pageSize.equals("null")) {
+		if ( _pageSize == null || _pageSize.equals("null") || _pageSize.equals("")) {
 			_pageSize = "10" ; 
 		}
 		this.pageSize = Integer.parseInt( _pageSize ) ;
