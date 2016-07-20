@@ -5,41 +5,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function gotoForm(){
-		location.href='<%=MyCtrlCommand%>boInsertForm';
-	}
-	function searchAll(){
-		location.href='<%=MyCtrlCommand%>boList';
-	}
-</script>
 </head>
 <body>
+
 	<div class="panel panel-success">
-		<div class="panel-heading">게시판</div>
+		<div class="panel-heading">일본 명산 목록</div>
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일자</th>
-					<th>수정일자</th>
-					<th>조회수</th>
-					<th>수정</th>
-					<th>삭제</th>
-					<th>답글</th>
+					<th>산 관리번호</th>
+					<th>산 이름</th>
+					<th>산 지역</th>
+					<th>산 상세주소</th>
+					<th>산 분류</th>
 				</tr>
 			</thead>
 
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<tr>
-					<td>${bean.board_no}</td>
+					<td>${bean.MOUNTAIN_NO}</td>
 					<td><a href="<%=MyCtrlCommand%>boDetailView&no=${bean.board_no}&id=${bean.user_writer}&${requestScope.parameters}">${bean.board_title}</a></td>
-					<td>${bean.user_nickname}</td>
-					<td>${bean.board_writ_date}</td>
-					<td>${bean.board_update}</td>
-					<td>${bean.board_readhit}</td>
+					<td>${bean.MOUNTAIN_NAME}</td>
+					<td>${bean.MOUNTAIN_AREA}</td>
+					<td>${bean.MOUNTAIN_ADDRESS}</td>
+					<td>${bean.MOUNTAIN_THEMA}</td>
 					<td>
 					<c:if test="${sessionScope.loginfo.id == bean.writer}">
 						<a href="<%=MyCtrlCommand%>boUpdateForm&no=${bean.no}&${requestScope.parameters}"> 수정 </a>
@@ -66,7 +55,7 @@
 
 			<tr>
 				<td colspan="10" align="center">
-					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>boInsertForm" method="get">
+					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>/meList" method="get">
 						<div class="form-group">
 							<select class="form-control" name="mode" id="mode">
 								<option value="-" selected="selected">-- 선택하세요---------
@@ -80,7 +69,6 @@
 						</div>
 						<button class="btn btn-default btn-warning" type="submit">검색</button>
 						<button class="btn btn-default btn-warning" type="button" onclick="searchAll();">전체 검색</button>
-						<button class="btn btn-default btn-warning" type="button" onclick="gotoForm();">글쓰기</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<p class="form-control-static">${requestScope.pagingStatus}</p>
 					</form>

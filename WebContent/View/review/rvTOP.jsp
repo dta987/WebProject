@@ -57,24 +57,9 @@
  				alt="Brand" src="<%=Brandimg%>" style="width: 100%; height: 100%"> 
  			</a> 
  		</div> 
- 		
  		<ul class="nav nav-pills navbar-right"> 
  		
- 		<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">게시물<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><c:if test="${whologin != 0}">
-									<a href="<%=MyCtrlCommand%>boInsertForm">게시물 등록</a>
-								</c:if></li>
-							<li><c:if test="${whologin != 0}">
-									<a href="<%=MyCtrlCommand%>boList">목록 보기</a>
-								</c:if></li>
-							<!-- <li><a href="#">-- 아래 항목들은 어떻게 해야 하나??</a></li>
-							<li><a href="#">게시물 수정</a></li>
-							<li><a href="#">게시물 삭제</a></li>
-							<li><a href="#">상세 보기</a></li>
-							<li><a href="#">답글 작성</a></li> -->
-						</ul></li>
+ 		<li><a href="<%=MyCtrlCommand%>boList" >게시물</a></li>  
  		
  		
  			<c:if test="${whologin == 0}"> 
