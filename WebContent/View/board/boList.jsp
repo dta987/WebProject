@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<div class="panel panel-primary">
+	<div class="panel panel-success">
 		<div class="panel-heading">회원목록</div>
 		<table class="table table-striped table-hover">
 			<thead>

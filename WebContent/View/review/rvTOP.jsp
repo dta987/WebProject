@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="Model.Member"%>
 <%@ include file="../../common/common.jsp"%>
 
@@ -48,34 +49,53 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP</title>
 </head>
-<body>
-	<nav class="navbar  navbar-default navbar-fixed-top ">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded"
-				alt="Brand" src="<%=Brandimg%>" style="width: 100%; height: 100%">
-			</a>
-		</div>
-		<ul class="nav nav-pills navbar-right">
-			<c:if test="${whologin == 0}">
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li>
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li>
-
-			</c:if>
-			<c:if test="${whologin != 0}">
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
-
-			</c:if>
-
-		</ul>
-	</div>
-	</nav>
-
-	<c:if test="${not empty requestScope.errmsg }">
-		<script type="text/javascript">
-			alert('${requestScope.errmsg}')
-		</script>
-	</c:if>
-</body>
+<body> 
+ 	<nav class="navbar  navbar-default navbar-fixed-top "> 
+ 	<div class="container-fluid"> 
+ 		<div class="navbar-header"> 
+ 			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded" 
+ 				alt="Brand" src="<%=Brandimg%>" style="width: 100%; height: 100%"> 
+ 			</a> 
+ 		</div> 
+ 		
+ 		<ul class="nav nav-pills navbar-right"> 
+ 		
+ 		<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">게시물<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><c:if test="${whologin != 0}">
+									<a href="<%=MyCtrlCommand%>boInsertForm">게시물 등록</a>
+								</c:if></li>
+							<li><c:if test="${whologin != 0}">
+									<a href="<%=MyCtrlCommand%>boList">목록 보기</a>
+								</c:if></li>
+							<!-- <li><a href="#">-- 아래 항목들은 어떻게 해야 하나??</a></li>
+							<li><a href="#">게시물 수정</a></li>
+							<li><a href="#">게시물 삭제</a></li>
+							<li><a href="#">상세 보기</a></li>
+							<li><a href="#">답글 작성</a></li> -->
+						</ul></li>
+ 		
+ 		
+ 			<c:if test="${whologin == 0}"> 
+ 				<li role="presentation"><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li> 
+ 				<li role="presentation"><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li> 
+ 
+ 
+ 			</c:if> 
+ 			<c:if test="${whologin != 0}"> 
+ 				<li role="presentation"><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li> 
+ 				<li role="presentation"><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li> 
+ 			</c:if> 
+ 		</ul> 
+ 	</div> 
+ 	</nav> 
+ 
+ 
+ 	<c:if test="${not empty requestScope.errmsg }"> 
+ 		<script type="text/javascript"> 
+ 			alert('${requestScope.errmsg}') 
+ 		</script> 
+ 	</c:if> 
+ </body> 
 </html>
