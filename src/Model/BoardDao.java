@@ -57,7 +57,7 @@ public class BoardDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "update boards set(board_title=?, board_update=to_date(sysdate, 'yyyy/MM/dd HH:mm:ss'), board_content=?, board_img=?, user_nickname=?) wherd board_no=?";
+		String sql = "update boards set(board_title=?, board_update=to_date(sysdate, 'yyyy/MM/dd HH:mm:ss'), board_content=?, board_img=?, user_nickname=?) where board_no=?";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();

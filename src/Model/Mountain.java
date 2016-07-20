@@ -1,6 +1,6 @@
 package Model;
 
-public class Mountains {
+public class Mountain {
 
 	private int mountain_no;
 	private String mountain_name;
@@ -8,17 +8,18 @@ public class Mountains {
 	private String mountain_address2;
 	private String mountain_img;
 	private String mountain_introduce;
+	private String updatedate;
 	private int mountain_thema;
 
+	
+	
 	@Override
-	public String toString() {
-		return "Mountains [mountain_no=" + mountain_no + ", mountain_name="
-				+ mountain_name + ", mountain_address1=" + mountain_address1
-				+ ", mountain_address2=" + mountain_address2
-				+ ", mountain_img=" + mountain_img + ", mountain_introduce="
-				+ mountain_introduce + ", mountain_thema=" + mountain_thema
-				+ "]";
-	}
+    public String toString() {
+	    return "Mountain [mountain_no=" + mountain_no + ", mountain_name=" + mountain_name + ", mountain_address1="
+	            + mountain_address1 + ", mountain_address2=" + mountain_address2 + ", mountain_img=" + mountain_img
+	            + ", mountain_introduce=" + mountain_introduce + ", updatedate=" + updatedate + ", mountain_thema="
+	            + mountain_thema + "]";
+    }
 
 	public int getMountain_no() {
 		return mountain_no;
@@ -74,5 +75,13 @@ public class Mountains {
 
 	public void setMountain_thema(int mountain_thema) {
 		this.mountain_thema = mountain_thema;
+	}
+	
+	public String getUpdatedate() {
+		return updatedate;
+	}
+
+	public void setUpdatedate(String updatedate) {
+		this.updatedate = updatedate;
 	}
 }
