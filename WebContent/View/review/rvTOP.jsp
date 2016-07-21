@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="Model.Member"%>
 <%@ include file="../../common/common.jsp"%>
 
@@ -8,6 +7,7 @@
 	String uri = request.getRequestURI();
 	int idx = myurl.indexOf(uri);
 
+	String url = "/View/Main.jsp";
 	//웹 서버의 이미지를 올릴경로
 	String uploadPath = "/upload/";
 	String uploadedFolder = myurl.substring(0, idx) + contextPath
@@ -49,38 +49,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP</title>
 </head>
-<body> 
- 	<nav class="navbar  navbar-default navbar-fixed-top "> 
- 	<div class="container-fluid"> 
- 		<div class="navbar-header"> 
- 			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded" 
- 				alt="Brand" src="<%=Brandimg%>" style="width: 100%; height: 100%"> 
- 			</a> 
- 		</div> 
- 		<ul class="nav nav-pills navbar-right"> 
- 		
- 		<li><a href="<%=MyCtrlCommand%>boList" >게시물</a></li>  
- 		<li><a href="<%=MyCtrlCommand%>moList" >산</a></li>  
- 		
- 			<c:if test="${whologin == 0}"> 
- 				<li role="presentation"><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li> 
- 				<li role="presentation"><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li> 
- 
- 
- 			</c:if> 
- 			<c:if test="${whologin != 0}"> 
- 				<li role="presentation"><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li> 
- 				<li role="presentation"><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li> 
- 			</c:if> 
- 		</ul> 
- 	</div> 
- 	</nav> 
- 
- 
- 	<c:if test="${not empty requestScope.errmsg }"> 
- 		<script type="text/javascript"> 
- 			alert('${requestScope.errmsg}') 
- 		</script> 
- 	</c:if> 
- </body> 
+<body>
+	<nav class="navbar  navbar-default navbar-fixed-top ">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded"
+				alt="Brand" src="<%=Brandimg%>" style="width: 100%; height: 100%">
+			</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="<%=MyCtrlCommand%>boList">게시물</a></li>
+			<li><a href="<%=MyCtrlCommand%>moList">산</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<c:if test="${whologin == 0}">
+				<li role="presentation"><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li>
+				<li role="presentation"><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li>
+
+
+			</c:if>
+			<c:if test="${whologin != 0}">
+				<li role="presentation"><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
+				<li role="presentation"><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
+			</c:if>
+		</ul>
+	</div>
+	</nav>
+
+
+	<c:if test="${not empty requestScope.errmsg }">
+		<script type="text/javascript">
+			alert('${requestScope.errmsg}')
+		</script>
+	</c:if>
+</body>
 </html>

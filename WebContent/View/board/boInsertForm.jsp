@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../review/rvTOP.jsp"%>
 <%
 	int myoffset = 2;
 	int mywidth = twelve - 2 * myoffset;
-	int formleft = 3;
+	int formleft = 1;
 	int formright = twelve - formleft;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,26 +23,27 @@
 				<h4>게시물 등록</h4>
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" role="form"
-					action="<%=MyCtrlByForm%>" method="post"
+				<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post"
 					enctype="multipart/form-data">
 					<input type="hidden" name="command" value="boWriter">
-
+					<input type="hidden" name="command" value="boWriter">
+					<input type="hidden" name="command" value="boWriter">
+					
 					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="subject">글
-							제목</label>
+						<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
+						<select class="form-control col-sm-<%=formleft%>" name="category" id="category">
+							<option value="-" selected="selected">-- 분류 선택---------
+							<option value="자유게시판">자유게시판
+						</select> 
 						<div class="col-sm-<%=formright%>">
-							<input type="text" class="form-control" name="subject"
-								id="subject" value="">
+							<input type="text" class="form-control" name="contents" id="contents">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="content">글
-							내용</label>
+						<label class="control-label col-sm-<%=mywidth%>" for="content">글 내용</label>
 						<div class="col-sm-<%=formright%>">
-							<textarea name="content" id="content" rows="20" cols=""
-								class="form-control"></textarea>
+							<textarea name="content" id="content" rows="20" cols="" class="form-control"></textarea>
 						</div>
 					</div>
 

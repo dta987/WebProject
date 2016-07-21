@@ -280,9 +280,9 @@ public class MemberDao extends SuperDao {
 		sql += " from";
 		sql += " (";
 		sql += " select user_id, user_name, user_email, user_nickname, sign_date, user_title, rank() over( order by user_id desc ) as ranking";
-		sql += " from members";
+		sql += " from members ";
 		if(!mode.equals("all")) {
-			sql += "where " + mode + "like '%" + keyword + "%'";
+			sql += "where " + mode + " like '%" + keyword + "%'";
 		}
 		sql += " )";
 		sql += " where ranking between ? and ? ";

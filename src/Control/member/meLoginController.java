@@ -22,6 +22,8 @@ public class meLoginController implements SuperController {
 
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
+		
+		String url=req.getParameter("url");
 
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
