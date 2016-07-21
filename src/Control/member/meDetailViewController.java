@@ -20,7 +20,6 @@ public class meDetailViewController implements SuperController {
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-	
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
 		Member bean = new Member();
@@ -50,7 +49,7 @@ public class meDetailViewController implements SuperController {
 
 		bean = dao.SelectDateByPK(id);
 
-		System.out.println(bean.toString());
+		//System.out.println(bean.toString());
 
 		req.setAttribute("bean", bean);
 		forward.setRedirect(false);

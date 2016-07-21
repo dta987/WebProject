@@ -1,77 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../review/rvTOP.jsp"%>
+<%
+	int myoffset = 2;
+	int mywidth = twelve - 2 * myoffset;
+	int formleft = 1;
+	int formright = twelve - formleft;
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.form-group {
-	margin-bottom: 3px;
-}
-
-.form-control {
-	height: 25px;
-}
-</style>
-<script type="text/javascript">
-	function gotoBack(){
-		location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
-		//alert('${requestScope.parameter}') ;
-	}
-</script>
 </head>
-<%
-	int myoffset = 2; //전체 외관의 옵셋
-	int mywidth = twelve - 2 * myoffset;
-	int leftside = 4; //판넬의 좌측
-	int rightside = twelve - leftside; //판넬의 우측
-%>
 <body>
+
+	<div class="panel panel-default">
+		<div class="panel-body"></div>
+	</div>
 	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<div class="panel panel-default panel-success">
 			<div class="panel-heading">
-				<h1 class="panel-title" align="left">게시물 상세 보기</h1>
+				<h4>게시물 수정</h4>
 			</div>
 			<div class="panel-body">
-				<%-- <div class="col-sm-<%=leftside%> col-sm-<%=leftside%>">
-					<table>
-						<tr>
-							<td align="center"><img align="middle" src="<%=contextPath%>/images/Koala.jpg"
-								class="img-rounded" width="200" height="200"></td>
-						</tr>
-					</table>
-				</div> --%>
-				
-					<table class="table table-hover table-condensed">
-						<tr>
-							<td width="20%" align="center">글 번호</td>
-							<td align="left">${bean.no}</td>
-							<td width="20%" align="center">제목</td>
-							<td align="left">${bean.subject}</td>
-							<td width="20%" align="center">작성자</td>
-							<td  align="left">${bean.writer}</td>
-							<td width="20%" align="center">조회수</td>
-							<td align="left">${bean.readhit}</td>
-						</tr>
-						<tr> <td colspan="8" align="center">${bean.content} 근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나근데 이짜나 근데 이짜나</td></tr>	
-					</table>
-				
-				<hr>
-				<div class="col-sm-offset-5 col-sm-4">
-					<button class="btn btn-primary" onclick="gotoBack();">
-						돌아 가기</button>
-				</div>
+				<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="command" value="boUpdate">
+
+					<div class="form-group ">
+
+						<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
+						<div class="col-sm-<%=myoffset%>">
+							<select class="form-control " name="category" id="category">
+								<option value="-" selected="selected">-- 분류 선택---------
+								<option value="자유게시판">자유게시판
+							</select>
+						</div>
+						<div class="col-sm-<%=mywidth%>">
+							<input type="text" class="form-control" name="title" id="title" value="${bean.board_title}">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-<%=formleft%>" for="content">글 내용</label>
+						<div class="col-sm-<%=formright%>">
+							<textarea name="content" id="content" rows="20" cols="" class="form-control">${bean.board_content}</textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-<%=formleft%>" for="image">이미지</label>
+						<div class="col-sm-<%=formright%>">
+							<input type="file" class="form-control" name="image" id="image">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div align="center" class="col-sm-offset-3 col-sm-6">
+							<button class="btn btn-default" type="submit">저장</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
+						</div>
+					</div>
+				</form>
 			</div>
-			<!-- end panel-body -->
+
 		</div>
 	</div>
-
 	<script>
 		$(document).ready(function() {
-			$('[data-toggle="popover"]').popover();
+			$('[data-toggle="tooltip"]').tooltip();
 		});
+		
+		$(document).ready(function() {
+			$("#gotoback").click(function() {
+				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
+			})
+		})
+		
 	</script>
 </body>
 </html>
