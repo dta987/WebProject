@@ -33,12 +33,13 @@ public class meOverlapcheckController implements SuperController {
 		forward.setRedirect(false);
 		forward.setPath("");
 
-		
-		if (req.getParameter("id") != null) {
+		String id = req.getParameter("id");
+		if ( id != null) {
 			//boolean patterncheck = Pattern.matches("", req.getParameter("id"));
-			System.out.println("id : " + req.getParameter("id"));
+			
+			System.out.println("id : " + id);
 			no = 1;
-			check = dao.OverlapCheck(req.getParameter("id"), no);
+			check = dao.OverlapCheck(id, no);
 			jsonobj.put("check", check);
 			out.print(jsonobj);
 			out.flush();
