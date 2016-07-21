@@ -99,8 +99,7 @@
 	});
 	$(document).ready(function() {
 		$("#insertForm").click(function() {
-			if(${sessionScope.whologin} != 0) { 
-				alert("${sessionScope.whologin != 0}");
+			if("${sessionScope.whologin}" != 0) { 
 				location.href = "<%=MyCtrlCommand%>boInsertForm";
 			} else {
 				alert("로그인 해주세요");
