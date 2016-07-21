@@ -30,28 +30,28 @@
 					<input type="hidden" name="command" value="boWriter">
 					
 					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
-						<select class="form-control col-sm-<%=formleft%>" name="category" id="category">
-							<option value="-" selected="selected">-- 분류 선택---------
-							<option value="자유게시판">자유게시판
-						</select> 
-						<div class="col-sm-<%=formright%>">
-							<input type="text" class="form-control" name="contents" id="contents">
-						</div>
+					<select class="form-control" name="category" id="category">
+							<option value="-" selected="selected">-------- 너와 나의 '카테' 고리 이건 우리 안의 고리 --------
+							<option value="잡담">너와 나의 '잡담' 고리
+							<option value="질문">이건 우리 '질문' 고리
+							<option value="요청">너와 나의 '요청' 고리
+							<option value="꿀팁">이건 우리 '꿀팁' 고리
+						</select>
+					</div>	
+						
+					<div class="form-group">	
+					<label class="control-label" for="subject"></label>	 
+							<input type="text" class="form-control" name="contents" id="contents" placeholder="제목 입력해주세요">
 					</div>
-
+					
 					<div class="form-group">
-						<label class="control-label col-sm-<%=mywidth%>" for="content">글 내용</label>
-						<div class="col-sm-<%=formright%>">
-							<textarea name="content" id="content" rows="20" cols="" class="form-control"></textarea>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="image">이미지</label>
-						<div class="col-sm-<%=formright%>">
+						<label class="control-label" for="image"></label>
 							<input type="file" class="form-control" name="image" id="image">
-						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label>" for="content"></label>
+							<textarea name="content" id="content" rows="20" cols="" class="form-control"></textarea>
 					</div>
 
 					<div class="form-group">
