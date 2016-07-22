@@ -6,9 +6,9 @@ public class TEST {
 
 	public static void main(String[] args) {
 
-		HashMap<String, String> maps = new HashMap<String, String>();
-		List<String> list = new ArrayList<String>();
-		HashMap<String, String> titles = new HashMap<String, String>();
+		HashMap<String, String> maps = new HashMap<String, String>(); // 타이틀 목록
+		List<String> list = new ArrayList<String>(); //내가 올라간 산
+		HashMap<String, String> titles = new HashMap<String, String>(); //획득한 타이틀
 
 		maps.put("봄산 마스터", "덕유산, 대둔산, 가야산, 속리산");
 		maps.put("명산 마스터", "지리산, 설악산, 북한산, 덕유산");

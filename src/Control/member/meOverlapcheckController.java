@@ -34,6 +34,8 @@ public class meOverlapcheckController implements SuperController {
 		forward.setPath("");
 
 		String id = req.getParameter("id");
+		String nickname = req.getParameter("nickname");
+		String email = req.getParameter("email");
 		if ( id != null) {
 			//boolean patterncheck = Pattern.matches("", req.getParameter("id"));
 			
@@ -44,10 +46,18 @@ public class meOverlapcheckController implements SuperController {
 			out.print(jsonobj);
 			out.flush();
 			out.close();
-		} else {
-			System.out.println("nickname : " + req.getParameter("nickname"));
+		} else if( nickname !=null ){
+			System.out.println("nickname : " + nickname );
 			no = 2;
-			check = dao.OverlapCheck(req.getParameter("nickname"), no);
+			check = dao.OverlapCheck( nickname, no);
+			jsonobj.put("check", check);
+			out.print(jsonobj);
+			out.flush();
+			out.close();
+		} else if( email != null){
+			System.out.println("email : " + email );
+			no = 3;
+			check = dao.OverlapCheck( email, no);
 			jsonobj.put("check", check);
 			out.print(jsonobj);
 			out.flush();

@@ -14,18 +14,17 @@ public class MemberDao extends SuperDao {
 	}
 
 	// 회원삭제
-	public int DeleteDate(String id, String password) {
+	public int DeleteDate(String id) {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "delete from members where user_id=? and user_password=?";
+		String sql = " delete from members where user_id=? " ;
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setString(2, password);
 
 			cnt = pstmt.executeUpdate();
 
@@ -235,8 +234,10 @@ public class MemberDao extends SuperDao {
 		String sql = "";
 		if (no == 1) {
 			sql = "select user_id from members where user_id=?";
-		} else {
+		} else if( no == 2) {
 			sql = "select user_id from members where user_nickname=?";
+		} else if( no == 3){
+			sql = "select user_id from members where user_email=?";
 		}
 
 		try {
@@ -249,9 +250,9 @@ public class MemberDao extends SuperDao {
 			rs = pstmt.executeQuery();
 
 			if (!rs.next()) {
-				Check = true; // 사용가능한 아이디 OR 닉네임
+				Check = true; // 사용가능한 아이디 OR 닉네임 or 이메일
 			} else {
-				Check = false; // 이미 사용중인 아디이 OR 닉네임
+				Check = false; // 이미 사용중인 아디이 OR 닉네임 or 이메일
 			}
 
 		} catch (Exception e) {
