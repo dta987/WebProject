@@ -11,6 +11,8 @@ import Control.ControllerForward;
 import Control.SuperController;
 import Model.Board;
 import Model.BoardDao;
+import Model.Title;
+import Model.TitleDao;
 
 public class tiInsertController implements SuperController {
 
@@ -19,7 +21,7 @@ public class tiInsertController implements SuperController {
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		ControllerForward forward = new ControllerForward();
-		//Title
+		TitleDao dao = new TitleDao();
 		int cnt = 0;
 		
 		HttpSession session = req.getSession();
@@ -27,21 +29,18 @@ public class tiInsertController implements SuperController {
 			forward.setRedirect(true);
 			forward.setPath(req.getContextPath() + "/View/tiInsertForm.jsp");
 		} else {
-			Board board = new Board();
+			Title title = new Title();
 			
-			board.setBoard_writer(String.valueOf(session.getAttribute("id")));
-			board.setUser_nickname(String.valueOf(session.getAttribute("nickname")));
-			board.setBoard_category(Integer.parseInt(req.getParameter("category")));
-			board.setBoard_title(req.getParameter("title"));
-			board.setBoard_content(req.getParameter("content"));
-			board.setBoard_img(req.getParameter("img"));
+			title.setTitle_condition(req.getParameter("title_condition"));
+			title.setTitle_img(req.getParameter("title_img"));
+			title.setTitle_name(req.getParameter("title_name"));
 			
-			cnt = dao.InsertBoard(board);
+			cnt = dao.InsertData(title);
 			
 			
 			if(cnt > 0 ) {
 				forward.setRedirect(false);
-				forward.setPath("/YamaManCtrl?command=boList");
+				forward.setPath("/YamaManCtrl?command=tiList");
 			} else {
 				forward.setRedirect(true);
 				forward.setPath("/View/review/reErrPage.jsp");

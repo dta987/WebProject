@@ -14,8 +14,13 @@ public class tiUpdateFormController implements SuperController {
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ControllerForward forward = new ControllerForward();
+
+		forward.setRedirect(true);
+		forward.setPath("/View/title/tiUpdateForm.jsp");
+
+		return forward;
 	}
 
 }

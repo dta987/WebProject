@@ -62,8 +62,8 @@ public class MountainDao extends SuperDao {
 			pstmt = super.conn.prepareStatement(sql);
 
 			pstmt.setString(1, mountain.getMountain_name());
-			pstmt.setString(2, mountain.getMountain_address1());
-			pstmt.setString(3, mountain.getMountain_address2());
+			pstmt.setString(2, mountain.getMountain_area());
+			pstmt.setString(3, mountain.getMountain_address());
 			pstmt.setString(4, mountain.getMountain_img());
 			pstmt.setString(5, mountain.getMountain_introduce());
 			pstmt.setInt(6, mountain.getMountain_thema());
@@ -109,8 +109,8 @@ public class MountainDao extends SuperDao {
 			}
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setString(1, mountain.getMountain_name());
-			pstmt.setString(2, mountain.getMountain_address1());
-			pstmt.setString(3, mountain.getMountain_address2());
+			pstmt.setString(2, mountain.getMountain_area());
+			pstmt.setString(3, mountain.getMountain_address());
 			pstmt.setString(4, mountain.getMountain_img());
 			pstmt.setString(5, mountain.getMountain_introduce());
 			pstmt.setInt(6, mountain.getMountain_thema());
@@ -141,16 +141,20 @@ public class MountainDao extends SuperDao {
 
 	}
 
-	public List<Mountain> SelectDataList(int beginRow, int endRow) {
+	public List<Mountain> SelectDataList(int beginRow, int endRow, String mode, String keyword) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select *"
-		        + " from"
-		        + " ("
-		        + " select mountain_no, mountain_name, mountain_area, mountain_address, mountain_img, "
-		        + "mountain_introduce, mountain_thema, updatedate, rank() over( order by mountain_no desc ) as ranking from mountains  )"
-		        + " where ranking between ? and ? ";
+		String sql = "select *";
+		sql += " from";
+		sql += " (";
+		sql += " select mountain_no, mountain_name, mountain_area, mountain_address, mountain_img, mountain_introduce, mountain_thema, updatedate"
+				+ " rank() over( order by mountain_no ) as ranking from mountains ";
+		if( ! mode.equals("all")) {
+			sql += "where " + mode + " like '%" + keyword + "%'";
+		}
+		sql += " )";
+		sql += " where ranking between ? and ? ";
 
 		List<Mountain> mountain_lists = new ArrayList<Mountain>();
 
@@ -167,8 +171,8 @@ public class MountainDao extends SuperDao {
 			while (rs.next()) {
 				Mountain mountain = new Mountain();
 				mountain.setMountain_no(rs.getInt("mountain_no"));
-				mountain.setMountain_address1(rs.getString("mountain_address1"));
-				mountain.setMountain_address2(rs.getString("mountain_address2"));
+				mountain.setMountain_area(rs.getString("mountain_area"));
+				mountain.setMountain_address(rs.getString("mountain_address"));
 				mountain.setMountain_img(rs.getString("mountain_img"));
 				mountain.setMountain_introduce(rs.getString("mountain_introduce"));
 				mountain.setMountain_name(rs.getString("mountain_name"));
@@ -199,8 +203,7 @@ public class MountainDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select mountain_no, mountain_name, mountain_area, mountain_address, mountain_img, mountain_introduce,"
-		        + " mountain_thema, updatedate from mountains from mountains where mountain_no=? order by orderno asc";
+		String sql = "select * from mountains where mountain_no=?";
 
 		List<Mountain> mountain_lists = new ArrayList<Mountain>();
 
@@ -216,8 +219,8 @@ public class MountainDao extends SuperDao {
 			while (rs.next()) {
 				Mountain mountain = new Mountain();
 				mountain.setMountain_no(rs.getInt("mountain_no"));
-				mountain.setMountain_address1(rs.getString("mountain_address1"));
-				mountain.setMountain_address2(rs.getString("mountain_address2"));
+				mountain.setMountain_area(rs.getString("mountain_area"));
+				mountain.setMountain_address(rs.getString("mountain_address"));
 				mountain.setMountain_img(rs.getString("mountain_img"));
 				mountain.setMountain_introduce(rs.getString("mountain_introduce"));
 				mountain.setMountain_name(rs.getString("mountain_name"));

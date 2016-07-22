@@ -30,9 +30,8 @@ public class moInsertController implements SuperController {
 		} else {
 			Mountain mountain = new Mountain();
 			
-			mountain.setMountain_no(Integer.parseInt(req.getParameter("mountain_no")));
-			mountain.setMountain_address1(req.getParameter("mountain_address1"));
-			mountain.setMountain_address2(req.getParameter("mountain_address2"));
+			mountain.setMountain_area(req.getParameter("mountain_area"));
+			mountain.setMountain_address(req.getParameter("mountain_address"));
 			mountain.setMountain_img(req.getParameter("mountain_img"));
 			mountain.setMountain_introduce(req.getParameter("mountain_introduce"));
 			mountain.setMountain_name(req.getParameter("mountain_name"));
