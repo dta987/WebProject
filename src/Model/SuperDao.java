@@ -17,11 +17,15 @@ public class SuperDao {
 	}
 
 	public void closeConnection() {
-		conn = null;
-		/*
-		 * if (conn != null) { try { conn.close(); } catch (SQLException e) {
-		 * e.printStackTrace(); } }
-		 */
+
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	public SuperDao() {

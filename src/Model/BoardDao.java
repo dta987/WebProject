@@ -189,6 +189,7 @@ public class BoardDao extends SuperDao {
 				if (pstmt != null) {
 					pstmt.close();
 				}
+				super.closeConnection();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -240,6 +241,7 @@ public class BoardDao extends SuperDao {
 				if (pstmt != null) {
 					pstmt.close();
 				}
+				super.closeConnection();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}

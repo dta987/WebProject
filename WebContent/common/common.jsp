@@ -34,6 +34,9 @@
 
 <link rel="stylesheet" href="<%=contextPath%>/View/layout/Style.css">
 
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
 <title>Insert title here</title>
 </head>
 <body>

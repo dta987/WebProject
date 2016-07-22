@@ -36,7 +36,7 @@ public class tiInsertController implements SuperController {
 			board.setBoard_content(req.getParameter("content"));
 			board.setBoard_img(req.getParameter("img"));
 			
-			cnt = dao.InsertBoard(board);
+			//cnt = dao.InsertBoard(board);
 			
 			
 			if(cnt > 0 ) {

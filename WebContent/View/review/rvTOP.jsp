@@ -46,23 +46,62 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP</title>
-<style type="text/css">
-#navbar {
-	background-color:
-}
 
-#container-fluid {
-	padding-right: 10 px;
-}
-</style>
 </head>
 <body>
+
+	<nav id="scrollMenu" class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<c:if test="${sessionScope.whologin != 0}">
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+						role="button" aria-expanded="false">Memu <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<c:if test="${sessionScope.whologin == 1}">
+								<li><a href="<%=MyCtrlCommand%>boList">내 게시글 목록</a></li>
+								<li><a href="<%=MyCtrlCommand%>boList">내 댓글 목록</a></li>
+								<li><a href="<%=MyCtrlCommand%>boList">회원정보</a></li>
+								<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
+							</c:if>
+
+							<c:if test="${sessionScope.whologin == 2}">
+								<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
+								<li><a href="<%=MyCtrlCommand%>boList">회원 목록</a></li>
+								<li><a href="<%=MyCtrlCommand%>boList">타이틀 관리</a></li>
+								<li><a href="<%=MyCtrlCommand%>boList">산 관리</a></li>
+							</c:if>
+						</ul></li>
+				</c:if>
+				<li>
+					<p class="navbar-text">
+						<c:forEach var="i" begin="1" end="36" step="1">
+						&nbsp;&nbsp;&nbsp;
+						</c:forEach>
+						<a href="#">MOUNTAIN</a> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a href="<%=MyCtrlCommand%>boList">BOARD</a>
+					</p>
+				</li>
+				<li>
+					<c:forEach var="i" begin="1" end="35" step="1">
+					&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					<button type="button" class="btn btn-default navbar-btn">Login</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+
+
 	<div class="container-fluid">
 		<ul class="nav navbar-nav navbar-right">
 			<c:if test="${whologin == 0}">
 				<ul class="pager">
 					<li><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li>
-					<li><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li>
+					<li><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li> &nbsp;&nbsp;&nbsp;&nbsp;
 				</ul>
 			</c:if>
 			<c:if test="${whologin != 0}">
@@ -75,17 +114,38 @@
 	</div>
 
 	<div class="container-fluid" align="center">
-		<a href="<%=contextPath%>/View/Main.jsp"><img alt="main_img" src="<%=contextPath%>/View/images/나뭇잎.png"></a>
+		<a href="<%=contextPath%>/View/Main.jsp"><img alt="main_img"
+			src="<%=contextPath%>/View/images/나뭇잎.png"></a>
 	</div>
 	<div class="container-fluid" align="center">
-		<a href="#">MOUNTAIN</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#">MOUNTAIN</a> 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 		<a href="<%=MyCtrlCommand%>boList">BOARD</a>
-	</div><br><br><br>
+	</div>
+
+	<br>
+	<br>
+	<br>
 
 	<c:if test="${not empty requestScope.errmsg }">
 		<script type="text/javascript">
 			alert('${requestScope.errmsg}')
 		</script>
 	</c:if>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#scrollMenu").hide();
+			$(function() {
+				$(window).scroll(function() {
+					if ($(this).scrollTop() > 100) {
+						$("#scrollMenu").fadeIn();
+					} else {
+						$("#scrollMenu").fadeOut();
+					}
+				})
+			});
+		});
+	</script>
 </body>
 </html>

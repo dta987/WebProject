@@ -67,7 +67,7 @@
 									}, 
 									fOnAppLoad : function(){
 										//기존 저장된 내용의 text 내용을 에디터상에 뿌려주고자 할때 사용
-										oEditors.getById["ir1"].exec("PASTE_HTML", ["기존 DB에 저장된 내용을 에디터에 적용할 문구"]);	
+										oEditors.getById["content"].exec("PASTE_HTML", [""]);	
 									},
 									fCreator: "createSEditor2"
 									});
@@ -78,7 +78,7 @@
 				<hr>
 				<div class="form-group">
 					<div align="center" class="col-sm-offset-3 col-sm-6">
-						<button class="btn btn-default" type="submit">저장</button>
+						<button class="btn btn-default" type="button" id="submit">저장</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
 					</div>
@@ -87,6 +87,16 @@
 		</div>
 
 <script>
+
+$(document).ready(function() {
+	$("#submit").click(function() {
+		obj.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+		alert($("#frm").val())
+        //폼 submit
+		
+	})
+})
+
 	$(document).ready(function() {
 		var oEditors = [];
 		$(function(){
