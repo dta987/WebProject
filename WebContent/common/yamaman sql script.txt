@@ -61,7 +61,7 @@ create table mountains_history(
 	on delete set null
 );
 
-create table title(
+create table titles(
 	title_no number primary key,
 	title_name varchar(30),
 	title_condition varchar(60),
