@@ -13,12 +13,12 @@
 	String uploadedFolder = myurl.substring(0, idx) + contextPath
 			+ uploadPath;
 
-/* 	out.print("url=" + myurl + "<br>");
-	out.print("uri=" + uri + "<br>");
-	out.print("uploadedFolder=" + uploadedFolder + "<br>");
+	/* 	out.print("url=" + myurl + "<br>");
+	 out.print("uri=" + uri + "<br>");
+	 out.print("uploadedFolder=" + uploadedFolder + "<br>");
 
-	String realPath1 = application.getRealPath(uploadPath);
-	out.print("realPath1=" + realPath1 + "<br>");  */
+	 String realPath1 = application.getRealPath(uploadPath);
+	 out.print("realPath1=" + realPath1 + "<br>");  */
 %>
 
 <%
@@ -40,42 +40,47 @@
 	session.setAttribute("whologin", whologin);
 %>
 
-<%
-	String Brandimg = contextPath + "/View/images/GreenSanIcon.png";
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP</title>
+<style type="text/css">
+#navbar {
+	background-color:
+}
+
+#container-fluid {
+	padding-right: 10 px;
+}
+</style>
 </head>
 <body>
-	<nav class="navbar  navbar-default navbar-fixed-top ">
 	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded"
-				alt="Brand" src="<%=Brandimg%>" style="width: 100%; height: 100%">
-			</a>
-		</div>
-		<ul class="nav navbar-nav">
-			<li><a href="<%=MyCtrlCommand%>boList">게시물</a></li>
-			<li><a href="<%=MyCtrlCommand%>moList">산</a></li>
-		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<c:if test="${whologin == 0}">
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li>
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li>
-
-
+				<ul class="pager">
+					<li><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li>
+					<li><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li>
+				</ul>
 			</c:if>
 			<c:if test="${whologin != 0}">
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
+				<ul class="pager">
+					<li><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
+					<li><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
+				</ul>
 			</c:if>
 		</ul>
 	</div>
-	</nav>
 
+	<div class="container-fluid" align="center">
+		<a href="<%=contextPath%>/View/Main.jsp"><img alt="main_img" src="<%=contextPath%>/View/images/나뭇잎.png"></a>
+	</div>
+	<div class="container-fluid" align="center">
+		<a href="#">MOUNTAIN</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="<%=MyCtrlCommand%>boList">BOARD</a>
+	</div><br><br><br>
 
 	<c:if test="${not empty requestScope.errmsg }">
 		<script type="text/javascript">

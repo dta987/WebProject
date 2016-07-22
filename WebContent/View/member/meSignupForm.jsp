@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../review/rvTOP.jsp"%>
 <%
+	
+%>
+<%
 	int myoffset = 3;
 	int mywidth = twelve - 2 * myoffset;
-	int label = 4;
+	int label = 3;
 	int input = twelve - 2 * label;
 
 	boolean idOverlapCheck = false;
 	boolean nicknameOverlapCheck = false;
 	boolean pwOverlapCheck = false;
-	
+
 	String img = contextPath + "/View/images/산타니05.jpg";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,64 +25,73 @@
 </head>
 <body>
 
-	<div class="col-md-offset-<%=myoffset%> col-md-<%=mywidth%>">
+	<div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<div class="panel-heading">회원가입</div>
 		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" name="command" value="meSignup">
+			<table>
+				<br>
+				<td class="col-sm-<%=input%>">
+					<div id="iddiv" class="form-group has-feedback">
+						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
+						<div class="col-sm-<%=input%>">
+							<input type="text" class="form-control" id="id" name="id" placeholder="id"> <span
+								id="idspan" class="glyphicon form-control-feedback"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="passoword" class="col-sm-<%=label%> control-label">PW</label>
+						<div class="col-sm-<%=input%>">
+							<input type="password" class="form-control" id="password" name="password"
+								placeholder="password">
+						</div>
+					</div>
+					<div id="pwdiv" class="form-group has-feedback">
+						<label for="passoword2" class="col-sm-<%=label%> control-label">PwCheck</label>
+						<div class="col-sm-<%=input%>">
+							<input type="password" class="form-control" id="password2" name="password2"
+								placeholder="password"> <span id="pwspan" class="glyphicon form-control-feedback"></span>
+						</div>
+						<div id="pwcheck"></div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-<%=label%> control-label">NAME</label>
+						<div class="col-sm-<%=input%>">
+							<input type="text" class="form-control" id="name" name="name" placeholder="name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-<%=label%> control-label">eMail</label>
+						<div class="col-sm-<%=input%>">
+							<input type="text" class="form-control" id="email" name="email" placeholder="email">
+						</div>
+					</div>
+					<div id="nicknamediv" class="form-group has-feedback">
+						<label for="nickname" class="col-sm-<%=label%> control-label">NickName</label>
+						<div class="col-sm-<%=input%>">
+							<input type="text" class="form-control" id="nickname" name="nickname" placeholder="nickname">
+							<span id="nicknamespan" class="glyphicon form-control-feedback"></span>
+						</div>
+						<div id="nicknamecheck"></div>
+					</div>
+				</td>
+
+				<td>
+					<div class="form-group" align="center">
+						<button type="button" id="image_add" class="btn btn-default">이미지 추가</button>
+						&nbsp;&nbsp;
+						<button type="button" id="image_remove" class="btn btn-default">삭제</button>
+						<input type="file" name="image" id="image" class="hide">
+					</div>
+					<div class="form-group" align="center">
+						<img id="user_img" src="<%=img%>" class="img-rounded" alt="Cinque Terre" width="200px"
+							height="200px">
+					</div>
+
+				</td>
+			</table>
 			<div class="form-group" align="center">
-				<img id="user_img" src="<%=img%>" class="img-rounded" alt="Cinque Terre" width="200px" height="200px">
-			</div>
-			<div class="form-group" align="center">
-				<button type="button" id="image_add" class="btn btn-default">이미지 추가</button>
-				<button type="button" id="image_remove" class="btn btn-default">삭제</button>
-				<input type="file" name="image" id="image" class="hide">
-			</div>
-			<div id="iddiv" class="form-group has-feedback">
-				<label for="ID" class="col-sm-<%=label%> control-label">아이디</label>
-				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="id" name="id" placeholder="id">
-					<span id="idspan" class="glyphicon form-control-feedback" ></span>
-				</div>
-				<div id="idcheck"></div>
-			</div>			
-			
-			<div class="form-group">
-				<label for="passoword" class="col-sm-<%=label%> control-label">비밀번호</label>
-				<div class="col-sm-<%=input%>">
-					<input type="password" class="form-control" id="password" name="password"
-						placeholder="password">
-				</div>
-			</div>
-			<div id="pwdiv" class="form-group has-feedback">
-				<label for="passoword2" class="col-sm-<%=label%> control-label">비밀번호 확인</label>
-				<div class="col-sm-<%=input%>">
-					<input type="password" class="form-control" id="password2" name="password2"
-						placeholder="password">
-						<span id="pwspan" class="glyphicon form-control-feedback" ></span>
-				</div>
-				<div id="pwcheck"></div>
-			</div>
-			<div class="form-group">
-				<label for="name" class="col-sm-<%=label%> control-label">이름</label>
-				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="name" name="name" placeholder="name">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="email" class="col-sm-<%=label%> control-label">이메일</label>
-				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="email" name="email" placeholder="email">
-				</div>
-			</div>
-			<div id="nicknamediv" class="form-group has-feedback">
-				<label for="nickname" class="col-sm-<%=label%> control-label">닉네임</label>
-				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="nickname" name="nickname" placeholder="nickname">
-					<span id="nicknamespan" class="glyphicon form-control-feedback" ></span>
-				</div>
-				<div id="nicknamecheck"></div>
-			</div>
-			<div class="form-group">
 				<div class="col-sm-offset-<%=label%> col-sm-<%=twelve - label%>">
 					<button type="submit" onclick="" class="btn btn-default">저 장</button>
 					<button type="reset" class="btn btn-default">취 소</button>
@@ -261,10 +273,6 @@
 		$(document).ready(function() {
 			$("#image_remove").click(function() {
 				$("#user_img").attr("src", "<%=img%>");
-				$("#iddiv").removeClass("has-error has-feedback", "has-success has-feedback");
-				$("#idcheck").html("<div class='alert-success col-sm-3' > 사용가능한 아이디 입니다</div>");
-				$("#idspan").switchClass("glyphicon-remove", "glyphicon-ok");
-				
 			});
 		});
 	</script>

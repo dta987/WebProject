@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../member/meMypage.jsp"%>
-
+<%@ include file="../review/rvTOP.jsp"%>
 <%
-	url = "/View/Main.jsp";
+int myoffset = 1;
+int mywidth = twelve - 2 * myoffset;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,7 +16,7 @@
 </script> --%>
 </head>
 <body>
-	<div class="panel panel-success">
+	<div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<div class="panel-heading">게시판</div>
 		<table class="table table-striped table-hover">
 			<thead>
@@ -42,12 +42,15 @@
 					<td>${bean.board_writ_date}</td>
 					<td>${bean.board_update}</td>
 					<td>${bean.board_readhit}</td>
-					<td><c:if test="${sessionScope.whologin == 2}">
+					<td>
+					<c:if test="${sessionScope.whologin == 2}">
 							<a href="<%=MyCtrlCommand%>boUpdateForm&no=${bean.no}&${requestScope.parameters}"> 수정 </a>
 						</c:if></td>
-					<td><c:if test="${sessionScope.whologin == 2}">
+					<td>
+					<c:if test="${sessionScope.whologin == 2}">
 							<a href="<%=MyCtrlCommand%>boDelete&no=${bean.no}&${requestScope.parameters}"> 삭제 </a>
-						</c:if></td>
+					</c:if>
+					</td>
 					<td>
 						<!--  관리자만 게시물리스트에 직접 게시물 밑에 댓글형식의 게시글을 쓸 수 있다. 위 게시글의 상태나 변경을 리스트에서 바로 나타내도록   보통 유저들은 DetailView에서 Reply 가능 -->
 						<c:if test="${bean.depth <= 1 and sessionScope.whologin == 2 }">
