@@ -287,8 +287,14 @@
 				if (idOverlapCheck) {
 					if (pwOverlapCheck) {
 						if (nicknameOverlapCheck) {
-							alert("가입을 축하드립니다!");
-							return true;
+							if(emailOverlapCheck){
+								alert("가입을 축하드립니다!");
+								return true;	
+							}else{
+								alert("이메일 주소를 확인해주세요");
+								$("#nickname").focus();
+								return false;
+							}
 						} else {
 							alert("닉네임를 확인해주세요");
 							$("#nickname").focus();
@@ -303,7 +309,8 @@
 					alert("아이디를 확인해주세요");
 					$("#id").focus();
 					return false;
-				}
+				}								
+						
 			});
 		});
 		$(document).ready(function() {

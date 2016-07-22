@@ -234,8 +234,10 @@ public class MemberDao extends SuperDao {
 		String sql = "";
 		if (no == 1) {
 			sql = "select user_id from members where user_id=?";
-		} else {
+		} else if( no == 2) {
 			sql = "select user_id from members where user_nickname=?";
+		} else if( no == 3){
+			sql = "select user_id from members where user_email=?";
 		}
 
 		try {
