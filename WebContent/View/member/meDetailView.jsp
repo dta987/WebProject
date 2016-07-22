@@ -28,7 +28,7 @@
 
 		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post"
 			enctype="multipart/form-data">
-			<input type="hidden" name="command" value="meSignup">
+			<input type="hidden" name="command" value="meUpdateForm">
 			<div class="form-group" align="center">
 				<img id="user_img" src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded"
 					alt="Cinque Terre" width="200px" height="200px">

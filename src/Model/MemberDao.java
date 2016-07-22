@@ -14,18 +14,17 @@ public class MemberDao extends SuperDao {
 	}
 
 	// 회원삭제
-	public int DeleteDate(String id, String password) {
+	public int DeleteDate(String id) {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "delete from members where user_id=? and user_password=?";
+		String sql = " delete from members where user_id=? " ;
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setString(2, password);
 
 			cnt = pstmt.executeUpdate();
 

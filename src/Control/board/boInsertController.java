@@ -42,6 +42,7 @@ public class boInsertController implements SuperController {
 			
 			cnt = dao.InsertBoard(board);
 			
+			
 			if(cnt > 0 ) {
 				forward.setRedirect(false);
 				forward.setPath("/YamaManCtrl?command=boList");

@@ -6,12 +6,15 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+
+
 
 import Control.ControllerForward;
 import Control.SuperController;
 import Model.Member;
 import Model.MemberDao;
+import Utility.FlowParameters;
 
 public class meDeleteController implements SuperController {
 
@@ -23,13 +26,22 @@ public class meDeleteController implements SuperController {
 		MemberDao dao = new MemberDao();
 		
 		String id = req.getParameter("id");
-		String password = req.getParameter("password");
+		//String password = req.getParameter("password");
+		
+		
+		FlowParameters parameters = new FlowParameters() ;
+		parameters.setKeyword( req.getParameter("keyword") ); 
+		parameters.setMode( req.getParameter("mode") ); 
+		parameters.setPageNumber( req.getParameter("pageNumber") );
+		parameters.setPageSize( req.getParameter("pageSize") );
 
-		int cnt = dao.DeleteDate(id, password);
+		int cnt = dao.DeleteDate(id);
+		
+		
 		
 		if(cnt > 0 ) {
 			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/member/meLoginForm.jsp");
+			forward.setPath( "/YamaManCtrl?command=meLoginForm&" + parameters.toString() ) ;
 			System.out.println("¸Â¾Æ???");
 		} else {
 			forward.setRedirect(false);

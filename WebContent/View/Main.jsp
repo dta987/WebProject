@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../View/review/rvTOP.jsp"%>
 <%!String[] carousel_img = { "/View/images/산타니05.jpg",
-			"/View/images/산타니05.jpg", "/View/images/산타니05.jpg",
+			"/View/images/일본지도5.png", "/View/images/산타니05.jpg",
 			"/View/images/산타니05.jpg" };%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
