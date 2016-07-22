@@ -91,79 +91,118 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#id").keyup(function() {
-			if ($("#id").val().length > 4) {
-				$.ajax({
-					type : "post",
-					url : "<%=MyCtrlCommand%>meOverlapcheck",
-					dataType : "JSON",
-					data : {
-						"id" : $("#id").val(),
-					},
-					success : function(result) {
-						if(result.check) {
-							$("#iddiv").switchClass("has-error has-feedback", "has-success has-feedback");
-							$("#idcheck").html("<div class='alert-success col-sm-3' > 사용가능한 아이디 입니다</div>");
-							$("#idspan").switchClass("glyphicon-remove", "glyphicon-ok");
-							idOverlapCheck = true;
-						} else {
-							$("#iddiv").switchClass("has-success has-feedback", "has-error has-feedback");
-							$("#idcheck").html("<div class='alert-danger col-sm-3' > 이미 사용중인 아이디입니다</div>");
-							idOverlapCheck = false;
-						}
-					}
-				});
-			} else {
-				$("#idcheck").html("<div class='alert-danger col-sm-3'> 6글자이상 입력해주세요</div>");
-				$("#iddiv").addClass("has-error has-feedback");	
+			 // 원하지 않는 값이 들어올 경우를 막기 위해		
+		    if (this.value.match(/[^a-zA-Z0-9\_\s]/g)) {
+		        //this.value = this.value.replace(/[^a-zA-Z0-9\_\s]/g, ''); //해당 값이 들어오면 ''으로 바꿔치기
+				$("#idcheck").html("<div class='alert-danger col-sm-4' align='center'> 아이디는 특수기호 _  , 영문, 숫자만 입력 가능합니다.</div>");
+				$("#iddiv").addClass("has-error");
 				$("#idspan").addClass("glyphicon-remove");
 				idOverlapCheck = false;
-			}
+		    }else{
+		    	if ($("#id").val().length > 5) {
+		    		//if() //최소 영문자 1개, _특수문자로 끝나지 않기, 영문자로 시작하기
+					$.ajax({
+						type : "post",
+						url : "<%=MyCtrlCommand%>meOverlapcheck",
+						dataType : "JSON",
+						data : {
+							"id" : $("#id").val(),
+						},
+						success : function(result) {
+							if(result.check) {
+								$("#iddiv").switchClass("has-error has-feedback", "has-success has-feedback");
+								$("#idcheck").html("<div class='alert-success col-sm-4' align='center'> 사용가능한 아이디 입니다</div>");
+								$("#idspan").switchClass("glyphicon-remove", "glyphicon-ok");
+								idOverlapCheck = true;
+							} else {
+								$("#iddiv").switchClass("has-success has-feedback", "has-error has-feedback");
+								$("#idcheck").html("<div class='alert-danger col-sm-4' align='center'> 이미 사용중인 아이디입니다</div>");
+								idOverlapCheck = false;
+							}
+						}
+					});
+				} else {
+					$("#idcheck").html("<div class='alert-danger col-sm-4' align='center'> 6글자이상 입력해주세요</div>");
+					$("#iddiv").addClass("has-error has-feedback");	
+					$("#idspan").addClass("glyphicon-remove");
+					idOverlapCheck = false;
+				}
+		    }
 		});
 	});
 	
 	$(document).ready(function() {
+		    // 원하지 않는 값이 들어올 경우를 막기 위해
 		$("#nickname").keyup(function() {
-			if($("#nickname").val().length > 1) {
-				$.ajax({
-					type : "post",
-					url : "<%=MyCtrlCommand%>meOverlapcheck",
-					dataType : "JSON",
-					data : {
-						"nickname" : $("#nickname").val(),
-						},
-						success : function(result) {
-							if (result.check) {
-								$("#nicknamediv").switchClass("has-error", "has-success");
-								$("#nicknamecheck").html("<div class='alert-success col-sm-3' > 사용가능한 닉네임 입니다</div>");
-								$("#nicknamespan").switchClass("glyphicon-remove", "glyphicon-ok");
-								nicknameOverlapCheck = true;
-								} else {
-									$("#nicknamediv").switchClass("has-success", "has-error");
-									$("#nicknamecheck").html("<div class='alert-danger col-sm-3' > 이미 사용중인 닉네임 입니다</div>");
-									nicknameOverlapCheck = false;
-									}
-							}
-						});
+		    if (this.value.match(/[^a-zA-Z0-9가-히\_\s]/g)) {
+		        // replace it with nothing
+		        //this.value = this.value.replace(/[^a-zA-Z0-9가-히\_\s]/g, '');
+				$("#nicknamecheck").html("<div class='alert-danger col-sm-4' align='center'> 닉네임은 _ 를 제외한 특수기호는 입력 불가능합니다.</div>");
+				$("#nicknamediv").addClass("has-error");
+				$("#nicknamespan").addClass("glyphicon-remove");
+				nicknameOverlapCheck = false;
+		    }else{
+		    	if($("#nickname").val().length > 1) {
+					$.ajax({
+						type : "post",
+						url : "<%=MyCtrlCommand%>meOverlapcheck",
+						dataType : "JSON",
+						data : {
+							"nickname" : $("#nickname").val(),
+							},
+							success : function(result) {
+								if (result.check) {
+									$("#nicknamediv").switchClass("has-error", "has-success");
+									$("#nicknamecheck").html("<div class='alert-success col-sm-4' align='center'> 사용가능한 닉네임 입니다</div>");
+									$("#nicknamespan").switchClass("glyphicon-remove", "glyphicon-ok");
+									nicknameOverlapCheck = true;
+									} else {
+										$("#nicknamediv").switchClass("has-success", "has-error");
+										$("#nicknamecheck").html("<div class='alert-danger col-sm-4' align='center'> 이미 사용중인 닉네임 입니다</div>");
+										nicknameOverlapCheck = false;
+										}
+								}
+							});
 				} else {
-					$("#nicknamecheck").html("<div class='alert-danger col-sm-3'> 닉네임은 2글자 이상입니다</div>");
+					$("#nicknamecheck").html("<div class='alert-danger col-sm-4' align='center'> 닉네임은 2글자 이상입니다</div>");
 					$("#nicknamediv").addClass("has-error");
 					$("#nicknamespan").addClass("glyphicon-remove");
 					nicknameOverlapCheck = false;
-					}
-			});
+				}
+		    }
 		});
+	});
 	
 	$(document).ready(function() {
-		$("#password2").keyup(function() {
+		//비밀번호 유효성 검사. 특수문자 하나 추가해야, 특수문자 최소 1개 들어가기, 8글자 이상, 
+		$("#password1").keyup(function() {
 			if ($("#password").val() == $("#password2").val()) {
 				$("#pwdiv").switchClass("has-error has-feedback", "has-success has-feedback");
-				$("#pwcheck").html("<div class='alert-success col-sm-3' > 사용가능</div>");
+				$("#pwcheck").html("<div class='alert-success col-sm-3' align='center'> 사용가능</div>");
 				$("#pwspan").switchClass("glyphicon-remove", "glyphicon-ok");
 				
 				pwOverlapCheck = true;
 				} else {
 					$("#pwdiv").addClass("has-error has-feedback");
-					$("#pwcheck").html("<div class='alert-danger col-sm-3' > 비밀번호를 확인해주세요</div>");
+					$("#pwcheck").html("<div class='alert-danger col-sm-4' align='center'> 비밀번호를 확인해주세요</div>");
+					$("#pwspan").addClass("glyphicon-remove");
+					pwOverlapCheck = false;
+					}
+		});
+	});
+	
+	$(document).ready(function() {
+		//패스워드 1번과 2번이 동일한지에 대한 유효성 검사
+		$("#password2").keyup(function() {
+			if ($("#password").val() == $("#password2").val() && $("#password").val()!= null   ) {
+				$("#pwdiv").switchClass("has-error has-feedback", "has-success has-feedback");
+				$("#pwcheck").html("<div class='alert-success col-sm-3' align='center'> 사용가능</div>");
+				$("#pwspan").switchClass("glyphicon-remove", "glyphicon-ok");
+				
+				pwOverlapCheck = true;
+				} else {
+					$("#pwdiv").addClass("has-error has-feedback");
+					$("#pwcheck").html("<div class='alert-danger col-sm-4' align='center'> 비밀번호를 확인해주세요</div>");
 					$("#pwspan").addClass("glyphicon-remove");
 					pwOverlapCheck = false;
 					}
@@ -217,6 +256,8 @@
 				$("#image").click();
 			});
 		});
+		
+		//이게 무슨 의미지? 왜 만든거야 성민아? 이미지 삭제 버튼 누르면 사용가능한 아이디입니다?
 		$(document).ready(function() {
 			$("#image_remove").click(function() {
 				$("#user_img").attr("src", "<%=img%>");
