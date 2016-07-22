@@ -250,9 +250,9 @@ public class MemberDao extends SuperDao {
 			rs = pstmt.executeQuery();
 
 			if (!rs.next()) {
-				Check = true; // 사용가능한 아이디 OR 닉네임
+				Check = true; // 사용가능한 아이디 OR 닉네임 or 이메일
 			} else {
-				Check = false; // 이미 사용중인 아디이 OR 닉네임
+				Check = false; // 이미 사용중인 아디이 OR 닉네임 or 이메일
 			}
 
 		} catch (Exception e) {
