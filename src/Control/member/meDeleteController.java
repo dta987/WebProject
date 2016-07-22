@@ -29,12 +29,15 @@ public class meDeleteController implements SuperController {
 		
 		if(cnt > 0 ) {
 			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
+			forward.setPath(req.getContextPath() + "/View/member/meLoginForm.jsp");
+			System.out.println("맞아???");
 		} else {
 			forward.setRedirect(false);
+			System.out.println("틀려???");
 			String result = "회원 탈퇴 중 오류코드 : " + cnt + "이(가) 발생하였습니다";
-			req.setAttribute("errmsg", result);
 			forward.setPath(req.getContextPath() + "/View/reErrPage.jsp");
+			//forward.setPath(req.getContextPath() + "/View/member/meLoginForm.jsp");
+			
 		}
 
 		return forward;

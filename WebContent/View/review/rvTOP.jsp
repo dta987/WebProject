@@ -13,12 +13,12 @@
 	String uploadedFolder = myurl.substring(0, idx) + contextPath
 			+ uploadPath;
 
-	/* out.print("url=" + myurl + "<br>");
+/* 	out.print("url=" + myurl + "<br>");
 	out.print("uri=" + uri + "<br>");
 	out.print("uploadedFolder=" + uploadedFolder + "<br>");
 
 	String realPath1 = application.getRealPath(uploadPath);
-	out.print("realPath1=" + realPath1 + "<br>"); */
+	out.print("realPath1=" + realPath1 + "<br>");  */
 %>
 
 <%
