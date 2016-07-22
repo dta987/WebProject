@@ -1,4 +1,4 @@
-package Control.title;
+package Control.history;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import Model.MountainDao;
 import Model.Title;
 import Model.TitleDao;
 
-public class tiUpdateController implements SuperController {
+public class hiUpdateController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,

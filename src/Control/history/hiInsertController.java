@@ -1,4 +1,4 @@
-package Control.title;
+package Control.history;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import Model.BoardDao;
 import Model.Title;
 import Model.TitleDao;
 
-public class tiInsertController implements SuperController {
+public class hiInsertController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,

@@ -1,30 +1,29 @@
-package Control.member;
+package Control.history;
 
 import java.io.IOException;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import Control.ControllerForward;
 import Control.SuperController;
-import Model.Member;
-import Model.MemberDao;
+import Model.Mountain;
+import Model.MountainDao;
+import Model.Title;
+import Model.TitleDao;
 import Utility.FlowParameters;
+import Utility.Paging;
 
-public class meUpdateFormController implements SuperController {
+public class hiListController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-
 		ControllerForward forward = new ControllerForward();
-		MemberDao dao = new MemberDao();
-		Member bean = new Member();
+		TitleDao dao = new TitleDao();
 
-		// 뒤로가기 시 보던페이지로 이동
 		String mode = req.getParameter("mode");
 		if (mode == null || mode.equals("null") || mode.equals("")) {
 			mode = "all";
@@ -45,12 +44,27 @@ public class meUpdateFormController implements SuperController {
 		parameters.setPageNumber(pageNumber);
 		parameters.setPageSize(pageSize);
 
-		String id = req.getParameter("id");
-		bean = dao.SelectDateByPK(id);
+		int totalCount = dao.selectCount();
+		System.out.println("totalCount : " + totalCount);
 
-		req.setAttribute("bean", bean);
+		String myurl = req.getContextPath() + "/YamaManCtrl?command=tiList";
+
+		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl,
+				mode, keyword);
+
+		List<Title> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
+
+		req.setAttribute("lists", lists);
+		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
+		req.setAttribute("pagingStatus", pageInfo.getPagingStatus());
+
+		req.setAttribute("mode", mode);
+		req.setAttribute("keyword", keyword);
+
+		req.setAttribute("parameters", parameters.toString());
+
 		forward.setRedirect(false);
-		forward.setPath("/View/member/meUpdateForm.jsp");
+		forward.setPath("/View/title/tiList.jsp");
 
 		return forward;
 	}

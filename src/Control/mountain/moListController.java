@@ -52,8 +52,7 @@ public class moListController implements SuperController {
 		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl,
 				mode, keyword);
 
-		List<Mountain> lists = dao.SelectDataList(pageInfo.getBeginRow(),
-				pageInfo.getEndRow());
+		List<Mountain> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
 
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
