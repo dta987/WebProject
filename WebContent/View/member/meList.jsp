@@ -34,8 +34,8 @@
 					<td>${bean.sign_date}</td>
 					<c:if test="${sessionScope.whologin == 2}">
 						<td><a
-							href="<%=MyCtrlCommand%>meUpdateFrom&id=${bean.user_id}$${requestScope.parameters}">수정</a></td>
-						<td><a href="<%=MyCtrlCommand%>myDelete&id=${bean.user_id}$${requestScope.parameters}">삭제</a></td>
+							href="<%=MyCtrlCommand%>meUpdateForm&id=${bean.user_id}&${requestScope.parameters}">수정</a></td>
+						<td><a href="<%=MyCtrlCommand%>meDelete&id=${bean.user_id}&${requestScope.parameters}">삭제</a></td>
 					</c:if>
 				</tr>
 			</c:forEach>

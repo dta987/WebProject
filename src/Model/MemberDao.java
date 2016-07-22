@@ -57,7 +57,7 @@ public class MemberDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "update members set(user_password=?, user_name=?, user_email=?, user_nickName=?, user_img=? where user_id=?)";
+		String sql = "update members set user_password=?, user_name=?, user_email=?, user_nickName=?, user_img=? where user_id=? ";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -68,6 +68,7 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(3, member.getUser_email());
 			pstmt.setString(4, member.getUser_nickname());
 			pstmt.setString(5, member.getUser_img());
+			pstmt.setString(6, member.getUser_id());
 
 			cnt = pstmt.executeUpdate();
 
@@ -182,7 +183,7 @@ public class MemberDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select user_id, user_name, user_email, sign_date, user_title, user_img, user_nickname from members where user_id=?";
+		String sql = "select user_id, user_password , user_name, user_email, sign_date, user_title, user_img, user_nickname from members where user_id=?";
 		Member member = null;
 		try {
 			if (conn == null) {
@@ -195,6 +196,8 @@ public class MemberDao extends SuperDao {
 			while (rs.next()) {
 				member = new Member();
 				member.setUser_id(rs.getString("user_id"));
+				//회원 정보 수정을 위해 user_password 추가함
+				member.setUser_password(rs.getString("user_password"));
 				member.setUser_name(rs.getString("user_name"));
 				member.setUser_email(rs.getString("user_email"));
 				member.setSign_date(rs.getString("sign_date"));

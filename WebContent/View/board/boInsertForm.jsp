@@ -33,6 +33,7 @@
 			<div class="panel-body">
 				<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post"
 					enctype="multipart/form-data">
+
 					<input type="hidden" name="command" value="boInsert">
 
 					<div class="form-group ">
@@ -48,8 +49,9 @@
 							<input type="text" class="form-control" name="title" id="title" value="${bean.board_title}">
 						</div>
 					</div>
-
+					
 					<div class="form-group">
+
 						<label class="control-label col-sm-<%=formleft%>" for="content">글 내용</label>
 						<div class="col-sm-<%=formright%>">
 							<textarea class="form-control" rows="10" cols="30" id="content" name="content" style="width: 100%; height: 5;"></textarea>

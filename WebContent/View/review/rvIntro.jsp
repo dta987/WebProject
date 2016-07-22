@@ -52,27 +52,11 @@
 <body>
 	<nav class="navbar  navbar-default navbar-fixed-top ">
 	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp"> <img class="img-rounded"
-				alt="Brand" src="<%=Brandimg%>" style="width: 100%; height: 100%">
-			</a>
-		</div>
-		<ul class="nav navbar-nav">
-			<li><a href="<%=MyCtrlCommand%>boList">게시물</a></li>
-			<li><a href="<%=MyCtrlCommand%>moList">산</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<c:if test="${whologin == 0}">
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li>
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li>
-
-
-			</c:if>
-			<c:if test="${whologin != 0}">
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
-				<li role="presentation"><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
-			</c:if>
-		</ul>
+		<a class="navbar-brand" href="<%=contextPath%>/View/Main.jsp""> 
+				<img src="/images/나뭇잎.png" alt="flower" width="400" height="300">
+		</a>
+	
+		
 	</div>
 	</nav>
 
