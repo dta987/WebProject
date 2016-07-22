@@ -26,8 +26,7 @@
 
 	<div class="col-md-offset-<%=myoffset%> col-md-<%=mywidth%>">
 
-		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post"
-			enctype="multipart/form-data">
+		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post">
 			<input type="hidden" name="command" value="meUpdateForm">
 			<div class="form-group" align="center">
 				<img id="user_img" src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded"
@@ -37,8 +36,9 @@
 			<div id="iddiv" class="form-group">
 				<label for="ID" class="col-sm-<%=label%> control-label">아이디</label>
 				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="id" name="id" placeholder="id"
-						value="${bean.user_id}" readonly="readonly">
+					<input type="text" class="form-control" id="faked" name="faked" disabled="disabled"
+						value="${bean.user_id}">
+					<input type="hidden" id="id" name="id" value="${bean.user_id}">	
 				</div class="col-sm-1">
 			</div>
 			<div class="form-group">
