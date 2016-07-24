@@ -26,7 +26,7 @@ public class boUpdateController implements SuperController {
 		
 		HttpSession Session = req.getSession(); 
 		board.setBoard_no(Integer.parseInt(req.getParameter("board_no")));
-		board.setBoard_category(Integer.parseInt(req.getParameter("board_category")));
+		board.setBoard_category(req.getParameter("board_category"));
 		board.setBoard_title(req.getParameter("board_title"));
 		board.setBoard_content(req.getParameter("board_content"));
 		board.setBoard_img(req.getParameter("board_img"));

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%!String[] carousel_img = { "/View/images/산타니05.jpg",
-			"/View/images/산타니05.jpg", "/View/images/산타니05.jpg",
-			"/View/images/산타니05.jpg" };%>
+<%@ include file="./../common/common.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +14,7 @@
 </head>
 <body>
 	<div align="center" id="main">
-		<a href="Main.jsp"><img alt="main_img" src="../View/images/나뭇잎.png"></a> <br> <img
+		<a href="./Main.jsp"><img alt="main_img" src="./../View/images/나뭇잎.png"></a> <br> <img
 			alt="YAMAMAN" src="">
 	</div>
 </body>

@@ -8,7 +8,8 @@
 %>
 
 <!-- SmartEditor -->
-<script type="text/javascript" src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js"
+	charset="utf-8"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
 <!-- SmartEditor -->
 
@@ -25,20 +26,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel-heading">게시물 작성</div>
-		<div class="panel-body">
-			<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm">
-				<input type="hidden" name="command" value="boInsert">
+	<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm">
+		<div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+			<div class="panel-heading">답글 작성</div>
+			<div class="panel-body">
+				<input type="hidden" name="group_no" value="${requestScope.group_no}"> <input
+					type="hidden" name="order_no" value="${requestScope.order_no}"> <input type="hidden"
+					name="depth" value="${requestScope.depth}"> <input type="hidden" name="no"
+					value="${requestScope.no}"> <input type="hidden" name="command" value="boDepthInsert">
 				<div class="form-group ">
 					<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
-					<div class="col-sm-<%=myoffset%>">
-						<select class="form-control " name="category" id="category">
-							<option value="-" selected="selected">-- 분류 선택---------
-							<option value="자유게시판">자유게시판
-						</select>
-					</div>
 					<div class="col-sm-<%=mywidth%>">
 						<input type="text" class="form-control" name="title" id="title" value="${bean.board_title}">
 					</div>
@@ -78,18 +75,19 @@
 							</script>
 					</div>
 				</div>
-				<hr>
-				<div class="form-group">
-					<div align="center" class="col-sm-offset-3 col-sm-6">
-						<button class="btn btn-default" type="button" id="savebtn">저장</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
-					</div>
-				</div>
-			</form>
+			</div>
 		</div>
+		<hr>
+		<div class="form-group">
+			<div align="center" class="col-sm-offset-3 col-sm-6">
+				<button class="btn btn-default" type="button" id="savebtn">저장</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
+			</div>
+		</div>
+	</form>
 
-<script>
+	<script>
 
 $(document).ready(function() {
 	$("#savebtn").click(function() {
@@ -133,10 +131,9 @@ $(document).ready(function() {
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameters}';
+				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
 				});
-			});//뒤로가기
-		
-		</script>
+			});
+	</script>
 </body>
 </html>

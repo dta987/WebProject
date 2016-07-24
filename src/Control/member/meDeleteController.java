@@ -41,15 +41,10 @@ public class meDeleteController implements SuperController {
 		
 		if(cnt > 0 ) {
 			forward.setRedirect(true);
-			forward.setPath( "/YamaManCtrl?command=meLoginForm&" + parameters.toString() ) ;
-			System.out.println("맞아???");
+			forward.setPath("/YamaManCtrl?command=meList&" + parameters.toString() ) ;
 		} else {
-			forward.setRedirect(false);
-			System.out.println("틀려???");
-			String result = "회원 탈퇴 중 오류코드 : " + cnt + "이(가) 발생하였습니다";
-			forward.setPath(req.getContextPath() + "/View/reErrPage.jsp");
-			//forward.setPath(req.getContextPath() + "/View/member/meLoginForm.jsp");
-			
+			forward.setRedirect(true);
+			forward.setPath("/View/review/reErrPage.jsp");
 		}
 
 		return forward;

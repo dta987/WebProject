@@ -13,31 +13,36 @@ import Model.Board;
 import Model.BoardDao;
 import Model.Member;
 
-public class boInsertController implements SuperController {
+public class boReplyInsertController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 
-		HttpSession session = req.getSession();
-		Member loginfo = (Member) session.getAttribute("loginfo");
 		ControllerForward forward = new ControllerForward();
 		BoardDao dao = new BoardDao();
 		int cnt = 0;
-
+		
 		Board board = new Board();
 
-		board.setBoard_writer(loginfo.getUser_id());
-		board.setUser_nickname(loginfo.getUser_nickname());
-		board.setBoard_category(req.getParameter("category"));
-		board.setBoard_title(req.getParameter("title"));
+		board.setBoard_writer(req.getParameter("id"));
+		board.setUser_nickname(req.getParameter("nickname"));
 		board.setBoard_content(req.getParameter("content"));
+		int group_no = Integer.parseInt(req.getParameter("group_no"));
+		board.setGroup_no(group_no );
+		int order_no = Integer.parseInt(req.getParameter("order_no"));
+		board.setOrder_no(order_no + 1);
+		int depth = Integer.parseInt(req.getParameter("depth"));
+		board.setDepth(depth);
 
-		cnt = dao.InsertBoard(board);
+		
+		cnt = dao.UpdateReply(group_no, order_no);
+		cnt = dao.InsertReply(board);
+		
 
 		if (cnt > 0) {
 			forward.setRedirect(true);
-			forward.setPath("/YamaManCtrl?command=boList");
+			forward.setPath("/YamaManCtrl?command=boDetailView&no="+ group_no);
 		} else {
 			forward.setRedirect(true);
 			forward.setPath("/View/review/reErrPage.jsp");

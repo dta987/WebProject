@@ -3,7 +3,7 @@ package Model;
 public class Board {
 	
 	private int board_no;
-	private int board_category;
+	private String board_category;
 	private String board_title;
 	private String board_writer;
 	private String board_writ_date;
@@ -36,11 +36,11 @@ public class Board {
 		this.board_no = board_no;
 	}
 
-	public int getBoard_category() {
+	public String getBoard_category() {
 		return board_category;
 	}
 
-	public void setBoard_category(int board_category) {
+	public void setBoard_category(String board_category) {
 		this.board_category = board_category;
 	}
 

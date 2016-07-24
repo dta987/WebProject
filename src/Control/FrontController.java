@@ -98,6 +98,7 @@ public class FrontController extends HttpServlet {
 		}
 		// 해당 커맨드에 맞는 컨트롤러를 찾아서 해당 컨트롤러의 doProcess() 메소드를 호출한다.
 		SuperController controller = ActionMap.get(command);
+		System.out.println("command : " + command);
 		if (controller != null) {
 			forward = controller.doProcess(req, resp);
 		}

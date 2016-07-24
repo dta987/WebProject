@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="review/rvTOP.jsp"%>
+<%@ include file="./review/rvTOP.jsp"%>
 <% 
 	String[] carousel_img = {"/View/images/일본산이미지/알프스가사가다케.png",
 			"/View/images/일본산이미지/큐슈기리시마야마봄1.png", "/View/images/일본산이미지/알프스다테야마.png",

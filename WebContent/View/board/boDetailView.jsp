@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../review/rvTOP.jsp"%>
+<%@ include file="./../review/rvTOP.jsp"%>
 <%
 	int myoffset = 2;
 	int mywidth = twelve - 2 * myoffset;
@@ -13,59 +13,78 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<div class="panel panel-default">
-		<div class="panel-body"></div>
-	</div>
 	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<div class="panel panel-default panel-success">
-			<div class="panel-heading">
-				<h4>게시물 수정</h4>
-			</div>
-			<div class="panel-body">
-				<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="command" value="boUpdate">
+			<c:if test="${bean.order_no == 0}">
+				<div class="panel-heading">
+					<table>
+						<tr>
+							<td>
+								<h4>${bean.board_title}</h4>
+							</td>
+							<td align="right"><font>${bean.board_writ_date}</font><br></td>
+						</tr>
+						${bean.user_nickname}
+					</table>
 
-					<div class="form-group ">
+				</div>
 
-						<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
-						<div class="col-sm-<%=myoffset%>">
-							<select class="form-control " name="category" id="category">
-								<option value="-" selected="selected">-- 분류 선택---------
-								<option value="자유게시판">자유게시판
-							</select>
-						</div>
-						<div class="col-sm-<%=mywidth%>">
-							<input type="text" class="form-control" name="title" id="title" value="${bean.board_title}">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="content">글 내용</label>
-						<div class="col-sm-<%=formright%>">
-							<textarea name="content" id="content" rows="20" cols="" class="form-control">${bean.board_content}</textarea>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="image">이미지</label>
-						<div class="col-sm-<%=formright%>">
-							<input type="file" class="form-control" name="image" id="image">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div align="center" class="col-sm-offset-3 col-sm-6">
-							<button class="btn btn-default" type="submit">저장</button>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
-						</div>
-					</div>
-				</form>
-			</div>
-
+				<div class="panel-body">${bean.board_content}</div>
+			</c:if>
 		</div>
 	</div>
+	<c:if test="<%=loginfo != null%>">
+		<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+			<form id="replyForm" action="<%=MyCtrlByForm%>" method="post">
+				<input type="hidden" name="command" value="boReplyInsert"> <input type="hidden"
+					name="id" value="<%=loginfo.getUser_id()%>"> <input type="hidden" name="nickname"
+					value="<%=loginfo.getUser_nickname()%>"> <input type="hidden" name="group_no"
+					value="${bean.group_no}"> <input type="hidden" name="order_no" value="${bean.order_no}">
+				<input type="hidden" name="depth" value="${bean.depth}">
+				<table>
+					<tr>
+						<td><label class="control-label col-sm-<%=formleft%>"></label>sdafsdaff</td>
+						<td><textarea name="content" style="resize: none;" class="col-sm-<%=formright%>" rows="3"
+								cols=""></textarea></td>
+						<td><button type="submit" class="btn btn-default">등록</button></td>
+
+					</tr>
+					<tr>
+					</tr>
+				</table>
+			</form>
+
+
+
+		</div>
+	</c:if>
+
+	<c:forEach var="rebean" items="${requestScope.lists}">
+		<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+			<table>
+				<tr>
+					<td>${rebean.user_nickname}&nbsp;&nbsp;<font>${rebean.board_writ_date}</font>
+					</td>
+
+				</tr>
+				<tr>
+					<td>${rebean.board_content}</td>
+				</tr>
+			</table>
+			<hr>
+		</div>
+	</c:forEach>
+	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>" align="center">
+		<footer>${requestScope.pagingHtml}</footer>
+	</div>
+
+
+	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>" align="center">
+		<br> <br>
+		<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
+	</div>
+
+
 	<script>
 		$(document).ready(function() {
 			$('[data-toggle="tooltip"]').tooltip();
@@ -74,9 +93,8 @@
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
 				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
-			})
-		})
-		
+				});
+			});
 	</script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../review/rvTOP.jsp"%>
+<%@ include file="./../review/rvTOP.jsp"%>
 <%
 	int myoffset = 3;
 	int mywidth = twelve - 2 * myoffset;
