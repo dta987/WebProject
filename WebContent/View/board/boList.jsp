@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <%-- <script type="text/javascript">
 	function gotoForm(){
 		location.href='<%=MyCtrlCommand%>boInsertForm';
@@ -21,7 +22,6 @@
 tr:hover{background-color:#cbe7cb}
 
 </style>
-
 
 </head>
 <body>
@@ -91,7 +91,7 @@ tr:hover{background-color:#cbe7cb}
 							<input type="text" class="form-control btn-xs" name="keyword" id="keyword"
 								placeholder="검색 키워드">
 						</div>
-						<button class="topmybutton topmybutton1" type="submit">SEARCH</button>
+						<button id="search" class="topmybutton topmybutton1" type="submit">SEARCH</button>
 						<button class="topmybutton topmybutton1" type="button" id="searchAll">ALL</button>
 						<button class="topmybutton topmybutton1" type="button" id="insertForm">WRITE</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -107,6 +107,25 @@ tr:hover{background-color:#cbe7cb}
 	</div>
 
 	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#search").click(function() {
+			if($("#mode").val() != "-") {
+				if($("#keyword").val() != "" || $("#keyword").val() != null) {
+					alert($("#keyword").val());
+					return true;
+				} else {
+					alert("키워드 값을 입력해주세요");
+					return false;
+				}
+			} else {
+				alert("검색 모드를 선택해주세요");
+				return false;
+			}
+			
+		});
+	});
+	
 	$(document).ready(function() {
 		$("#searchAll").click(function() {
 			location.href = '<%=MyCtrlCommand%>boList'

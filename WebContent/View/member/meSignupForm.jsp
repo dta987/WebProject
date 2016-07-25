@@ -121,7 +121,7 @@
 						<br>
 						<button type="submit" class="topmybutton topmybutton1">JOIN</button>
 						&nbsp;
-						<button type="reset" class="topmybutton topmybutton1">BACK</button>
+						<button onclick="goBack()" type="reset" class="topmybutton topmybutton1">BACK</button>
 						<br>
 					</div>
 				</td>
@@ -133,6 +133,11 @@
 
 
 	<script type="text/javascript">	
+	
+	function goBack() {
+		window.history.back();
+	}
+	
 	$(document).ready(function() {
 		$("#id").keyup(function() {
 			if($("#id").val() == "" || $("#id").val() == null) {
