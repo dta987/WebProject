@@ -26,7 +26,7 @@
 
 	<div class="col-md-offset-<%=myoffset%> col-md-<%=mywidth%>">
 
-		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post" enctype="multipart/form-data">
+		<form id="DetailView" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post" >
 			<input type="hidden" name="command" value="meUpdateForm">
 			
 			<table>
@@ -35,8 +35,8 @@
 					<div id="iddiv" class="form-group has-feedback">
 						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
 						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="faked" name="faked" disabled="disabled"
-							value="${bean.user_id}">
+							<input type="text" class="form-control" id="fake" name="fake" disabled="disabled" value="${bean.user_id}">
+							<input type="hidden" id="id" name="id" value="${bean.user_id}" >
 						</div>
 					</div>
 					<div class="form-group">
@@ -44,14 +44,16 @@
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="name" name="name" disabled="disabled"
 								value="${bean.user_name}">
+							<input type="hidden" id="name" name="name" value="${bean.user_name}" >	
 						</div>
 					</div>
 					<div id="emaildiv" class="form-group has-feedback">
 						<label for="email" class="col-sm-<%=label%> control-label">E-MAIL</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="email" name="email" disabled="disabled"
-								value="${bean.user_email}"> <span id="emailspan"
-								class="glyphicon form-control-feedback"></span>
+								value="${bean.user_email}"> 
+							<input type="hidden" id="email" name="email" value="${bean.user_email}" >	
+								<span id="emailspan" class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="emailcheck"></div>
 					</div>
@@ -59,7 +61,9 @@
 						<label for="nickname" class="col-sm-<%=label%> control-label">NICKNAME</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="nickname" disabled="disabled"
-								name="nickname" value="${bean.user_nickname}"> <span
+								name="nickname" value="${bean.user_nickname}">
+							<input type="hidden" id="nickname" name="nickname" value="${bean.user_nickname}" >	
+								 <span
 								id="nicknamespan" class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="nicknamecheck"></div>
@@ -71,6 +75,14 @@
 							alt="Cinque Terre" width="200px" height="200px">
 					</div>
 			</td>
+			</tr>
+			<tr>
+			<td><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" class="topmybutton topmybutton1" >UPDATE</button>
+			</td>		
 			</tr>
 			</table>		
 		</form>

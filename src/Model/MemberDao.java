@@ -70,6 +70,7 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(6, member.getUser_id());
 
 			cnt = pstmt.executeUpdate();
+			conn.commit();
 
 		} catch (Exception e) {
 			SQLException err = (SQLException) e;
