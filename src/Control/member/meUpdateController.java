@@ -28,6 +28,7 @@ public class meUpdateController implements SuperController {
 		Member bean = new Member();
 	
 		MultipartRequest multi = (MultipartRequest) req.getAttribute("multi") ;
+		
 		bean.setUser_password(multi.getParameter("password"));
 		bean.setUser_email(multi.getParameter("email"));
 		bean.setUser_nickname(multi.getParameter("nickname"));
@@ -41,7 +42,7 @@ public class meUpdateController implements SuperController {
 		
 		req.setAttribute("bean", bean);
 		forward.setRedirect(false);
-		forward.setPath("/YamaManCtrl?command=meList");
+		forward.setPath("/YamaManCtrl?command=meList&");
 		//forward.setPath("/View/member/meDetailView.jsp");
 		
 		return forward;

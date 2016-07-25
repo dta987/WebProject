@@ -46,15 +46,11 @@
 
 </head>
 <body>
-	<div align="center" id="main">
 
+	<div align="center" id="main">
 		<a href="Main.jsp"><img alt="main_img" src="../View/images/나뭇잎.png"></a>
 		<br><br>
 		<a href="Main.jsp"><button type="button" class="mybutton mybutton1">Y A M A M A N</button></a>
-
-<!-- 		<a href="./Main.jsp"><img alt="main_img" src="./../View/images/나뭇잎.png"></a> <br> <img
-			alt="YAMAMAN" src="">
->>>>>>> branch 'master' of https://github.com/dta987/WebProject.git -->
 	</div>
 </body>
 </html>

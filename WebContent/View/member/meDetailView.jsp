@@ -26,50 +26,65 @@
 
 	<div class="col-md-offset-<%=myoffset%> col-md-<%=mywidth%>">
 
-		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post">
+		<form id="DetailView" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post" >
 			<input type="hidden" name="command" value="meUpdateForm">
-			<div class="form-group" align="center">
-				<img id="user_img" src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded"
-					alt="Cinque Terre" width="200px" height="200px">
-			</div>
-
-			<div id="iddiv" class="form-group">
-				<label for="ID" class="col-sm-<%=label%> control-label">아이디</label>
-				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="faked" name="faked" disabled="disabled"
-						value="${bean.user_id}">
-					<input type="hidden" id="id" name="id" value="${bean.user_id}">	
-				</div class="col-sm-1">
-			</div>
-			<div class="form-group">
-				<label for="name" class="col-sm-<%=label%> control-label">이름</label>
-				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="name" name="name" placeholder="name"
-						value="${bean.user_name}" readonly="readonly">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="email" class="col-sm-<%=label%> control-label">이메일</label>
-				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="email" name="email" placeholder="email"
-						value="${bean.user_email}" readonly="readonly">
-				</div>
-			</div>
-			<div id="nicknamediv" class="form-group">
-				<label for="nickname" class="col-sm-<%=label%> control-label">별명</label>
-				<div class="col-sm-<%=input%>">
-					<input type="text" class="form-control" id="nickname" name="nickname" placeholder="nickname"
-						value="${bean.user_nickname}" readonly="readonly">
-				</div>
-				<div id="nicknamecheck"></div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-<%=label%> col-sm-<%=twelve - label%>">
-					<button type="submit" class="btn btn-default">수 정</button>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button type="reset" class="btn btn-default" id="gotoback">뒤로가기</button>
-				</div>
-			</div>
+			
+			<table>
+			<tr>
+				<td>
+					<div id="iddiv" class="form-group has-feedback">
+						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
+						<div class="col-sm-<%=input%>">
+							<input type="text" class="form-control" id="fake" name="fake" disabled="disabled" value="${bean.user_id}">
+							<input type="hidden" id="id" name="id" value="${bean.user_id}" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-<%=label%> control-label">NAME</label>
+						<div class="col-sm-<%=input%>">
+							<input type="text" class="form-control" id="name" name="name" disabled="disabled"
+								value="${bean.user_name}">
+							<input type="hidden" id="name" name="name" value="${bean.user_name}" >	
+						</div>
+					</div>
+					<div id="emaildiv" class="form-group has-feedback">
+						<label for="email" class="col-sm-<%=label%> control-label">E-MAIL</label>
+						<div class="col-sm-<%=input%>">
+							<input type="text" class="form-control" id="email" name="email" disabled="disabled"
+								value="${bean.user_email}"> 
+							<input type="hidden" id="email" name="email" value="${bean.user_email}" >	
+								<span id="emailspan" class="glyphicon form-control-feedback"></span>
+						</div>
+						<div id="emailcheck"></div>
+					</div>
+				<div id="nicknamediv" class="form-group has-feedback">
+						<label for="nickname" class="col-sm-<%=label%> control-label">NICKNAME</label>
+						<div class="col-sm-<%=input%>">
+							<input type="text" class="form-control" id="nickname" disabled="disabled"
+								name="nickname" value="${bean.user_nickname}">
+							<input type="hidden" id="nickname" name="nickname" value="${bean.user_nickname}" >	
+								 <span
+								id="nicknamespan" class="glyphicon form-control-feedback"></span>
+						</div>
+						<div id="nicknamecheck"></div>
+					</div>
+			</td>
+			<td>
+				<div class="form-group" align="center">
+						&nbsp;&nbsp; <img id="user_img" src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded"
+							alt="Cinque Terre" width="200px" height="200px">
+					</div>
+			</td>
+			</tr>
+			<tr>
+			<td><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" class="topmybutton topmybutton1" >UPDATE</button>
+			</td>		
+			</tr>
+			</table>		
 		</form>
 	</div>
 

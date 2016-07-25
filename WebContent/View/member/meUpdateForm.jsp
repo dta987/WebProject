@@ -1,17 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<%-- <%@ include file="../review/rvTOP.jsp"%> --%>
-
-=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
->>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
+
 <%
 	int myoffset = 3;
 	int mywidth = twelve - 2 * myoffset;
 	int label = 4;
 	/* int input = twelve - 2 * label; */
-	int input = twelve - (label + 2) ;
-	
+	int input = twelve - (label + 2);
+
 	boolean idOverlapCheck = false;
 	boolean nicknameOverlapCheck = false;
 	boolean pwOverlapCheck = false;
@@ -20,7 +17,9 @@
 %>
 
 
-<% Member bean  = (Member) request.getAttribute("bean");  %>
+<%
+	Member bean = (Member) request.getAttribute("bean");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -29,80 +28,70 @@
 <title>Insert title here</title>
 <style type="text/css">
 .imabutton {
-    background-color: #cbe7cb;
-    border: none;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-    
+	background-color: #cbe7cb;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 2px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
 }
 
 .imamybutton1 {
-    background-color: white; 
-    color: #cbe7cb; 
-    border: 2px solid #cbe7cb;
-    border-radius: 20px;  
+	background-color: white;
+	color: #cbe7cb;
+	border: 2px solid #cbe7cb;
+	border-radius: 20px;
 }
 
 .imamybutton1:hover {
-    background-color: #cbe7cb;
-    color: white;
-    
+	background-color: #cbe7cb;
+	color: white;
 }
 </style>
 </head>
 <body>
-<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>"
+	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<form id="Update" class="form-horizontal" action="<%=MyCtrlByForm%>"
 			method="post" enctype="multipart/form-data">
-			<input type="hidden" name="command" value="meSignup">
+			<input type="hidden" name="command" value="meUpdate">
 			<table>
+
 				<td>
 					<div id="iddiv" class="form-group has-feedback">
 						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="id" name="id"
-								placeholder="id"> <span id="idspan"
-								class="glyphicon form-control-feedback"></span>
+								disabled="disabled" value="${bean.user_id}"> <span
+								id="idspan" class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
 					<div id="pwdiv" class="form-group has-feedback">
 						<label for="passoword" class="col-sm-<%=label%> control-label">PW</label>
 						<div class="col-sm-<%=input%>">
 							<input type="password" class="form-control" id="password"
-								name="password" placeholder="password"> <span
+								name="password" value="${bean.user_password}"> <span
 								id="pwspan" class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="pwcheck"></div>
 					</div>
-					<div id="pwdiv" class="form-group has-feedback">
-						<label for="passoword2" class="col-sm-<%=label%> control-label">P.W
-							CHECK</label>
-						<div class="col-sm-<%=input%>">
-							<input type="password" class="form-control" id="password2"
-								name="password2" placeholder="password"> <span
-								id="pwspan" class="glyphicon form-control-feedback"></span>
-						</div>
-						<div id="pwcheck"></div>
-					</div>
+					
 					<div class="form-group">
 						<label for="name" class="col-sm-<%=label%> control-label">NAME</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="name" name="name"
-								placeholder="name">
+								value="${bean.user_name}">
 						</div>
 					</div>
 					<div id="emaildiv" class="form-group has-feedback">
 						<label for="email" class="col-sm-<%=label%> control-label">E-MAIL</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="email" name="email"
-								placeholder="email"> <span id="emailspan"
+								value="${bean.user_email}"> <span id="emailspan"
 								class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="emailcheck"></div>
@@ -111,18 +100,20 @@
 						<label for="nickname" class="col-sm-<%=label%> control-label">NICKNAME</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="nickname"
-								name="nickname" placeholder="nickname"> <span
+								name="nickname" value="${bean.user_nickname}"> <span
 								id="nicknamespan" class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="nicknamecheck"></div>
-					</div></td>
+					</div>
+				</td>
 				<td>
-					
+
 					<div class="form-group" align="center">
-						&nbsp;&nbsp; <img id="user_img" src="<%=img%>" class="img-rounded"
+						&nbsp;&nbsp; <img id="user_img"
+							src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded"
 							alt="Cinque Terre" width="200px" height="200px">
 					</div>
-								<div class="form-group" align="center">
+					<div class="form-group" align="center">
 						<button type="button" id="image_add"
 							class="imamybutton imamybutton1">IMAGE</button>
 						&nbsp;&nbsp;
@@ -143,7 +134,7 @@
 		</form>
 	</div>
 
-	
+
 	<%-- <div class="col-md-offset-<%=myoffset%> col-md-<%=mywidth%>">
 
 		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post"
@@ -244,9 +235,10 @@
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>meList&${requestScope.parameter}';
-				});
-			});//뒤로가기
+				location.href='<%=MyCtrlCommand%>
+		meList&${requestScope.parameter}';
+											});
+						});//뒤로가기
 	</script>
 </body>
 </html>
