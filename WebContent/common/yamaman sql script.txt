@@ -70,7 +70,7 @@ create table mountains_history(
 	user_id varchar2(15),
 	mountain_no number,
 	hiking_date date,
-	memo varchar2(50),
+	hiking_memo varchar2(50),
 	constraint history_user_id_fk
 	foreign key(user_id) references members(user_id) 
 	on delete set null,
