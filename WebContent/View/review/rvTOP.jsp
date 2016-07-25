@@ -66,7 +66,7 @@
 
 	<nav id="scrollMenu" class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
-<<<<<<< HEAD
+
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">

@@ -47,7 +47,7 @@
 </head>
 <body>
 	<div align="center" id="main">
-<<<<<<< HEAD
+
 		<a href="Main.jsp"><img alt="main_img" src="../View/images/나뭇잎.png"></a>
 		<br><br>
 		<a href="Main.jsp"><button type="button" class="mybutton mybutton1">Y A M A M A N</button></a>
