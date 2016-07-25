@@ -42,7 +42,7 @@ tr:hover{background-color:#cbe7cb}
 			
 			<tr>
 				<td colspan="10" align="center">
-					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>tiListForm"
+					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>tiList"
 						method="post">
 						<div class="form-group">
 							<select class="form-control" name="mode" id="mode">

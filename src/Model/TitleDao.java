@@ -173,45 +173,6 @@ public class TitleDao extends SuperDao {
 		return title;
 	}
 
-	public Title SelectData() {
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select * from titles";
-		Title title = null;
-		try {
-			if (conn == null) {
-				super.conn = super.getConnection();
-			}
-			pstmt = super.conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				title = new Title();
-				title.setTitle_condition(rs.getString("title_condition"));
-				title.setTitle_img(rs.getString("title_img"));
-				title.setTitle_name(rs.getString("title_name"));
-				title.setTitle_no(rs.getInt("title_no"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return title;
-
-	}
-
 	public List<Title> SelectDataList(int beginRow, int endRow, String mode, String keyword) {
 
 		PreparedStatement pstmt = null;
@@ -219,7 +180,7 @@ public class TitleDao extends SuperDao {
 		String sql = "select *";
 		sql += " from";
 		sql += " (";
-		sql += " select title_no, title_name, title_condition, title_img rank() over( order by title_no ) as ranking";
+		sql += " select title_no, title_name, title_condition, title_img, rank() over( order by title_no ) as ranking";
 		sql += " from titles ";
 		if( ! mode.equals("all")) {
 			sql += "where " + mode + " like '%" + keyword + "%'";
