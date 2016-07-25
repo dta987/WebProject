@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import Control.ControllerForward;
 import Control.SuperController;
 
-public class meInsertHistoryFromController implements SuperController {
+public class meInsertHistoryFormController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
