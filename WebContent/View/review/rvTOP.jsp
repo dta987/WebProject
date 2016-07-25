@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="Model.Member"%>
 <%@ include file="../../common/common.jsp"%>
 
@@ -47,16 +48,46 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP</title>
 
+<style type="text/css">
+.topmybutton {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 2px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.topmybutton1 {
+	background-color: white;
+	color: #4CAF50;
+	border: 2px solid #4CAF50;
+	border-radius: 20px;
+}
+
+.topmybutton1:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
+
 </head>
 <body>
 
 	<nav id="scrollMenu" class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<c:if test="${sessionScope.whologin != 0}">
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-						role="button" aria-expanded="false">Memu <span class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">MY PAGE<span
+							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<c:if test="${sessionScope.whologin == 1}">
 								<li><a href="<%=MyCtrlCommand%>boList">내 게시글 목록</a></li>
@@ -75,20 +106,31 @@
 				</c:if>
 				<li>
 					<p class="navbar-text">
-						<c:forEach var="i" begin="1" end="36" step="1">
+						<c:forEach var="i" begin="1" end="37" step="1">
 						&nbsp;&nbsp;&nbsp;
 						</c:forEach>
-						<a href="#">MOUNTAIN</a> 
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<a href="<%=MyCtrlCommand%>boList">BOARD</a>
+						<a href="#">MOUNTAIN</a> &nbsp;&nbsp;&nbsp; <a
+							href="<%=MyCtrlCommand%>boList">BOARD</a>
+						<c:forEach var="i" begin="1" end="8" step="1">
+						&nbsp;&nbsp;
+						</c:forEach>
+						<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
+								class="topmybutton topmybutton1">LOGIN</button></a> <a
+							href="<%=MyCtrlCommand%>meSignupForm"><button type="button"
+								class="topmybutton topmybutton1">JOIN</button></a>
 					</p>
 				</li>
-				<li>
+
+				<%-- <li>
+					<p class="navbar-text">
 					<c:forEach var="i" begin="1" end="35" step="1">
-					&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;
 					</c:forEach>
-					<button type="button" class="btn btn-default navbar-btn">Login</button>
-				</li>
+					<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button" class="mybutton mybutton1">LOGIN</button></a>
+					<a href="<%=MyCtrlCommand%>meSignupForm"><button type="button" class="mybutton mybutton1">JOIN</button></a>
+					</p>
+				</li> --%>
+
 			</ul>
 		</div>
 	</div>
@@ -97,35 +139,69 @@
 
 
 	<div class="container-fluid">
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav">
+			<c:if test="${whologin == 0}">
+				<li>
+					<p class="navbar-text">
+						<c:forEach var="i" begin="1" end="39" step="1">
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						</c:forEach>
+						<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
+								class="topmybutton topmybutton1">LOGIN</button></a> <a
+							href="<%=MyCtrlCommand%>meSignupForm"><button type="button"
+								class="topmybutton topmybutton1">JOIN</button></a>
+					</p>
+				</li>
+			</c:if>
+			<c:if test="${whologin != 0}">
+				<li>
+					<p class="navbar-text">
+						<a href="<%=MyCtrlCommand%>meMypage"><button type="button"
+								class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%></button></a>
+
+						
+						<c:forEach var="i" begin="1" end="39" step="1">
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						</c:forEach>
+						<a href="<%=MyCtrlCommand%>meLogout"><button type="button"
+								class="topmybutton topmybutton1">LOGOUT</button></a>
+					</p>
+				</li>
+			</c:if>
+		</ul>
+
+		<%-- <ul class="nav navbar-nav navbar-right">
 			<c:if test="${whologin == 0}">
 				<ul class="pager">
-					<li><a href="<%=MyCtrlCommand%>meLoginForm">로그인</a></li>
-					<li><a href="<%=MyCtrlCommand%>meSignupForm">회원가입</a></li> &nbsp;&nbsp;&nbsp;&nbsp;
+					<li>
+					<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button" class="topmybutton topmybutton1">LOGIN</button></a>
+					<a href="<%=MyCtrlCommand%>meSignupForm"><button type="button" class="topmybutton topmybutton1">JOIN</a> 
+					</li>
 				</ul>
 			</c:if>
 			<c:if test="${whologin != 0}">
 				<ul class="pager">
 					<li><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
-					<li><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
+					<li><a href="<%=MyCtrlCommand%>meLogout">LOGOUT</a></li>
 				</ul>
 			</c:if>
-		</ul>
+		</ul> --%>
 	</div>
 
-	<div class="container-fluid" align="center">
-		<a href="<%=contextPath%>/View/Main.jsp"><img alt="main_img"
-			src="<%=contextPath%>/View/images/나뭇잎.png"></a>
+	<div class="container-fluid" align="center" style="font-size: 40px">
+		Y A M A <a href="<%=contextPath%>/View/Main.jsp"><img
+			alt="main_img" src="<%=contextPath%>/View/images/중간나뭇잎.png"></a> M
+		A N
 	</div>
 	<div class="container-fluid" align="center">
-		<a href="#">MOUNTAIN</a> 
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<br> <a href="#">MOUNTAIN</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="<%=MyCtrlCommand%>boList">BOARD</a>
 	</div>
 
 	<br>
 	<br>
-	<br>
+
 
 	<c:if test="${not empty requestScope.errmsg }">
 		<script type="text/javascript">

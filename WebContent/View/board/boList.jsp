@@ -79,9 +79,9 @@ int mywidth = twelve - 2 * myoffset;
 							<input type="text" class="form-control btn-xs" name="keyword" id="keyword"
 								placeholder="검색 키워드">
 						</div>
-						<button class="btn btn-default btn-warning" type="submit">검색</button>
-						<button class="btn btn-default btn-warning" type="button" id="searchAll">전체 검색</button>
-						<button class="btn btn-default btn-warning" type="button" id="insertForm">글쓰기</button>
+						<button class="topmybutton topmybutton1" type="submit">SEARCH</button>
+						<button class="topmybutton topmybutton1" type="button" id="searchAll">ALL</button>
+						<button class="topmybutton topmybutton1" type="button" id="insertForm">WRITE</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<p class="form-control-static">${requestScope.pagingStatus}</p>
 					</form>

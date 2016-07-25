@@ -12,37 +12,68 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
 
+
+<style type="text/css">
+
+.mybutton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    size:10px;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    
+}
+
+.mybutton1 {
+    background-color: white; 
+    color: #4CAF50; 
+    border: 2px solid #4CAF50;
+    border-radius: 24px;    
+}
+
+.mybutton1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+</style>
 </head>
 <body>
 
-
-	<div class="container-fluid col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+	<div class="container-fluid ">
 		<c:forEach var="carousel_img" items="<%=carousel_img%>">
-			<div class="w3-display-container mySlides">
-				<div class="container-fluid" align="center">
-					<img src="<%=contextPath%>${carousel_img}" style="width: 100%; height: 500px">
-					<br><br>
+			<div class="w3-display-container mySlides col-sm-offset-1 col-sm-7">
+				<div class="container-fluid">
+					<img src="<%=contextPath%>${carousel_img}" style="width:150%; height:330px">
+					<br><br><br>
 				</div>
 			</div>
 		</c:forEach>
 
-		<!-- Slideshow next/previous buttons -->
-		<div class="w3-container w3-dark-grey w3-padding-8">
+		
+		<div class="w3-container w3-padding-5 col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 			<div class="w3-left w3-hover-text-teal w3-large" onclick="plusDivs(-1)">❮</div>
 			<div class="w3-right w3-hover-text-teal w3-large" onclick="plusDivs(1)">❯</div>
 
 			<div class="w3-center">
 				<c:forEach begin="1" var="i" end="<%=carousel_img.length%>" step="1">
-					<span class="w3-tag demodots w3-border w3-transparent w3-hover-white"
+					<span class="w3-tag demodots w3-border w3-transparent w3-hover-green"
 						onclick="currentDiv(${i})"></span>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
-	
+		<br><br><br><br>
 	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
 	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
 	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
