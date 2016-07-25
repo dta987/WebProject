@@ -8,23 +8,23 @@ import java.util.List;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
-public class TitleDao extends SuperDao {
+public class Mountains_historyDao extends SuperDao {
 
-	public TitleDao() {
+	public Mountains_historyDao() {
 	}
 
-	// 타이틀 삭제
-	public int DeleteDate(int title_no) {
+	// 히스토리 1 건 삭제
+	public int DeleteDate(int history_no) {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = " delete from titles where title_no=? " ;
+		String sql = "delete from mountains_history where history_no=?" ;
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setInt(1, title_no);
+			pstmt.setInt(1, history_no);
 
 			cnt = pstmt.executeUpdate();
 
@@ -51,23 +51,25 @@ public class TitleDao extends SuperDao {
 		return cnt;
 	}
 
-	// 회원정보 수정
-	public int UpdateData(Title title) {
+	// 히스토리 1건 수정
+	public int UpdateData(Mountains_history mountains_history) {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "update titles set title_condition = ?, title_img = ?, title_name = ? where title_no=? ";
+		String sql = "update mountains_history set user_id, mountain_no, hiking_date, hiking_memo where history_no=? ";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setString(1, title.getTitle_condition());
-			pstmt.setString(2, title.getTitle_img());
-			pstmt.setString(3, title.getTitle_name());
-			pstmt.setInt(4, title.getTitle_no());
+			pstmt.setString(1, mountains_history.getUser_id());
+			pstmt.setInt(2, mountains_history.getMountain_no());
+			pstmt.setString(3, mountains_history.getHiking_date());
+			pstmt.setString(4, mountains_history.getHiking_memo());
+			pstmt.setInt(5, mountains_history.getHistory_no());
 
 			cnt = pstmt.executeUpdate();
+			conn.commit();
 
 		} catch (Exception e) {
 			SQLException err = (SQLException) e;
@@ -91,22 +93,23 @@ public class TitleDao extends SuperDao {
 
 	}
 
-	// 회원가입
-	public int InsertData(Title title) {
+	// 히스토리 1건 추가
+	public int InsertData(Mountains_history mountains_history) {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
 
-		String sql = " insert into titles( title_no, title_name, title_condition, title_img)"
-				+ " values(title_no_seq.nextval, ?, ?, ?)";
+		String sql = " insert into mountains_history(user_id, mountain_no, hiking_date, hiking_memo, history_no)"
+				+ " values(?, ?, ?, ?, history_no_seq.nextval)";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setString(1, title.getTitle_name());
-			pstmt.setString(2, title.getTitle_condition());
-			pstmt.setString(3, title.getTitle_img());
+			pstmt.setString(1, mountains_history.getUser_id());
+			pstmt.setInt(2, mountains_history.getMountain_no());
+			pstmt.setString(3, mountains_history.getHiking_date());
+			pstmt.setString(4, mountains_history.getHiking_memo());
 
 			cnt = pstmt.executeUpdate();
 
@@ -132,27 +135,27 @@ public class TitleDao extends SuperDao {
 
 	}
 
-	//
-	public Title SelectDataByPk(int title_no) {
+	public Mountains_history SelectDateByPK(int history_no) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from titles where title_no =? ";
-		Title title = null;
+		String sql = "select history_no, user_id, mountain_no, hiking_date, hiking_memo from mountains_history where history_no=?";
+		Mountains_history mountains_history = null;
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setInt(1, title_no);
+			pstmt.setInt(1, history_no);
 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				title =new Title(); 
-				title.setTitle_condition(rs.getString("title_condition"));
-				title.setTitle_img(rs.getString("title_img"));
-				title.setTitle_name(rs.getString("title_name"));
-				title.setTitle_no(rs.getInt("title_no"));
+				mountains_history = new Mountains_history();
+				mountains_history.setUser_id(rs.getString("user_id"));
+				mountains_history.setHiking_date(rs.getString("hiking_date"));
+				mountains_history.setHiking_memo(rs.getString("hiking_memo"));
+				mountains_history.setHistory_no(rs.getInt("history_no"));
+				mountains_history.setMountain_no(rs.getInt("mountain_no"));
 			}
 
 		} catch (Exception e) {
@@ -166,67 +169,30 @@ public class TitleDao extends SuperDao {
 				if (pstmt != null) {
 					pstmt.close();
 				}
+				super.closeConnection();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
-		return title;
+		return mountains_history;
 	}
 
-	public Title SelectData() {
+	public List<Mountains_history> SelectDataList(int beginRow, int endRow, String mode,
+			String keyword) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from titles";
-		Title title = null;
-		try {
-			if (conn == null) {
-				super.conn = super.getConnection();
-			}
-			pstmt = super.conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				title = new Title();
-				title.setTitle_condition(rs.getString("title_condition"));
-				title.setTitle_img(rs.getString("title_img"));
-				title.setTitle_name(rs.getString("title_name"));
-				title.setTitle_no(rs.getInt("title_no"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return title;
-
-	}
-
-	public List<Title> SelectDataList(int beginRow, int endRow, String mode, String keyword) {
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select *";
+		String sql = "select history_no, user_id, mountain_no, hiking_date, hiking_memo , ranking";
 		sql += " from";
 		sql += " (";
-		sql += " select title_no, title_name, title_condition, title_img rank() over( order by title_no ) as ranking";
-		sql += " from titles ";
-		if( ! mode.equals("all")) {
+		sql += " select history_no, user_id, mountain_no, hiking_date, hiking_memo, rank() over( order by history_no desc ) as ranking";
+		sql += " from mountains_history ";
+		if(!mode.equals("all")) {
 			sql += "where " + mode + " like '%" + keyword + "%'";
 		}
 		sql += " )";
 		sql += " where ranking between ? and ? ";
-		List<Title> title_list = new ArrayList<Title>();
+		List<Mountains_history> mountains_history_list = new ArrayList<Mountains_history>();
 
 		try {
 			if (conn == null) {
@@ -239,12 +205,13 @@ public class TitleDao extends SuperDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Title title = new Title();
-				title.setTitle_condition(rs.getString("title_condition"));
-				title.setTitle_img(rs.getString("title_img"));
-				title.setTitle_name(rs.getString("title_name"));
-				title.setTitle_no(rs.getInt("title_no"));
-				title_list.add(title);
+				Mountains_history mountains_history = new Mountains_history();
+				mountains_history.setUser_id(rs.getString("user_id"));
+				mountains_history.setHiking_date(rs.getString("hiking_date"));
+				mountains_history.setHiking_memo(rs.getString("hiking_memo"));
+				mountains_history.setHistory_no(rs.getInt("history_no"));
+				mountains_history.setMountain_no(rs.getInt("mountain_no"));
+				mountains_history_list.add(mountains_history);
 			}
 
 		} catch (Exception e) {
@@ -258,17 +225,18 @@ public class TitleDao extends SuperDao {
 				if (pstmt != null) {
 					pstmt.close();
 				}
+				super.closeConnection();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
-		return title_list;
+		return mountains_history_list;
 	}
 
 	public int selectCount() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select count(*) as cnt from titles";
+		String sql = "select count(*) as cnt from mountains_history";
 
 		int cnt = 0;
 
@@ -295,6 +263,7 @@ public class TitleDao extends SuperDao {
 				if (pstmt != null) {
 					pstmt.close();
 				}
+				
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}

@@ -156,7 +156,7 @@ public class MountainDao extends SuperDao {
 		sql += " )";
 		sql += " where ranking between ? and ? ";
 
-		List<Mountain> mountain_lists = new ArrayList<Mountain>();
+		List<Mountain> mountain_list = new ArrayList<Mountain>();
 
 		try {
 			if (conn == null) {
@@ -178,7 +178,7 @@ public class MountainDao extends SuperDao {
 				mountain.setMountain_name(rs.getString("mountain_name"));
 				mountain.setMountain_thema(rs.getInt("mountain_thema"));
 				mountain.setUpdatedate(rs.getString("updatedate"));
-				mountain_lists.add(mountain);
+				mountain_list.add(mountain);
 			}
 
 		} catch (Exception e) {
@@ -196,7 +196,7 @@ public class MountainDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		return mountain_lists;
+		return mountain_list;
 	}
 
 	public List<Mountain> SelectMountain(int pk) {

@@ -69,7 +69,7 @@ create table mountains_history(
 	history_no number primary key,
 	user_id varchar2(15),
 	mountain_no number,
-	hiking_date date,
+	hiking_date date default sysdate,
 	hiking_memo varchar2(50),
 	constraint history_user_id_fk
 	foreign key(user_id) references members(user_id) 

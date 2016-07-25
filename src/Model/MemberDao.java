@@ -295,7 +295,7 @@ public class MemberDao extends SuperDao {
 		}
 		sql += " )";
 		sql += " where ranking between ? and ? ";
-		List<Member> member_lists = new ArrayList<Member>();
+		List<Member> member_list = new ArrayList<Member>();
 
 		try {
 			if (conn == null) {
@@ -315,7 +315,7 @@ public class MemberDao extends SuperDao {
 				member.setUser_nickname(rs.getString("user_nickname"));
 				member.setSign_date(String.valueOf((rs.getDate("sign_date"))));
 				member.setUser_title(rs.getString("user_title"));
-				member_lists.add(member);
+				member_list.add(member);
 			}
 
 		} catch (Exception e) {
@@ -334,7 +334,7 @@ public class MemberDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		return member_lists;
+		return member_list;
 	}
 
 	public int selectCount() {
