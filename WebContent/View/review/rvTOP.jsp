@@ -52,6 +52,7 @@ function function1(  ){
 	cursor: pointer;
 }
 
+
 .topmybutton1 {
 	background-color: white;
 	color: #4CAF50;
@@ -64,64 +65,82 @@ function function1(  ){
 	color: white;
 }
 
-
 .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #cbe7cb;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 70px;
+	left: 0;
+	background-color: #cbe7cb;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s
 }
 
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
+.sidenav a:hover, .offcanvas a:focus {
+	color: #f1f1f1;
 }
 
 .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px !important;
-    margin-left: 50px;
+	position: absolute;
+	top: 0px;
+	right: 20px;
+	font-size: 36px !important;
+	margin-left: 50px;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+	
+	.scrollsidenav {
+		padding-top: 15px;
+	}
+	.scrollsidenav a {
+		font-size: 18px;
+	}
 }
-
-
 </style>
 
 </head>
 <body>
+<div class="container-fluid">
+	<c:if test="${sessionScope.whologin != 0}">
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span
+				class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+			<c:if test="${sessionScope.whologin == 2}">
+				<a href="<%=MyCtrlCommand%>meList">MEMBER</a>
+				<a href="<%=MyCtrlCommand%>boList">BOARD</a>
+				<a href="<%=MyCtrlCommand%>moAdminList">MOUNTAIN</a>
+				<a href="<%=MyCtrlCommand%>tiList">TITLE</a>
+			</c:if>
+			<c:if test="${sessionScope.whologin == 1}">
+				<a href="<%=MyCtrlCommand%>boMyList&id=<%=loginfo.getUser_id()%>">내가 쓴글</a>
+				<a href="<%=MyCtrlCommand%>boMyReplyList&id=<%=loginfo.getUser_id()%>">내가 단 덧글</a>
+				<a href="<%=MyCtrlCommand%>boList">등산목록</a>
+				<a href="<%=MyCtrlCommand%>tiList">타이틀</a>
+			</c:if>
+		</div>
 
+		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">☰</span>
+	</c:if>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
-
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
-
-<script>
+	<script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
 }
@@ -130,39 +149,40 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>
-     
+
 
 	<nav id="scrollMenu" class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
-		<c:if test="${sessionScope.whologin != 0}">
-			<ul class="nav navbar-nav navbar-left">
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-					role="button" aria-expanded="false"><span class="glyphicon glyphicon-align-left"
-						aria-hidden="true"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<c:if test="${sessionScope.whologin == 1}">
-							<li><a href="<%=MyCtrlCommand%>boList">내가 쓴글</a></li>
-							<li><a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>tiList">타이틀</a></li>
-						</c:if>
+		<ul class="nav navbar-nav navbar-left">
+			<c:if test="${sessionScope.whologin != 0}">
+				<div id="mySidenav" class="sidenav" >
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span
+						class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+					<c:if test="${sessionScope.whologin == 2}">
+						<hr>
+						<a href="<%=MyCtrlCommand%>meList">MEMBER</a>
+						<a href="<%=MyCtrlCommand%>boList">BOARD</a>
+						<a href="<%=MyCtrlCommand%>moMain">MOUNTAIN</a>
+						<a href="<%=MyCtrlCommand%>tiList">TITLE</a>
+					</c:if>
+					<c:if test="${sessionScope.whologin == 1}">
+						<hr>
+						<a href="<%=MyCtrlCommand%>boList">내가 쓴글</a>
+						<a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a>
+						<a href="<%=MyCtrlCommand%>boList">등산목록</a>
+						<a href="<%=MyCtrlCommand%>tiList">타이틀</a>
+					</c:if>
+				</div>
 
+				<span style="font-size: 30px; cursor: pointer" onclick="openNav()">☰</span>
+			</c:if>
+		</ul>
 
-						<c:if test="${sessionScope.whologin == 2}">
-							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
-							<li><a href="<%=MyCtrlCommand%>moList">MOUNTAIN</a></li>
-							<li><a href="<%=MyCtrlCommand%>tiList">TITLE</a></li>
-						</c:if>
-					</ul></li>
-
-			</ul>
-		</c:if>
-		
 		<ul class="nav navbar-nav navbar">
 			<li>
 				<p class="navbar-text">
-					<a href="#">MOUNTAIN</a> &nbsp;&nbsp;&nbsp; <a href="<%=MyCtrlCommand%>boList">BOARD</a>
+					<a href="<%=MyCtrlCommand%>moMain">MOUNTAIN</a> &nbsp;&nbsp;&nbsp; <a
+						href="<%=MyCtrlCommand%>boList">BOARD</a>
 				</p>
 			</li>
 		</ul>
@@ -180,8 +200,7 @@ function closeNav() {
 			<c:if test="${whologin != 0}">
 				<li>
 					<p class="navbar-text">
-						<a href="<%=MyCtrlCommand%>meMypage"><button type="button"
-								class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%></button></a> <a
+						<button type="button" class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%> </button></a> <a
 							href="<%=MyCtrlCommand%>meLogout"><button type="button" class="topmybutton topmybutton1">LOGOUT</button></a>
 					</p>
 				</li>
@@ -189,53 +208,25 @@ function closeNav() {
 		</ul>
 	</div>
 	</nav>
-
-
-	<div class="container-fluid">
-		<c:if test="${sessionScope.whologin != 0}">
-			<ul class="nav navbar-nav navbar-left">
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-					role="button" aria-expanded="false"><span class="glyphicon glyphicon-align-left"
-						aria-hidden="true"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<c:if test="${sessionScope.whologin == 1}">
-							<li><a href="<%=MyCtrlCommand%>boList">내가 쓴글</a></li>
-							<li><a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>tiList">타이틀</a></li>
-						</c:if>
-
-						<c:if test="${sessionScope.whologin == 2}">
-							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">MOUNTAIN</a></li>
-							<li><a href="<%=MyCtrlCommand%>tiList">TITLE</a></li>
-						</c:if>
-
-					</ul></li>
-			</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<c:if test="${whologin == 0}">
+			<li>
+				<p class="navbar-text">
+					<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
+							class="topmybutton topmybutton1">LOGIN</button></a> <a href="<%=MyCtrlCommand%>meSignupForm"><button
+							type="button" class="topmybutton topmybutton1">JOIN</button></a>
+				</p>
+			</li>
 		</c:if>
-
-		<ul class="nav navbar-nav navbar-right">
-			<c:if test="${whologin == 0}">
-				<li>
-					<p class="navbar-text">
-						<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
-								class="topmybutton topmybutton1">LOGIN</button></a> <a href="<%=MyCtrlCommand%>meSignupForm"><button
-								type="button" class="topmybutton topmybutton1">JOIN</button></a>
-					</p>
-				</li>
-			</c:if>
-			<c:if test="${whologin != 0}">
-				<li>
-					<p class="navbar-text">
-						<a href="<%=MyCtrlCommand%>meMypage"><button type="button"
-								class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%></button></a> <a
-							href="<%=MyCtrlCommand%>meLogout"><button type="button" class="topmybutton topmybutton1">LOGOUT</button></a>
-					</p>
-				</li>
-			</c:if>
-		</ul>
+		<c:if test="${whologin != 0}">
+			<li>
+				<p class="navbar-text">
+					<button type="button" class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%></button></a>
+					<a href="<%=MyCtrlCommand%>meLogout"><button type="button" class="topmybutton topmybutton1">LOGOUT</button></a>
+				</p>
+			</li>
+		</c:if>
+	</ul>
 	</div>
 
 	<div class="container-fluid" align="center" style="font-size: 40px">
@@ -243,7 +234,7 @@ function closeNav() {
 			src="<%=contextPath%>/View/images/중간나뭇잎.png"></a> M A N
 	</div>
 	<div class="container-fluid" align="center">
-		<br> <a href="#">MOUNTAIN</a>
+		<br> <a href="<%=MyCtrlCommand%>moMain">MOUNTAIN</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
 			href="<%=MyCtrlCommand%>boList">BOARD</a>
 	</div>

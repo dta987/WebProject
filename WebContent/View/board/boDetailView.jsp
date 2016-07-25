@@ -110,10 +110,9 @@ th {
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>
-		boList&${requestScope.parameter}';
-											});
-						});
+				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
+				});
+			});
 	</script>
 </body>
 </html>

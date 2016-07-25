@@ -15,7 +15,7 @@ import Model.BoardDao;
 import Utility.FlowParameters;
 import Utility.Paging;
 
-public class boListController implements SuperController {
+public class boMyListController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
@@ -44,14 +44,16 @@ public class boListController implements SuperController {
 		parameters.setPageNumber(pageNumber);
 		parameters.setPageSize(pageSize);
 
-		int totalCount = dao.selectCount();
+		String id = req.getParameter("id");
+		
+		int totalCount = dao.selectMyListCount(id);
 		System.out.println("totalCount : " + totalCount);
 
 		String myurl = req.getContextPath() + "/YamaManCtrl?command=boList";
 
 		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl, mode, keyword);
-
-		List<Board> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
+		 	
+		List<Board> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword, id);
 
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
@@ -63,7 +65,7 @@ public class boListController implements SuperController {
 		req.setAttribute("parameters", parameters.toString());
 
 		forward.setRedirect(false);
-		forward.setPath("/View/board/boList.jsp");
+		forward.setPath("/View/board/boMyList.jsp");
 
 		return forward;
 		

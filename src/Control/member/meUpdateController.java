@@ -38,7 +38,7 @@ public class meUpdateController implements SuperController {
 		MemberDao dao = new MemberDao();
 		
 		int cnt = - 99999 ;
-		cnt=dao.UpdateData(bean);
+		cnt = dao.UpdateData(bean);
 		
 		req.setAttribute("bean", bean);
 		forward.setRedirect(false);

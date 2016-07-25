@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
-int myoffset = 1;
-int mywidth = twelve - 2 * myoffset;
+	int myoffset = 1;
+	int mywidth = twelve - 2 * myoffset;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,9 +12,12 @@ int mywidth = twelve - 2 * myoffset;
 
 </head>
 <body>
-	<div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel-heading">회원목록</div>
-		<table class="table table-striped table-hover">
+	<br>
+	<br>
+	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<!-- <div class="panel-heading">게시판</div> -->
+		<label>MEMBER LIST</label><br> <br>
+		<table class="table" align="center">
 			<thead>
 				<tr>
 					<th>아이디</th>
@@ -37,8 +40,11 @@ int mywidth = twelve - 2 * myoffset;
 					<td>${bean.user_nickname}</td>
 					<td>${bean.sign_date}</td>
 					<c:if test="${sessionScope.whologin == 2}">
-						<td><a href="<%=MyCtrlCommand%>meUpdateForm&id=${bean.user_id}&${requestScope.parameters}">수정</a></td>
-						<td><a id="del" href="<%=MyCtrlCommand%>meDelete&id=${bean.user_id}&${requestScope.parameters}"><input type="hidden" value="${bean.user_id}">삭제</a></td>
+						<td><a
+							href="<%=MyCtrlCommand%>meUpdateForm&id=${bean.user_id}&${requestScope.parameters}">수정</a></td>
+						<td><a id="del"
+							href="<%=MyCtrlCommand%>meDelete&id=${bean.user_id}&${requestScope.parameters}"><input
+								type="hidden" value="${bean.user_id}">삭제</a></td>
 						<!--  -->
 					</c:if>
 				</tr>
@@ -73,81 +79,99 @@ int mywidth = twelve - 2 * myoffset;
 			<footer>${requestScope.pagingHtml}</footer>
 		</div>
 	</div>
-	
+
 	<!--모달 -->
-	
-	
+
+
 	<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">회원 삭제</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>This is a small modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-	
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">회원 삭제</h4>
+				</div>
+				<div class="modal-body">
+					<p>Some text in the modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<p>This is a small modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#search").click(function() {
+			if($("#mode").val() != "-") {
+				if($("#keyword").val() == "" || $("#keyword").val() != null) {
+					return true;
+				} else {
+					alert("키워드 값을 입력해주세요");
+					return false;
+				}
+			} else {
+				alert("검색 모드를 선택해주세요");
+				return false;
+			}
+			
+		});
+	});
+	
 	$(document).ready(function() {
 		$("#searchAll").click(function() {
 			location.href = '<%=MyCtrlCommand%>meList'
 			})
 		})
 
-	$(document).ready(function() {
-		$("#mode option").each(function(index) {
-			if ($(this).val() == "${requestScope.mode}") {
-				$(this).attr("selected", "selected");
-			}
+		$(document).ready(function() {
+			$("#mode option").each(function(index) {
+				if ($(this).val() == "${requestScope.mode}") {
+					$(this).attr("selected", "selected");
+				}
+			});
 		});
-	});
 
-	$(document).ready(function() {
-		$("#keyword").val("${requestScope.keyword}");
-	});
-	
-	function medel(id) {
-		alert(id);
-		}
-	
-	$(document).ready(function() {
-		$("#del").click(function() {
-			var result = confirm("삭제 하시겠습니까??");
-			if(result) {
-				return true;
-			}
-			return false;
+		$(document).ready(function() {
+			$("#keyword").val("${requestScope.keyword}");
 		});
-	});
+
+		function medel(id) {
+			alert(id);
+		}
+
+		$(document).ready(function() {
+			$("#del").click(function() {
+				var result = confirm("삭제 하시겠습니까??");
+				if (result) {
+					return true;
+				}
+				return false;
+			});
+		});
 	</script>
-	</body>
+</body>
 </html>

@@ -45,12 +45,10 @@ public class meListController implements SuperController {
 		
 
 		int totalCount = dao.selectCount();
-		System.out.println("totalCount : " + totalCount);
 
 		String myurl = req.getContextPath() + "/YamaManCtrl?command=meList";
 		
-		
-
+	
 		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl, mode, keyword);
 
 		List<Member> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);

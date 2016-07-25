@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
 	int myoffset = 1;
@@ -86,6 +85,11 @@ to {
 
 }
 
+img.resize {
+width: 300px;
+height: 200px
+}
+
 /* The Close Button */
 .close {
 	position: absolute;
@@ -114,181 +118,62 @@ to {
 <body>
 
 	<!-- 사진 5개 랜덤 돌리기 -->
-	<div class="w3-container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-	<p>
-		<b>MOUNTAIN OF JAPAN</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 일본의 산
-		<br>
-	</p>
-	</div>
-	<img id="myImg" src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png"
-		alt="알프스가사가다케 혼슈" width="300" height="200">
-	<!-- The Modal -->
-	<div id="myModal" class="modal">
-		<span class="close">×</span> <img class="modal-content" id="img01">
-		<div id="caption"></div>
-	</div>
+	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<div class="w3-container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+			<p>
+				<b>MOUNTAIN OF JAPAN</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 일본의 산 <br>
+			</p>
 
-	<script>
-		// Get the modal
-		var modal = document.getElementById('myModal');
-
-		// Get the image and insert it inside the modal - use its "alt" text as a caption
-		var img = document.getElementById('myImg');
-		var modalImg = document.getElementById("img01");
-		var captionText = document.getElementById("caption");
-		img.onclick = function() {
-			modal.style.display = "block";
-			modalImg.src = this.src;
-			modalImg.alt = this.alt;
-			captionText.innerHTML = this.alt;
-		}
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-	</script>
-
-
-
-	<!-- First Photo Grid-->
-	<%-- <div
-		class="w3-row-padding col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<br> <br> <br> <br>
-		<div class="w3-third w3-container w3-margin-bottom ">
-
-			<img src="<%=contextPath%>/View/images/산타니05.jpg" alt="moJapan" style="width: 100%"
-				class="w3-hover-opacity">
-			<div class="w3-container w3-white">
-				<p>
-					<b>MOUNTAIN OF JAPAN</b>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 일본의 산
-				</p>
-				
+			<div class="embed-responsive embed-responsive-16by9" align="center">
+				<iframe class="embed-responsive-item" width="1280" height="300px"
+					src="https://www.youtube.com/embed/1oNBs_eXVyA" frameborder="0"></iframe>
 			</div>
 		</div>
+		<div class="w3-row-padding col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+			<br> <br> <br>
 
-	</div> --%>
-
-	<!-- Second Photo Grid-->
-	<div
-		class="w3-row-padding col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<br>
-		<br>
-		<br>
-
-		<div class="w3-third w3-container w3-margin-bottom">
-			<div class="w3-container">
-				<p>
-					<br>
-					<b>AREA</b>
-				</p>
-				<p>일본 지역별 명산</p>
-			</div>
-			<a href="#"><img src="<%=contextPath%>/View/images/japanArea.png"
-				alt="moArea" style="width: 80%" class="w3-hover-opacity"></a>
-		</div>
-
-		<div class="w3-third w3-container w3-margin-bottom">
-
-			<div class="w3-container">
-				<p>
-					<br>
-					<b>SEASON</b>
-				</p>
-				<p>일본 계절별 명산</p>
-			</div>
-			<a href="#"><img
-				src="<%=contextPath%>/View/images/일본산이미지/혼슈후지산.png" alt="moSeason"
-				style="width: 100%" class="w3-hover-opacity"></a>
-		</div>
-
-		<div class="w3-third w3-container w3-margin-bottom">
-
-			<div class="w3-container">
-				<p>
-					<br>
-					<b>FLOWER</b>
-				</p>
-				<p>일본 꽃 명산</p>
-			</div>
-			<a href="#"><img
-				src="<%=contextPath%>/View/images/일본산이미지/혼슈쵸카이산2.jpg" alt="moFlower"
-				style="width: 92%" class="w3-hover-opacity"></a>
-		</div>
-	</div>
-
-	<!-- Pagination -->
-	<!-- <br>
-	<br>
-	<br>
-	<div class="w3-center w3-padding-32">
-		<ul class="w3-pagination">
-			<li><a class="w3-green" href="#">1</a></li>
-			<li><a class="w3-hover-green" href="#">2</a></li>
-			<li><a class="w3-hover-green" href="#">3</a></li>
-			<li><a class="w3-hover-green" href="#">4</a></li>
-			<li><a class="w3-hover-green" href="#">»</a></li>
-		</ul>
-	</div>
- -->
-
-
-
-	<!-- <div class="container-fluid">
-		<div class="row content">
-			<div class="col-sm-3 sidenav">
-				<div style="position: fixed; background-color: yellow; width:250px ; text-align:left;">
-					<h3>&nbsp;&nbsp;&nbsp;카테고리</h3>
-					<ul class="nav nav-pills nav-stacked">
-						<li class="active" id="menu1"><a href="#section1">&nbsp;&nbsp;&nbsp;지역별</a></li>
-						<li><a href="#section2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;홋카이도</a></li>
-						<li><a href="#section3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;혼슈</a></li>
-						<li><a href="#section3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시코쿠</a></li>
-						<li><a href="#section4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;큐슈</a></li>
-					</ul>
-					<ul class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#section5">&nbsp;&nbsp;&nbsp;테마별</a></li>
-						<li><a href="#section6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;초심자 산</a></li>
-						<li><a href="#section7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마니아 산</a></li>
-						<li><a href="#section8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전문가 산</a></li>
-					</ul>
+			<div class="w3-third w3-container w3-margin-bottom">
+				<div class="w3-container">
+					<p>
+						<br> <b>AREA</b>
+					</p>
+					<p>일본 지역별 명산</p>
 				</div>
-
-
-
+				<div class="col-sm-12 col-md-12">
+					<a href="<%=MyCtrlCommand%>moList&selecter=지역별" class="thumbnail"><img class="resize" src="<%=contextPath%>/View/images/일본산이미지/혼슈오제2.png" alt="moArea"
+						class="w3-hover-opacity thumbnail"></a>
+				</div>
 			</div>
-			<div class="col-sm-9">
-				<h4>
-					<small>RECENT POSTS</small>
-				</h4>
-				<hr>
-				<h2>I Love Food</h2>
-				<p>
-				<h1>내용입니다.</h1>
-				<br>
-				<h1>내용입니다.</h1>
-				<br>
-				<h1>내용입니다.</h1>
-				<br>
-				<h1>내용입니다.</h1>
-				<br>
-				<h1>내용입니다.</h1>
-				<br>
-				<h1>내용입니다.</h1>
-				<br>
-				<h1>홋카이도</h1>
-				<br>
-				<h1>내용입니다.</h1>
-				<br>
-				</p>
+
+			<div class="w3-third w3-container w3-margin-bottom">
+
+				<div class="w3-container">
+					<p>
+						<br> <b>SEASON</b>
+					</p>
+					<p>일본 계절별 명산</p>
+				</div>
+				<div class="col-sm-12 col-md-12">
+				<a href="<%=MyCtrlCommand%>moList&selecter=계절" class="thumbnail"><img class="resize" src="<%=contextPath%>/View/images/일본산이미지/혼슈후지산.png" alt="moSeason"
+					class="w3-hover-opacity"></a>
+				</div>
+			</div>
+
+			<div class="w3-third w3-container w3-margin-bottom">
+
+				<div class="w3-container">
+					<p>
+						<br> <b>FLOWER</b>
+					</p>
+					<p>일본 꽃 명산</p>
+				</div>
+				<div class="col-sm-12 col-md-12">
+				<a href="<%=MyCtrlCommand%>moList&selecter=꽃" class="thumbnail"><img class="resize" src="<%=contextPath%>/View/images/일본산이미지/혼슈쵸카이산2.jpg" alt="moFlower"
+					class="w3-hover-opacity"></a>
+				</div>
 			</div>
 		</div>
-	</div> -->
-
+	</div>
 
 </body>
 </html>

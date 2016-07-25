@@ -8,6 +8,8 @@ import java.util.List;
 
 public class MountainDao extends SuperDao {
 
+	private Object String;
+
 	public MountainDao() {
 	}
 
@@ -141,21 +143,17 @@ public class MountainDao extends SuperDao {
 
 	}
 
-	public List<Mountain> SelectDataList(int beginRow, int endRow, String mode, String keyword) {
+	public List<Mountain> SelectDataList(String selecter) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select *";
-		sql += " from";
-		sql += " (";
-		sql += " select mountain_no, mountain_name, mountain_area, mountain_address, mountain_img, mountain_introduce, mountain_thema, updatedate"
-				+ " rank() over( order by mountain_no ) as ranking from mountains ";
-		if( ! mode.equals("all")) {
-			sql += "where " + mode + " like '%" + keyword + "%'";
+		String sql = "";
+		if(selecter.equals("지역별")) {
+			sql = " select mountain_no, mountain_name, mountain_area, mountain_img from mountains";
+		} else {
+			sql = " select mountain_no, mountain_name, mountain_thema, mountain_img from mountains";
 		}
-		sql += " )";
-		sql += " where ranking between ? and ? ";
-
+		
 		List<Mountain> mountain_list = new ArrayList<Mountain>();
 
 		try {
@@ -163,21 +161,21 @@ public class MountainDao extends SuperDao {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
-			pstmt.setInt(1, beginRow);
-			pstmt.setInt(2, endRow);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Mountain mountain = new Mountain();
 				mountain.setMountain_no(rs.getInt("mountain_no"));
-				mountain.setMountain_area(rs.getString("mountain_area"));
-				mountain.setMountain_address(rs.getString("mountain_address"));
+				
+				if(selecter.equals("지역별")) {
+					mountain.setMountain_area(rs.getString("mountain_area"));
+				} else {
+					mountain.setMountain_thema(rs.getString("mountain_thema"));
+				}				
+				
 				mountain.setMountain_img(rs.getString("mountain_img"));
-				mountain.setMountain_introduce(rs.getString("mountain_introduce"));
 				mountain.setMountain_name(rs.getString("mountain_name"));
-				mountain.setMountain_thema(rs.getString("mountain_thema"));
-				mountain.setUpdatedate(rs.getString("updatedate"));
 				mountain_list.add(mountain);
 			}
 
@@ -199,13 +197,13 @@ public class MountainDao extends SuperDao {
 		return mountain_list;
 	}
 
-	public List<Mountain> SelectMountain(int pk) {
+	public Mountain SelectMountain(int pk) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from mountains where mountain_no=?";
 
-		List<Mountain> mountain_lists = new ArrayList<Mountain>();
+		Mountain mountain = new Mountain();
 
 		try {
 			if (conn == null) {
@@ -217,17 +215,20 @@ public class MountainDao extends SuperDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Mountain mountain = new Mountain();
+				
 				mountain.setMountain_no(rs.getInt("mountain_no"));
 				mountain.setMountain_area(rs.getString("mountain_area"));
 				mountain.setMountain_address(rs.getString("mountain_address"));
-				mountain.setMountain_img(rs.getString("mountain_img"));
+				String Mountain_img = rs.getString("mountain_img");
+				if(Mountain_img == null || Mountain_img == "") {
+					mountain.setMountain_img("산타니05.jpg");
+				} else {
+					mountain.setMountain_img(Mountain_img);
+				}				
 				mountain.setMountain_introduce(rs.getString("mountain_introduce"));
 				mountain.setMountain_name(rs.getString("mountain_name"));
 				mountain.setMountain_thema(rs.getString("mountain_thema"));
-				mountain.setUpdatedate(rs.getString("updatedate"));
-				mountain_lists.add(mountain);
-
+				mountain.setUpdate_date(rs.getString("update_date"));
 			}
 
 		} catch (Exception e) {
@@ -245,7 +246,7 @@ public class MountainDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
-		return mountain_lists;
+		return mountain;
 	}
 
 	public int selectCount() {
@@ -283,6 +284,61 @@ public class MountainDao extends SuperDao {
 			}
 		}
 		return cnt;
+	}
+
+	public List<Mountain> adminSelectDataList(int beginRow, int endRow, String mode, String keyword) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select mountain_no, mountain_name, mountain_area, mountain_thema, update_date, ranking";
+		sql += " from";
+		sql += " (";
+		sql += " select mountain_no, mountain_name, mountain_area, mountain_thema, update_date, rank() over( order by mountain_no desc ) as ranking";
+		sql += " from mountains ";
+		if(!mode.equals("all")) {
+			sql += "where " + mode + " like '%" + keyword + "%'";
+		}
+		sql += " )";
+		sql += " where ranking between ? and ? ";
+		List<Mountain> lists = new ArrayList<Mountain>();
+
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setInt(1, beginRow);
+			pstmt.setInt(2, endRow);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Mountain mountain = new Mountain();
+				mountain.setMountain_no(rs.getInt("mountain_no"));
+				mountain.setMountain_name(rs.getString("mountain_name"));
+				mountain.setMountain_area(rs.getString("mountain_area"));
+				mountain.setMountain_thema(rs.getString("mountain_thema"));
+				mountain.setUpdate_date(rs.getString("update_date"));
+				lists.add(mountain);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return lists;
 	}
 	
 }

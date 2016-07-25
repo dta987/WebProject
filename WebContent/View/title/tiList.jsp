@@ -11,19 +11,21 @@
 <title>Insert title here</title>
 <head>
 <style>
-
-tr:hover{background-color:#cbe7cb}
-
+tr:hover {
+	background-color: #cbe7cb
+}
 </style>
 
 </head>
 <body>
-<br><br>
+	<br>
+	<br>
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-	<label>TITLE LIST</label><br><br>
-	<table class="table" align="center">
+		<label>TITLE LIST</label><br>
+		<br>
+		<table class="table" align="center">
 			<thead>
-				<tr> 
+				<tr>
 					<th>&nbsp;&nbsp;&nbsp;&nbsp;번호</th>
 					<th>타이틀 명</th>
 					<th>타이틀 컨디션</th>
@@ -34,7 +36,7 @@ tr:hover{background-color:#cbe7cb}
 					</c:if>
 				</tr>
 			</thead>
-			
+
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<tr>
 					<td>${bean.title_no}</td>
@@ -42,12 +44,15 @@ tr:hover{background-color:#cbe7cb}
 					<td>${bean.title_condition}</td>
 					<td>${bean.title_img}</td>
 					<c:if test="${sessionScope.whologin == 2}">
-						<td><a href="<%=MyCtrlCommand%>tiUpdateForm&no=${bean.title_no}&${requestScope.parameters}">수정</a></td>
-						<td><a id="del" href="<%=MyCtrlCommand%>tiDelete&no=${bean.title_no}&${requestScope.parameters}"><input type="hidden" value="${bean.title_no}">삭제</a></td>
+						<td><a
+							href="<%=MyCtrlCommand%>tiUpdateForm&no=${bean.title_no}&${requestScope.parameters}">수정</a></td>
+						<td><a id="del"
+							href="<%=MyCtrlCommand%>tiDelete&no=${bean.title_no}&${requestScope.parameters}"><input
+								type="hidden" value="${bean.title_no}">삭제</a></td>
 					</c:if>
 				</tr>
 			</c:forEach>
-			
+
 			<tr>
 				<td colspan="10" align="center">
 					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>tiList"
@@ -57,6 +62,7 @@ tr:hover{background-color:#cbe7cb}
 								<option value="-" selected="selected">-- 선택하세요---------
 								<option value="title_no">타이틀 번호
 								<option value="title_name">타이틀 이름
+								<option value="title_condition">조 건 
 							</select>
 						</div>
 						<div class="form-group">
@@ -71,14 +77,78 @@ tr:hover{background-color:#cbe7cb}
 					</form>
 				</td>
 			</tr>
-			</table>
-			<div align="center">
+		</table>
+		<div align="center">
 			<footer>${requestScope.pagingHtml}</footer>
 		</div>
-			</div>
-					
+	</div>
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#search").click(function() {
+			if($("#mode").val() != "-") {
+				if($("#keyword").val() == "" || $("#keyword").val() != null) {
+					return true;
+				} else {
+					alert("키워드 값을 입력해주세요");
+					return false;
+				}
+			} else {
+				alert("검색 모드를 선택해주세요");
+				return false;
+			}
 			
-			
-			
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#searchAll").click(function() {
+			location.href = '<%=MyCtrlCommand%>tiList'
+		});
+	});
+	$(document).ready(function() {
+		$("#insertForm").click(function() {
+			if("${sessionScope.whologin}" != 0) { 
+				location.href = "<%=MyCtrlCommand%>tiInsertForm";
+			} else {
+				alert("로그인 해주세요");
+				location.href = "<%=MyCtrlCommand%>meLoginForm";
+				}
+			});
+		});
+
+		$(document).ready(function() {
+			$("#mode option").each(function(index) {
+				if ($(this).val() == "${requestScope.mode}") {
+					$(this).attr("selected", "selected");
+				}
+			});
+		});
+
+		$(document).ready(function() {
+			$("#keyword").val("${requestScope.keyword}");
+		});
+
+		$(document).ready(function() {
+			$("#del").click(function() {
+				var result = confirm("삭제 하시겠습니까??");
+				if (result) {
+					return true;
+				}
+				return false;
+			});
+		});
+		
+		$(document).ready(function() {
+			$("#gotoback").click(function() {
+				location.href='<%=MyCtrlCommand%>tiList&${requestScope.parameters}';
+				});
+			});//뒤로가기
+	</script>
+
+
+
+
 </body>
 </html>

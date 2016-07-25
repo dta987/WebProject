@@ -82,6 +82,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="submit" class="topmybutton topmybutton1" >UPDATE</button>
+					<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
 			</td>		
 			</tr>
 			</table>		

@@ -17,7 +17,7 @@
 </style>
 <script type="text/javascript">
 	function gotoBack(){
-		location.href='<%=MyCtrlCommand%>moList&${requestScope.parameters}';
+		location.href='<%=MyCtrlCommand%>moAdminList&${requestScope.parameters}';
 		//alert('${requestScope.parameter}') ;
 	}
 </script>
@@ -68,14 +68,13 @@
 						</tr>
 						<tr>
 							<td width="25%" align="center">산 분류</td>
-							<td width="75%" align="left">${bean.mountain_thema	}</td>
+							<td width="75%" align="left">${bean.mountain_thema}</td>
 						</tr>
 					</table>
 				</div>
 				<hr>
 				<div class="col-sm-offset-5 col-sm-4">
-					<button class="btn btn-primary" onclick="gotoBack();">
-						돌아 가기</button>
+					<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
 				</div>
 			</div>
 			<!-- end panel-body -->
@@ -86,6 +85,12 @@
 		$(document).ready(function() {
 			$('[data-toggle="popover"]').popover();
 		});
+		
+		$(document).ready(function() {
+			$("#gotoback").click(function() {
+				location.href='<%=MyCtrlCommand%>moAdminList&${requestScope.parameters}';
+				});
+			});//뒤로가기
 	</script>
 </body>
 </html>

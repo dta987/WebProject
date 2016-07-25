@@ -8,13 +8,13 @@ public class Mountain {
 	private String mountain_address;
 	private String mountain_img;
 	private String mountain_introduce;
-	private String updatedate;
+	private String update_date;
 	private String mountain_thema;
 	@Override
     public String toString() {
 	    return "Mountain [mountain_no=" + mountain_no + ", mountain_name=" + mountain_name + ", mountain_area=" + mountain_area
 	            + ", mountain_address=" + mountain_address + ", mountain_img=" + mountain_img + ", mountain_introduce="
-	            + mountain_introduce + ", updatedate=" + updatedate + ", mountain_thema=" + mountain_thema + "]";
+	            + mountain_introduce + ", updatedate=" + update_date + ", mountain_thema=" + mountain_thema + "]";
     }
 	public int getMountain_no() {
 		return mountain_no;
@@ -52,11 +52,11 @@ public class Mountain {
 	public void setMountain_introduce(String mountain_introduce) {
 		this.mountain_introduce = mountain_introduce;
 	}
-	public String getUpdatedate() {
-		return updatedate;
+	public String getUpdate_date() {
+		return update_date;
 	}
-	public void setUpdatedate(String updatedate) {
-		this.updatedate = updatedate;
+	public void setUpdate_date(String update_date) {
+		this.update_date = update_date;
 	}
 	public String getMountain_thema() {
 		return mountain_thema;

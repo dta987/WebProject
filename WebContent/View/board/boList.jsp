@@ -15,23 +15,23 @@
 		location.href='<%=MyCtrlCommand%>boInsertForm';
 	}
 </script> --%>
-
 <head>
 <style>
-
-tr:hover{background-color:#cbe7cb}
-
+tr:hover {
+	background-color: #cbe7cb
+}
 </style>
 
 </head>
 <body>
-<br><br>
+	<br>
+	<br>
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<!-- <div class="panel-heading">게시판</div> -->
-		<label>BOARD LIST</label><br><br>
+		<label>BOARD LIST</label><br> <br>
 		<table class="table" align="center">
 			<thead>
-				<tr> 
+				<tr>
 					<th>&nbsp;&nbsp;&nbsp;&nbsp;번호</th>
 					<th>제목</th>
 					<th>작성자</th>
@@ -41,44 +41,37 @@ tr:hover{background-color:#cbe7cb}
 					<c:if test="${sessionScope.whologin == 2}">
 						<th>수정</th>
 						<th>삭제</th>
-						<th>답글</th>
 					</c:if>
 				</tr>
 			</thead>
 
-			<c:forEach var="bean" items="${requestScope.lists}">
-				<tr>
-					<td>${bean.board_no}</td>
-					<td><a
-						href="<%=MyCtrlCommand%>boDetailView&no=${bean.board_no}&id=${bean.board_writer}&${requestScope.parameters}">${bean.board_title}</a></td>
-					<td>${bean.user_nickname}</td>
-					<td>${bean.board_writ_date}</td>
-					<td>${bean.board_update}</td>
-					<td>${bean.board_readhit}</td>
-					<td><c:if test="${sessionScope.whologin == 2}">
-							<a href="<%=MyCtrlCommand%>boUpdateForm&no=${bean.board_no}&${requestScope.parameters}">
-								수정 </a>
-						</c:if></td>
-					<td><c:if test="${sessionScope.whologin == 2}">
-							<a id="del" href="<%=MyCtrlCommand%>boDelete&no=${bean.board_no}&${requestScope.parameters}">
-								삭제 </a>
-						</c:if></td>
-					<td>
-						<!--  관리자만 게시물리스트에 직접 게시물 밑에 댓글형식의 게시글을 쓸 수 있다. 위 게시글의 상태나 변경을 리스트에서 바로 나타내도록   보통 유저들은 DetailView에서 Reply 가능 -->
-						<c:if test="${bean.depth <= 1 and sessionScope.whologin == 2 }">
-							<a
-								href="<%=MyCtrlCommand%>boDepthInsertForm&no=${bean.board_no}&${requestScope.parameters}&group_no=${bean.group_no}&order_no=${bean.order_no}&depth=${bean.depth}">
-								댓글 </a>
-						</c:if>
-					</td>
+			<tbody>
+				<c:forEach var="bean" items="${requestScope.lists}">
+					<tr>
+						<td>${bean.board_no}</td>
+						<td><a
+							href="<%=MyCtrlCommand%>boDetailView&no=${bean.board_no}&id=${bean.board_writer}&${requestScope.parameters}">${bean.board_title}</a></td>
+						<td>${bean.user_nickname}</td>
+						<td>${bean.board_writ_date}</td>
+						<td>${bean.board_update}</td>
+						<td>${bean.board_readhit}</td>
+						<td><c:if test="${sessionScope.whologin == 2}">
+								<a href="<%=MyCtrlCommand%>boUpdateForm&no=${bean.board_no}&${requestScope.parameters}">
+									수정 </a>
+							</c:if></td>
+						<td><c:if test="${sessionScope.whologin == 2}">
+								<a id="del" href="<%=MyCtrlCommand%>boDelete&no=${bean.board_no}&${requestScope.parameters}">
+									삭제 </a>
+							</c:if></td>
 
-				</tr>
-			</c:forEach>
+					</tr>
+				</c:forEach>
+			</tbody>
 
 			<tr>
 				<td colspan="10" align="center">
-					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>boListForm"
-						method="post">
+					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>" method="post">
+					<input type="hidden" name="command" value="boList">
 						<div class="form-group">
 							<select class="form-control" name="mode" id="mode">
 								<option value="-" selected="selected">-- 선택하세요---------
@@ -99,7 +92,6 @@ tr:hover{background-color:#cbe7cb}
 					</form>
 				</td>
 			</tr>
-
 		</table>
 		<div align="center">
 			<footer>${requestScope.pagingHtml}</footer>
@@ -111,8 +103,7 @@ tr:hover{background-color:#cbe7cb}
 	$(document).ready(function() {
 		$("#search").click(function() {
 			if($("#mode").val() != "-") {
-				if($("#keyword").val() != "" || $("#keyword").val() != null) {
-					alert($("#keyword").val());
+				if($("#keyword").val() == "" || $("#keyword").val() != null) {
 					return true;
 				} else {
 					alert("키워드 값을 입력해주세요");

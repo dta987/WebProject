@@ -1,9 +1,9 @@
-package Control.board;
+package Control.mountain;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,17 +12,19 @@ import Control.ControllerForward;
 import Control.SuperController;
 import Model.Board;
 import Model.BoardDao;
+import Model.Mountain;
+import Model.MountainDao;
 import Utility.FlowParameters;
 import Utility.Paging;
 
-public class boListController implements SuperController {
-
+public class moAdminListController implements SuperController{
+	
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 
 		ControllerForward forward = new ControllerForward();
-		BoardDao dao = new BoardDao();
+		MountainDao dao = new MountainDao();
 
 		String mode = req.getParameter("mode");
 		if (mode == null || mode.equals("null") || mode.equals("")) {
@@ -47,11 +49,11 @@ public class boListController implements SuperController {
 		int totalCount = dao.selectCount();
 		System.out.println("totalCount : " + totalCount);
 
-		String myurl = req.getContextPath() + "/YamaManCtrl?command=boList";
+		String myurl = req.getContextPath() + "/YamaManCtrl?command=moAdminList";
 
 		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl, mode, keyword);
 
-		List<Board> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
+		List<Mountain> lists = dao.adminSelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
 
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
@@ -63,11 +65,11 @@ public class boListController implements SuperController {
 		req.setAttribute("parameters", parameters.toString());
 
 		forward.setRedirect(false);
-		forward.setPath("/View/board/boList.jsp");
+		forward.setPath("/View/mountain/moAdminList.jsp");
 
 		return forward;
-		
-		
+
 	}
+
 
 }

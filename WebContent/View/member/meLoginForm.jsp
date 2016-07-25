@@ -14,13 +14,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-	<div class="container-fluid col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<br>
 		<br>
 		<br>
 		<br>
+		<div class="form-group" align="center">
 		<form id="loginForm" class="form-inline" role="form" action="<%=MyCtrlByForm%>" method="post">
 			<input type="hidden" name="command" value="meLogin">
 			<div class="form-group" align="left">

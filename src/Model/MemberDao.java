@@ -202,7 +202,11 @@ public class MemberDao extends SuperDao {
 				member.setUser_name(rs.getString("user_name"));
 				member.setUser_email(rs.getString("user_email"));
 				member.setSign_date(rs.getString("sign_date"));
-				member.setUser_img(rs.getString("user_img"));
+				if(rs.getString("user_img") == null || rs.getString("user_img") == "") {
+					member.setUser_img("ªÍ≈∏¥œ05.jpg");
+				} else {
+					member.setUser_img(rs.getString("user_img"));
+				}				
 				member.setUser_title(rs.getString("user_title"));
 				member.setUser_nickname(rs.getString("user_nickname"));
 			}

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
-	int myoffset = 2;
+	int myoffset = 3;
 	int mywidth = twelve - 2 * myoffset;
-	int formleft = 1;
+	int formleft = 2;
 	int formright = twelve - formleft;
 %>
 
@@ -55,7 +55,7 @@
 <body>
 
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm">
+		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="moInsert"> <label>MOUNTAIN WRITE</label><br>
 			<br>
 			<div class="form-group ">
@@ -72,9 +72,9 @@
 			</div>
 			<br>
 			<div class="form-group ">
-			<label class="control-label col-sm-<%=formleft%>" for="subject">NAME</label>
+			<label class="control-label col-sm-<%=formleft%>" for="subject">THEMA</label>
 			<div class="col-sm-<%=myoffset%>">
-					<select class="form-control " name="area" id="thema">
+					<select class="form-control " name="thema" id="thema">
 						<option value="-" selected="thema">--테 마--
 						<option value="꽃">꽃
 						<option value="계절">계절
@@ -236,8 +236,8 @@
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
 				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameters}';
-											});
-						});//뒤로가기
+				});
+			});//뒤로가기
 	</script>
 </body>
 </html>
