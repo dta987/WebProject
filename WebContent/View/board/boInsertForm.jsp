@@ -31,6 +31,7 @@
 		<!-- <div class="panel-body"> -->
 			<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm">
 				<input type="hidden" name="command" value="boInsert">
+					<label>BOARD WRITE</label><br><br>
 				<div class="form-group ">
 					<label class="control-label col-sm-<%=formleft%>" for="subject">TITLE</label>
 					<div class="col-sm-<%=myoffset%>">

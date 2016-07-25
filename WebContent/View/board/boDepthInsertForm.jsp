@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
 	int myoffset = 2;
@@ -8,9 +9,10 @@
 %>
 
 <!-- SmartEditor -->
-<script type="text/javascript" src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js"
-	charset="utf-8"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+<script type="text/javascript"
+	src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
 <!-- SmartEditor -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,26 +29,29 @@
 </head>
 <body>
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-	<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm">
+		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>"
+			method="post" id="frm">
 			<!-- <div class="panel-heading">답글 작성</div> -->
-			<div class="panel-body">
-				<input type="hidden" name="group_no" value="${requestScope.group_no}"> <input
-					type="hidden" name="order_no" value="${requestScope.order_no}"> <input type="hidden"
-					name="depth" value="${requestScope.depth}"> <input type="hidden" name="no"
-					value="${requestScope.no}"> <input type="hidden" name="command" value="boDepthInsert">
-				<div class="form-group ">
-					<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
-					<div class="col-sm-<%=mywidth%>">
-						<input type="text" class="form-control" name="title" id="title" value="${bean.board_title}">
-					</div>
+			<!-- <div class="panel-body"> -->
+			<input type="hidden" name="group_no" value="${requestScope.group_no}">
+			<input type="hidden" name="order_no" value="${requestScope.order_no}">
+			<input type="hidden" name="depth" value="${requestScope.depth}">
+			<input type="hidden" name="no" value="${requestScope.no}"> <input
+				type="hidden" name="command" value="boDepthInsert">
+			<div class="form-group ">
+				<label class="control-label col-sm-<%=formleft%>" for="subject">TITLE</label>
+				<div class="col-sm-<%=mywidth%>">
+					<input type="text" class="form-control" name="title" id="title"
+						value="${bean.board_title}">
 				</div>
-				<div class="form-group">
+			</div>
+			<div class="form-group">
 
-					<label class="control-label col-sm-<%=formleft%>" for="content">글 내용</label>
-					<div class="col-sm-<%=formright%>">
-						<textarea class="form-control" rows="10" cols="30" id="content" name="content"
-							style="width: 100%; height: 5;"></textarea>
-						<script>
+				<label class="control-label col-sm-<%=formleft%>" for="content">NOTE</label>
+				<div class="col-sm-<%=formright%>">
+					<textarea class="form-control" rows="10" cols="30" id="content"
+						name="content" style="width: 100%; height: 5;"></textarea>
+					<script>
 							var oEditors = [];
 							$(function(){
 								nhn.husky.EZCreator.createInIFrame({
@@ -73,19 +78,22 @@
 									});
 								});
 							</script>
-					</div>
 				</div>
 			</div>
-		</div>
-		<hr>
-		<div class="form-group">
-			<div align="center" class="col-sm-offset-3 col-sm-6">
-				<button class="btn btn-default" type="button" id="savebtn">저장</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
+
+			<!-- </div> -->
+			<div class="form-group">
+				<div align="center" class="col-sm-offset-5 col-sm-10">
+					<button class="topmybutton topmybutton1" type="button" id="savebtn">SAVE</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="topmybutton topmybutton1" type="button"
+						id="gotoback">BACK</button>
+				</div>
+
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
+
 
 	<script>
 
@@ -131,9 +139,10 @@ $(document).ready(function() {
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
-				});
-			});
+				location.href='<%=MyCtrlCommand%>
+		boList&${requestScope.parameter}';
+											});
+						});
 	</script>
 </body>
 </html>

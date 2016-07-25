@@ -28,20 +28,17 @@ tr:hover{background-color:#cbe7cb}
 <br><br>
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<!-- <div class="panel-heading">게시판</div> -->
-		<label>BOARD LIST</label><br><br>
 		<table class="table" align="center">
 			<thead>
 				<tr> 
 					<th>&nbsp;&nbsp;&nbsp;&nbsp;번호</th>
-					<th>제목</th>
-					<th>작성자</th>
+					<th>지역</th>
+					<th>산 이름</th>
 					<th>작성일자</th>
 					<th>수정일자</th>
-					<th>조회수</th>
 					<c:if test="${sessionScope.whologin == 2}">
 						<th>수정</th>
 						<th>삭제</th>
-						<th>답글</th>
 					</c:if>
 				</tr>
 			</thead>
@@ -74,7 +71,7 @@ tr:hover{background-color:#cbe7cb}
 
 				</tr>
 			</c:forEach>
-
+			
 			<tr>
 				<td colspan="10" align="center">
 					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>boListForm"
