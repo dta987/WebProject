@@ -305,7 +305,7 @@
 				$("#password").popover("hide");
 				$("#pwspan").attr("class", "glyphicon form-control-feedback");
 			} else if ( $("#password").val().length > 7 && $("#password").val().length < 17  ){
-				if (this.value.match(/^[\w]+[!-)]{1,}[0-9]{1,}/)){
+				if (this.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[`~!@#$%^&*()+=,./?|{};:<>\\])(?=\S+$).{8,}$/)){
 					$("#pwdiv").attr("class", "form-group has-success has-feedback");
 					$("#password").attr("data-content", "사용가능한 비밀번호입니다.");
 					$("#pwspan").attr("class", "glyphicon glyphicon-ok form-control-feedback");

@@ -14,7 +14,7 @@
 %>
 
 <%
-	String myurl = request.getRequestURL().toString();
+	String myurl = request.getRequestURI().toString();
 	String uri = request.getRequestURI();
 	String relativeWebPath = "/View/images/일본산이미지";
 	String absoluteWebPath = getServletContext().getRealPath(relativeWebPath);

@@ -149,7 +149,7 @@ public class BoardDao extends SuperDao {
 				+ " from"
 				+ " ("
 				+ " select board_no, board_title, board_writ_date, board_update, board_readhit, user_nickname, board_writer, group_no, order_no, depth, rank() over( order by group_no desc, order_no desc, depth asc) as ranking"
-				+ " from boards where group_no > 0 and board_title is not null"
+				+ " from boards where order_no = 0"
 				+ " )"
 				+ " where ranking between ? and ? ";
 
@@ -171,8 +171,7 @@ public class BoardDao extends SuperDao {
 				board.setBoard_no(rs.getInt("board_no"));
 				board.setBoard_title(rs.getString("board_title"));
 				// board.setBoard_writ_date(rs.getString("board_writ_date"));
-				board.setBoard_writ_date(format.format(rs
-						.getDate("board_writ_date")));
+				board.setBoard_writ_date(format.format(rs	.getDate("board_writ_date")));
 				board.setBoard_update(format.format(rs.getDate("board_update")));
 				board.setBoard_readhit(rs.getString("board_readhit"));
 				board.setUser_nickname(rs.getString("user_nickname"));

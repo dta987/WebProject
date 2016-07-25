@@ -32,7 +32,6 @@ public class moUpdateController implements SuperController {
 		mountain.setMountain_img(req.getParameter("mountain_img"));
 		mountain.setMountain_introduce(req.getParameter("mountain_introduce"));
 		mountain.setMountain_name(req.getParameter("mountain_name"));
-		mountain.setMountain_thema(Integer.parseInt(req.getParameter("mountain_thema")));
 		mountain.setUpdatedate(req.getParameter("updatedate"));
 		
 		int cnt = dao.UpdateMountain(mountain);

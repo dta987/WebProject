@@ -1,13 +1,25 @@
-create user yamaman_db identified by oracle account unlock;
+--create user yamaman_db identified by oracle account unlock;
 
-grant connect, resource to yamaman_db;
+--grant connect, resource to yamaman_db;
 
 --2016/07/22 수정 성진
 --mountain history 컬럼 수정
 --title 테이블 이름 titles로 변경
 
+--테이블, 시퀀스 삭제
+--drop table boards;
+--drop table titles;
+--drop table mountains_history;
+--drop table members;
+--drop table mountains;
+--drop sequence mountain_no_seq;
+--drop sequence board_no_seq;
+--drop sequence history_no_seq;
+--drop sequence title_no_seq;
+--drop sequence user_title_no_seq;
 
-//////테이블 생성/////////////
+
+--테이블 생성
 
 create table members(
 	user_id varchar2(15) primary key,
@@ -19,6 +31,10 @@ create table members(
 	sign_date date default sysdate,
 	user_title varchar2(1000)
 );
+
+--관리자 아이디 생성
+insert into members values( 'admin',	'1234',	'관리자',	null, '관리자',	null, null, null	);
+commit;
 
 create table boards(
 	board_no number primary key,	
@@ -38,7 +54,7 @@ create table boards(
 	on delete set null
 );
 
-create table Mountains(
+create table mountains(
 	mountain_no number primary key,
 	mountain_name varchar2(30),
 	mountain_area varchar2(20),
@@ -50,11 +66,11 @@ create table Mountains(
 );
 
 create table mountains_history(
-	history_no number,
+	history_no number primary key,
 	user_id varchar2(15),
 	mountain_no number,
-	hiking_date date,
-	memo varcher2(50),
+	hiking_date date default sysdate,
+	hiking_memo varchar2(50),
 	constraint history_user_id_fk
 	foreign key(user_id) references members(user_id) 
 	on delete set null,
@@ -70,7 +86,7 @@ create table titles(
 );
 
 
-/////// 시쿼스 생성 ////////
+--시쿼스 생성
 
 --mountain_no
 create sequence mountain_no_seq start with 1 increment by 1 nocache;

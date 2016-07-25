@@ -24,7 +24,7 @@ public class moInsertController implements SuperController {
 		ControllerForward forward = new ControllerForward();
 		MountainDao dao = new MountainDao();
 		int cnt = 0;
-
+		
 		System.out.println("¿©±â¿È");
 		HttpSession session = req.getSession();
 
