@@ -65,61 +65,41 @@
 
 	<nav id="scrollMenu" class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<c:if test="${sessionScope.whologin != 0}">
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-						role="button" aria-expanded="false">MY PAGE<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<c:if test="${sessionScope.whologin == 1}">
-								<li><a href="<%=MyCtrlCommand%>boList">내 게시글 목록</a></li>
-								<li><a href="<%=MyCtrlCommand%>boList">내 댓글 목록</a></li>
-								<li><a href="<%=MyCtrlCommand%>boList">회원정보</a></li>
-								<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-							</c:if>
+		<c:if test="${sessionScope.whologin != 0}">
+			<ul class="nav navbar-nav navbar-left">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+					role="button" aria-expanded="false"><span class="glyphicon glyphicon-align-left"
+						aria-hidden="true"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<c:if test="${sessionScope.whologin == 1}">
+							<li><a href="<%=MyCtrlCommand%>boList">내가 쓴글</a></li>
+							<li><a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">타이틀</a></li>
+						</c:if>
 
-							<c:if test="${sessionScope.whologin == 2}">
-								<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
-								<li><a href="<%=MyCtrlCommand%>boList">회원 목록</a></li>
-								<li><a href="<%=MyCtrlCommand%>boList">타이틀 관리</a></li>
-								<li><a href="<%=MyCtrlCommand%>boList">산 관리</a></li>
-							</c:if>
-						</ul></li>
-				</c:if>
-				<li>
-					<p class="navbar-text">
-						<c:forEach var="i" begin="1" end="37" step="1">
-						&nbsp;&nbsp;&nbsp;
-						</c:forEach>
-						<a href="#">MOUNTAIN</a> &nbsp;&nbsp;&nbsp; <a href="<%=MyCtrlCommand%>boList">BOARD</a>
-						<c:forEach var="i" begin="1" end="8" step="1">
-						&nbsp;&nbsp;
-						</c:forEach>
-						<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
-								class="topmybutton topmybutton1">LOGIN</button></a> <a href="<%=MyCtrlCommand%>meSignupForm"><button
-								type="button" class="topmybutton topmybutton1">JOIN</button></a>
-					</p>
-				</li>
+						<c:if test="${sessionScope.whologin == 2}">
+							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
+							<li><a href="<%=MyCtrlCommand%>moList">MOUNTAIN</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">TITLE</a></li>
+						</c:if>
+					</ul></li>
 			</ul>
-			<c:if test="${sessionScope.whologin == 2}">
-				<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
-				<li><a href="<%=MyCtrlCommand%>meList">회원 목록</a></li>
-				<li><a href="<%=MyCtrlCommand%>boList">타이틀 관리</a></li>
-				<li><a href="<%=MyCtrlCommand%>boList">산 관리</a></li>
-			</c:if>
-		</div>
-	</div>
-	</nav>
+		</c:if>
+		
+		<ul class="nav navbar-nav navbar">
+			<li>
+				<p class="navbar-text">
+					<a href="#">MOUNTAIN</a> &nbsp;&nbsp;&nbsp; <a href="<%=MyCtrlCommand%>boList">BOARD</a>
+				</p>
+			</li>
+		</ul>
 
-
-	<div class="container-fluid">
-		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav navbar-right">
 			<c:if test="${whologin == 0}">
 				<li>
 					<p class="navbar-text">
-						<c:forEach var="i" begin="1" end="39" step="1">
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						</c:forEach>
 						<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
 								class="topmybutton topmybutton1">LOGIN</button></a> <a href="<%=MyCtrlCommand%>meSignupForm"><button
 								type="button" class="topmybutton topmybutton1">JOIN</button></a>
@@ -130,20 +110,61 @@
 				<li>
 					<p class="navbar-text">
 						<a href="<%=MyCtrlCommand%>meMypage"><button type="button"
-								class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%></button></a>
-
-
-						<c:forEach var="i" begin="1" end="39" step="1">
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						</c:forEach>
-						<a href="<%=MyCtrlCommand%>meLogout"><button type="button"
-								class="topmybutton topmybutton1">LOGOUT</button></a>
+								class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%></button></a> <a
+							href="<%=MyCtrlCommand%>meLogout"><button type="button" class="topmybutton topmybutton1">LOGOUT</button></a>
 					</p>
 				</li>
 			</c:if>
 		</ul>
+	</div>
+	</nav>
 
 
+	<div class="container-fluid">
+		<c:if test="${sessionScope.whologin != 0}">
+			<ul class="nav navbar-nav navbar-left">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+					role="button" aria-expanded="false"><span class="glyphicon glyphicon-align-left"
+						aria-hidden="true"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<c:if test="${sessionScope.whologin == 1}">
+							<li><a href="<%=MyCtrlCommand%>boList">내가 쓴글</a></li>
+							<li><a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">타이틀</a></li>
+						</c:if>
+
+						<c:if test="${sessionScope.whologin == 2}">
+							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">MOUNTAIN</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">TITLE</a></li>
+						</c:if>
+
+					</ul></li>
+			</ul>
+		</c:if>
+
+		<ul class="nav navbar-nav navbar-right">
+			<c:if test="${whologin == 0}">
+				<li>
+					<p class="navbar-text">
+						<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
+								class="topmybutton topmybutton1">LOGIN</button></a> <a href="<%=MyCtrlCommand%>meSignupForm"><button
+								type="button" class="topmybutton topmybutton1">JOIN</button></a>
+					</p>
+				</li>
+			</c:if>
+			<c:if test="${whologin != 0}">
+				<li>
+					<p class="navbar-text">
+						<a href="<%=MyCtrlCommand%>meMypage"><button type="button"
+								class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%></button></a> <a
+							href="<%=MyCtrlCommand%>meLogout"><button type="button" class="topmybutton topmybutton1">LOGOUT</button></a>
+					</p>
+				</li>
+			</c:if>
+		</ul>
 	</div>
 
 	<div class="container-fluid" align="center" style="font-size: 40px">
