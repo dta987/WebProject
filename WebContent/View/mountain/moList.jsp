@@ -9,8 +9,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
-</style>
 </head>
 <body>
 
@@ -37,7 +35,6 @@
 					<td>${bean.mountain_thema}</td>
 					<td>${bean.mountain_update_date}</td>
 					<a href="<%=MyCtrlCommand%>boUpdateForm&no=${bean.board_no}&${requestScope.parameters}"> 수정 </a>
-						</c:if></td>
 					<td><c:if test="${sessionScope.whologin == 2}">
 							<a id="del" href="<%=MyCtrlCommand%>boDelete&no=${bean.board_no}&${requestScope.parameters}">
 								삭제 </a>
