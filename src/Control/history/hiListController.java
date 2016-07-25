@@ -7,10 +7,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sun.nio.cs.HistoricallyNamedCharset;
 import Control.ControllerForward;
 import Control.SuperController;
 import Model.Mountain;
 import Model.MountainDao;
+import Model.Mountains_history;
+import Model.Mountains_historyDao;
 import Model.Title;
 import Model.TitleDao;
 import Utility.FlowParameters;
@@ -22,7 +25,7 @@ public class hiListController implements SuperController {
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 		ControllerForward forward = new ControllerForward();
-		TitleDao dao = new TitleDao();
+		Mountains_historyDao dao = new Mountains_historyDao();
 
 		String mode = req.getParameter("mode");
 		if (mode == null || mode.equals("null") || mode.equals("")) {
@@ -47,12 +50,12 @@ public class hiListController implements SuperController {
 		int totalCount = dao.selectCount();
 		System.out.println("totalCount : " + totalCount);
 
-		String myurl = req.getContextPath() + "/YamaManCtrl?command=tiList";
+		String myurl = req.getContextPath() + "/YamaManCtrl?command=hiList";
 
 		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl,
 				mode, keyword);
 
-		List<Title> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
+		List<Mountains_history> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
 
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
@@ -64,7 +67,7 @@ public class hiListController implements SuperController {
 		req.setAttribute("parameters", parameters.toString());
 
 		forward.setRedirect(false);
-		forward.setPath("/View/title/tiList.jsp");
+		forward.setPath("/View/history/hiList.jsp");
 
 		return forward;
 	}

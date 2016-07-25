@@ -24,6 +24,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">
+function function1(  ){
+	alert('') ;
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP</title>
 <style type="text/css">
@@ -139,7 +144,7 @@ function closeNav() {
 							<li><a href="<%=MyCtrlCommand%>boList">내가 쓴글</a></li>
 							<li><a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">타이틀</a></li>
+							<li><a href="<%=MyCtrlCommand%>tiList">타이틀</a></li>
 						</c:if>
 
 
@@ -147,7 +152,7 @@ function closeNav() {
 							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
 							<li><a href="<%=MyCtrlCommand%>moList">MOUNTAIN</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">TITLE</a></li>
+							<li><a href="<%=MyCtrlCommand%>tiList">TITLE</a></li>
 						</c:if>
 					</ul></li>
 
@@ -197,14 +202,14 @@ function closeNav() {
 							<li><a href="<%=MyCtrlCommand%>boList">내가 쓴글</a></li>
 							<li><a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">타이틀</a></li>
+							<li><a href="<%=MyCtrlCommand%>tiList">타이틀</a></li>
 						</c:if>
 
 						<c:if test="${sessionScope.whologin == 2}">
 							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">MOUNTAIN</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">TITLE</a></li>
+							<li><a href="<%=MyCtrlCommand%>tiList">TITLE</a></li>
 						</c:if>
 
 					</ul></li>

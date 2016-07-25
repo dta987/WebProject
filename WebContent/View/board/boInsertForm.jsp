@@ -41,7 +41,7 @@
 						</select>
 					</div>
 					<div class="col-sm-<%=mywidth%>">
-						<input type="text" class="form-control" name="title" id="title" value="${bean.board_title}">
+						<input type="text" class="form-control" name="title" id="title">
 					</div>
 				</div>
 				<br>
@@ -92,10 +92,20 @@
 <script>
 
 $(document).ready(function() {
-	$("#savebtn").click(function() {
-		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-		$("#frm").submit();
-        //폼 submit
+	$("#savebtn").click(function() {	
+			if($("#category").val() != "-"){
+				if($("#title").val() != null || $("#title").val() != "") {
+						oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+						$("#frm").submit();
+			        	//폼 submit
+				} else {
+					alert("타이틀을 입력해주세요");
+					return false;
+				}
+			} else {
+				alert("카테고리를 선택해주세요");
+				return false;
+			}
 	});
 });
 

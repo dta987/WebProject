@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import Control.ControllerForward;
 import Control.SuperController;
 import Model.Mountain;
@@ -17,41 +19,38 @@ public class moInsertController implements SuperController {
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		
+
+		MultipartRequest multi = (MultipartRequest) req.getAttribute("multi");
 		ControllerForward forward = new ControllerForward();
-		
 		MountainDao dao = new MountainDao();
 		int cnt = 0;
 		
+		System.out.println("¿©±â¿È");
 		HttpSession session = req.getSession();
-		if(session.getAttribute("id") == null || session.getAttribute("id").equals("")) {
-			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
-		} else {
-			Mountain mountain = new Mountain();
-			
-			mountain.setMountain_area(req.getParameter("mountain_area"));
-			mountain.setMountain_address(req.getParameter("mountain_address"));
-			mountain.setMountain_img(req.getParameter("mountain_img"));
-			mountain.setMountain_introduce(req.getParameter("mountain_introduce"));
-			mountain.setMountain_name(req.getParameter("mountain_name"));
-			mountain.setMountain_thema(Integer.parseInt(req.getParameter("mountain_thema")));
-			mountain.setUpdatedate(req.getParameter("updatedate"));
-			
-			cnt = dao.InsertMountain(mountain);
-			
-			if(cnt > 0 ) {
-				forward.setRedirect(false);
-				forward.setPath("/YamaManCtrl?command=moList");
-			} else {
-				forward.setRedirect(true);
-				forward.setPath("/View/review/reErrPage.jsp");
-			}
 
+		Mountain mountain = new Mountain();
+
+		mountain.setMountain_area(multi.getParameter("area"));
+		mountain.setMountain_thema(multi.getParameter("thema"));
+		mountain.setMountain_name(multi.getParameter("name"));
+		mountain.setMountain_address(multi.getParameter("address"));
+		mountain.setMountain_img(multi.getFilesystemName("image"));
+		mountain.setMountain_introduce(multi.getParameter("content"));
+
+		cnt = dao.InsertMountain(mountain);
+
+		System.out.println("cnt : " + cnt);
+
+		if (cnt > 0) {
+			forward.setRedirect(false);
+			forward.setPath("/YamaManCtrl?command=moList");
+		} else {
+			forward.setRedirect(true);
+			forward.setPath("/View/review/reErrPage.jsp");
 		}
 
 		return forward;
-		
+
 	}
 
 }

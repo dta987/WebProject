@@ -18,7 +18,7 @@ public class hiUpdateFormController implements SuperController {
 		ControllerForward forward = new ControllerForward();
 
 		forward.setRedirect(true);
-		forward.setPath("/View/title/tiUpdateForm.jsp");
+		forward.setPath("/View/history/hiUpdateForm.jsp");
 
 		return forward;
 	}

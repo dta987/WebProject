@@ -3,6 +3,7 @@
 <%@ include file="./review/rvTOP.jsp"%>
 <% 
 	
+//메인 이미지 5장 랜덤으로 고르기 기능
 	File file = new File(absoluteWebPath);
 	File[] imgFiles = file.listFiles();
 	Random ran = new Random();
@@ -72,7 +73,7 @@
 		<c:forEach var="carousel_img" items="<%=carousel_img%>">
 			<div class="w3-display-container mySlides col-sm-offset-1 col-sm-7">
 				<div class="container-fluid">
-					<img src="<%=contextPath %>${carousel_img}" style="width:150%; height:330px">
+					<img src="<%=contextPath %>${carousel_img}" style="width:150%; height:500px">
 					<br><br><br>
 				</div>
 			</div>

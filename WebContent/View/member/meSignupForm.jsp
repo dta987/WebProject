@@ -18,7 +18,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="../../View/script/script.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 .imabutton {
@@ -68,9 +67,9 @@
 					<div id="pwdiv" class="form-group has-feedback">
 						<label for="passoword" class="col-sm-<%=label%> control-label">PW</label>
 						<div class="col-sm-<%=input%>">
-							<input type="password" class="form-control" id="password"
-								name="password" placeholder="password"> <span
-								id="pwspan" class="glyphicon form-control-feedback"></span>
+							<input type="password" class="form-control" id="password" name="password"
+								placeholder="password" data-toggle="popover" data-trigger="top" data-placement="top"
+								data-content=""> <span id="pwspan" class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="pwcheck"></div>
 					</div>
@@ -78,9 +77,9 @@
 						<label for="passoword2" class="col-sm-<%=label%> control-label">P.W
 							CHECK</label>
 						<div class="col-sm-<%=input%>">
-							<input type="password" class="form-control" id="password2"
-								name="password2" placeholder="password"> <span
-								id="pwspan" class="glyphicon form-control-feedback"></span>
+							<input type="password" class="form-control" id="password2" name="password2"
+								placeholder="password" data-toggle="popover" data-trigger="top" data-placement="top"
+								data-content=""> <span id="pwspan" class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="pwcheck"></div>
 					</div>
@@ -306,7 +305,7 @@
 				$("#password").popover("hide");
 				$("#pwspan").attr("class", "glyphicon form-control-feedback");
 			} else if ( $("#password").val().length > 7 && $("#password").val().length < 17  ){
-				if (this.value.match(/^[\w]+[!-)]{1,}[0-9]{1,}/)){
+				if (this.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[`~!@#$%^&*()+=,./?|{};:<>\\])(?=\S+$).{8,}$/)){
 					$("#pwdiv").attr("class", "form-group has-success has-feedback");
 					$("#password").attr("data-content", "사용가능한 비밀번호입니다.");
 					$("#pwspan").attr("class", "glyphicon glyphicon-ok form-control-feedback");

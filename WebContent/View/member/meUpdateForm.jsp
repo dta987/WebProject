@@ -107,13 +107,13 @@
 					</div>
 				</td>
 				<td>
-
 					<div class="form-group" align="center">
 						&nbsp;&nbsp; <img id="user_img"
 							src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded"
 							alt="Cinque Terre" width="200px" height="200px">
 					</div>
 					<div class="form-group" align="center">
+					
 						<button type="button" id="image_add"
 							class="imamybutton imamybutton1">IMAGE</button>
 						&nbsp;&nbsp;
@@ -235,8 +235,7 @@
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>
-		meList&${requestScope.parameter}';
+				location.href='<%=MyCtrlCommand%>meList&${requestScope.parameter}';
 											});
 						});//뒤로가기
 	</script>

@@ -9,10 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import Control.ControllerForward;
 import Control.SuperController;
-import Model.Board;
-import Model.BoardDao;
-import Model.Title;
-import Model.TitleDao;
+import Model.Mountains_history;
+import Model.Mountains_historyDao;
 
 public class hiInsertController implements SuperController {
 
@@ -21,26 +19,27 @@ public class hiInsertController implements SuperController {
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		ControllerForward forward = new ControllerForward();
-		TitleDao dao = new TitleDao();
+		Mountains_historyDao dao = new Mountains_historyDao();
 		int cnt = 0;
 		
 		HttpSession session = req.getSession();
-		if(session.getAttribute("title_no") == null || session.getAttribute("title_no").equals("")) {
+		if(session.getAttribute("id") == null || session.getAttribute("id").equals("") || session.getAttribute("id").equals("null") ) {
 			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/tiInsertForm.jsp");
+			forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
 		} else {
-			Title title = new Title();
+			Mountains_history history = new Mountains_history();
 			
-			title.setTitle_condition(req.getParameter("title_condition"));
-			title.setTitle_img(req.getParameter("title_img"));
-			title.setTitle_name(req.getParameter("title_name"));
+			history.setUser_id(req.getParameter("user_id"));
+			history.setHiking_date(req.getParameter("hiking_date"));
+			history.setHiking_memo(req.getParameter("hiking_memo"));
+			history.setMountain_no(Integer.parseInt(req.getParameter("mountain_no")));
 			
-			cnt = dao.InsertData(title);
+			cnt = dao.InsertData(history);
 			
 			
 			if(cnt > 0 ) {
 				forward.setRedirect(false);
-				forward.setPath("/YamaManCtrl?command=tiList");
+				forward.setPath("/YamaManCtrl?command=hiList");
 			} else {
 				forward.setRedirect(true);
 				forward.setPath("/View/review/reErrPage.jsp");

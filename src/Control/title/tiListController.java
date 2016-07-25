@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import Control.ControllerForward;
 import Control.SuperController;
-import Model.Mountain;
-import Model.MountainDao;
 import Model.Title;
 import Model.TitleDao;
 import Utility.FlowParameters;

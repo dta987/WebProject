@@ -14,7 +14,7 @@
 %>
 
 <%
-	String myurl = request.getRequestURL().toString();
+	String myurl = request.getRequestURI().toString();
 	String uri = request.getRequestURI();
 	String relativeWebPath = "/View/images/일본산이미지";
 	String absoluteWebPath = getServletContext().getRealPath(relativeWebPath);
@@ -48,10 +48,6 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- 부트스트랩 -->
 
-<!-- jQuery
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script  src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
-jQuery -->
 
 
 <link rel="stylesheet" href="<%=contextPath%>/View/layout/Style.css">
