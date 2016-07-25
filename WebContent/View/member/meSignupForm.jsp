@@ -68,7 +68,7 @@
 						<label for="passoword" class="col-sm-<%=label%> control-label">PW</label>
 						<div class="col-sm-<%=input%>">
 							<input type="password" class="form-control" id="password" name="password"
-								placeholder="password" data-toggle="popover" data-trigger="focus" data-placement="top"
+								placeholder="password" data-toggle="popover" data-trigger="top" data-placement="top"
 								data-content=""> <span id="pwspan" class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="pwcheck"></div>
@@ -77,7 +77,7 @@
 						<label for="passoword2" class="col-sm-<%=label%> control-label">P.W CHECK</label>
 						<div class="col-sm-<%=input%>">
 							<input type="password" class="form-control" id="password2" name="password2"
-								placeholder="password" data-toggle="popover" data-trigger="focus" data-placement="top"
+								placeholder="password" data-toggle="popover" data-trigger="top" data-placement="top"
 								data-content=""> <span id="pwspan" class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
