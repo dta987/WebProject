@@ -1,5 +1,6 @@
 package Control;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -85,6 +86,12 @@ public class FrontController extends HttpServlet {
 			System.out.println("파일 업로드를 수행합니다.");
 			String uploadedPath = context.getRealPath("/upload/");
 			System.out.println("uploadedPath : " + uploadedPath);
+			
+			//upload 폴더 없을 경우 생성
+			File uploadFolder = new File(uploadedPath); 
+			if( ! uploadFolder.exists()  ){
+				uploadFolder.mkdir();
+			}
 
 			// 그래서, 파일 업로드를 위한 MultipartRequest 객체를 구해주는 메소드를 호출한다.
 			MultipartRequest multi = MyFileUpload.getMultiPartRequest(req,
