@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
 	int myoffset = 2;
@@ -11,20 +12,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<style>
+th {
+    background-color: #cbe7cb;
+    color: gray;
+}
+</style>
+
 </head>
 <body>
 	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel panel-default panel-success">
+		<div class="panel">
 			<c:if test="${bean.order_no == 0}">
 				<div class="panel-heading">
 					<table>
 						<tr>
-							<td>
-								<h4>${bean.board_title}</h4>
-							</td>
-							<td align="right"><font>${bean.board_writ_date}</font><br></td>
+						
+							<th>
+								<h5>${bean.board_title}</h5>
+							<c:forEach var="i" begin="1" end="30" step="1">
+								&nbsp;&nbsp;&nbsp;
+							</c:forEach>
+							<font> ${bean.user_nickname} &nbsp;&nbsp; ${bean.board_writ_date}</font><br>
+							
+							</th>
 						</tr>
-						${bean.user_nickname}
+
 					</table>
 
 				</div>
@@ -36,17 +50,19 @@
 	<c:if test="<%=loginfo != null%>">
 		<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 			<form id="replyForm" action="<%=MyCtrlByForm%>" method="post">
-				<input type="hidden" name="command" value="boReplyInsert"> <input type="hidden"
-					name="id" value="<%=loginfo.getUser_id()%>"> <input type="hidden" name="nickname"
-					value="<%=loginfo.getUser_nickname()%>"> <input type="hidden" name="group_no"
-					value="${bean.group_no}"> <input type="hidden" name="order_no" value="${bean.order_no}">
-				<input type="hidden" name="depth" value="${bean.depth}">
+				<input type="hidden" name="command" value="boReplyInsert"> <input
+					type="hidden" name="id" value="<%=loginfo.getUser_id()%>">
+				<input type="hidden" name="nickname"
+					value="<%=loginfo.getUser_nickname()%>"> <input
+					type="hidden" name="group_no" value="${bean.group_no}"> <input
+					type="hidden" name="order_no" value="${bean.order_no}"> <input
+					type="hidden" name="depth" value="${bean.depth}">
 				<table>
 					<tr>
 						<td><label class="control-label col-sm-<%=formleft%>"></label>sdafsdaff</td>
-						<td><textarea name="content" style="resize: none;" class="col-sm-<%=formright%>" rows="3"
-								cols=""></textarea></td>
-						<td><button type="submit" class="btn btn-default">등록</button></td>
+						<td><textarea name="content" style="resize: none; border-color:#cbe7cb ;"
+								class="col-sm-<%=formright%>" rows="3" cols=""></textarea></td>
+						<td><button type="submit" class="topmybutton topmybutton1">ADD</button></td>
 
 					</tr>
 					<tr>
@@ -74,14 +90,16 @@
 			<hr>
 		</div>
 	</c:forEach>
-	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>" align="center">
+	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>"
+		align="center">
 		<footer>${requestScope.pagingHtml}</footer>
 	</div>
 
 
-	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>" align="center">
-		<br> <br>
-		<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
+	<div class="container col-sm-offset-5 col-sm-<%=mywidth%>"
+		align="center">
+		<br>
+		<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
 	</div>
 
 
@@ -92,9 +110,10 @@
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
-				});
-			});
+				location.href='<%=MyCtrlCommand%>
+		boList&${requestScope.parameter}';
+											});
+						});
 	</script>
 </body>
 </html>

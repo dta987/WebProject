@@ -9,14 +9,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<%-- <script type="text/javascript">
+	function gotoForm(){
+		location.href='<%=MyCtrlCommand%>boInsertForm';
+	}
+</script> --%>
+
+<head>
+<style>
+
+tr:hover{background-color:#cbe7cb}
+
+</style>
+
 </head>
 <body>
-	<div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel-heading">게시판</div>
-		<table class="table table-striped table-hover">
+<br><br>
+	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<!-- <div class="panel-heading">게시판</div> -->
+		<label>BOARD LIST</label><br><br>
+		<table class="table" align="center">
 			<thead>
-				<tr>
-					<th>번호</th>
+				<tr> 
+					<th>&nbsp;&nbsp;&nbsp;&nbsp;번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일자</th>
@@ -52,7 +68,7 @@
 						<c:if test="${bean.depth <= 1 and sessionScope.whologin == 2 }">
 							<a
 								href="<%=MyCtrlCommand%>boDepthInsertForm&no=${bean.board_no}&${requestScope.parameters}&group_no=${bean.group_no}&order_no=${bean.order_no}&depth=${bean.depth}">
-								답글 </a>
+								댓글 </a>
 						</c:if>
 					</td>
 

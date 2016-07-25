@@ -78,6 +78,7 @@
 							<li><a href="<%=MyCtrlCommand%>boList">타이틀</a></li>
 						</c:if>
 
+
 						<c:if test="${sessionScope.whologin == 2}">
 							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
@@ -85,6 +86,7 @@
 							<li><a href="<%=MyCtrlCommand%>boList">TITLE</a></li>
 						</c:if>
 					</ul></li>
+
 			</ul>
 		</c:if>
 		

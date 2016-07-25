@@ -14,24 +14,24 @@
 </head>
 <body>
 
-	<div class="panel panel-default">
+	<!-- <div class="panel panel-default">
 		<div class="panel-body"></div>
-	</div>
-	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel panel-default panel-success">
+	</div> -->
+	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<!-- <div class="panel panel-default panel-success">
 			<div class="panel-heading">
 				<h4>게시물 수정</h4>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body"> -->
 				<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="command" value="boUpdate">
-
+						<label>BOARD CORRECT</label><br><br>
 					<div class="form-group ">
-
-						<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
+						
+						<label class="control-label col-sm-<%=formleft%>" for="subject">TITLE</label>
 						<div class="col-sm-<%=myoffset%>">
 							<select class="form-control " name="category" id="category">
-								<option value="-" selected="selected">-- 분류 선택---------
+								<option value="-" selected="selected">--분류 선택--
 								<option value="자유게시판">자유게시판
 							</select>
 						</div>
@@ -41,26 +41,27 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="content">글 내용</label>
+						<label class="control-label col-sm-<%=formleft%>" for="content">NOTE</label>
 						<div class="col-sm-<%=formright%>">
 							<textarea name="content" id="content" rows="20" cols="" class="form-control">${bean.board_content}</textarea>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="image">이미지</label>
+						<label class="control-label col-sm-<%=formleft%>" for="image">IMAGE</label>
 						<div class="col-sm-<%=formright%>">
 							<input type="file" class="form-control" name="image" id="image">
 						</div>
 					</div>
-
+					<br>
 					<div class="form-group">
-						<div align="center" class="col-sm-offset-3 col-sm-6">
-							<button class="btn btn-default" type="submit">저장</button>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
+						<div align="center" class="col-sm-offset-5 col-sm-10">
+							<button class="topmybutton topmybutton1" type="submit">ADD</button>
+							&nbsp;&nbsp;&nbsp;
+							<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
 						</div>
 					</div>
+					<br>
 				</form>
 			</div>
 

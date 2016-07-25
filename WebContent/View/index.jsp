@@ -47,9 +47,14 @@
 </head>
 <body>
 	<div align="center" id="main">
-		<a href="<%=request.getContextPath()%>/View/Main.jsp"><img alt="main_img" src="<%=request.getContextPath()%>/View/images/나뭇잎.png"></a>
+
+		<a href="Main.jsp"><img alt="main_img" src="../View/images/나뭇잎.png"></a>
 		<br><br>
-		<a href="<%=request.getContextPath()%>/View/Main.jsp"><button type="button" class="mybutton mybutton1">Y A M A M A N</button></a>
+		<a href="Main.jsp"><button type="button" class="mybutton mybutton1">Y A M A M A N</button></a>
+
+<!-- 		<a href="./Main.jsp"><img alt="main_img" src="./../View/images/나뭇잎.png"></a> <br> <img
+			alt="YAMAMAN" src="">
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git -->
 	</div>
 </body>
 </html>
