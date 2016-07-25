@@ -80,7 +80,7 @@ function function1(  ){
 							<li><a href="<%=MyCtrlCommand%>boList">내가 쓴글</a></li>
 							<li><a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">타이틀</a></li>
+							<li><a href="<%=MyCtrlCommand%>tiList">타이틀</a></li>
 						</c:if>
 
 
@@ -88,7 +88,7 @@ function function1(  ){
 							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
 							<li><a href="<%=MyCtrlCommand%>moList">MOUNTAIN</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">TITLE</a></li>
+							<li><a href="<%=MyCtrlCommand%>tiList">TITLE</a></li>
 						</c:if>
 					</ul></li>
 
@@ -138,14 +138,14 @@ function function1(  ){
 							<li><a href="<%=MyCtrlCommand%>boList">내가 쓴글</a></li>
 							<li><a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">타이틀</a></li>
+							<li><a href="<%=MyCtrlCommand%>tiList">타이틀</a></li>
 						</c:if>
 
 						<c:if test="${sessionScope.whologin == 2}">
 							<li><a href="<%=MyCtrlCommand%>meList">MEMBER</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">BOARD</a></li>
 							<li><a href="<%=MyCtrlCommand%>boList">MOUNTAIN</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">TITLE</a></li>
+							<li><a href="<%=MyCtrlCommand%>tiList">TITLE</a></li>
 						</c:if>
 
 					</ul></li>
