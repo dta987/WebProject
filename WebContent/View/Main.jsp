@@ -3,6 +3,7 @@
 <%@ include file="./review/rvTOP.jsp"%>
 <% 
 	
+//메인 이미지 5장 랜덤으로 고르기 기능
 	File file = new File(absoluteWebPath);
 	File[] imgFiles = file.listFiles();
 	Random ran = new Random();

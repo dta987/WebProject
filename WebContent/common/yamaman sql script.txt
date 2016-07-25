@@ -9,9 +9,9 @@
 --테이블, 시퀀스 삭제
 --drop table boards;
 --drop table titles;
+--drop table mountains_history;
 --drop table members;
 --drop table mountains;
---drop table mountains_history;
 --drop sequence mountain_no_seq;
 --drop sequence board_no_seq;
 --drop sequence history_no_seq;
