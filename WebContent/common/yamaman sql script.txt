@@ -22,13 +22,12 @@ create table members(
 
 create table boards(
 	board_no number primary key,	
-	board_category number,
-	board_title varchar2(30),
+	board_category varchar2(20),
+	board_title varchar2(100),
 	board_writer varchar2(15),
 	board_writ_date date default sysdate,
 	board_update date default sysdate,
-	board_content varchar2(500),
-	board_img varchar2(1000),
+	board_content varchar2(2000),
 	board_readhit number default 0,
 	user_nickname varchar2(20),
 	group_no number default 0,
@@ -44,10 +43,10 @@ create table Mountains(
 	mountain_name varchar2(30),
 	mountain_area varchar2(20),
 	mountain_address varchar2(60),
-	mountain_img varchar2(1000),
-	mountain_introduce varchar2(500),
+	mountain_img varchar2(100),
+	mountain_introduce varchar2(100),
 	mountain_thema number,
-	updatedate date default sysdate
+	update_date date default sysdate
 );
 
 create table mountains_history(
@@ -55,6 +54,7 @@ create table mountains_history(
 	user_id varchar2(15),
 	mountain_no number,
 	hiking_date date,
+	memo varcher2(50),
 	constraint history_user_id_fk
 	foreign key(user_id) references members(user_id) 
 	on delete set null,
