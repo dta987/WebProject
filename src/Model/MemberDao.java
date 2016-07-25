@@ -18,7 +18,7 @@ public class MemberDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = " delete from members where user_id=? " ;
+		String sql = "delete from members where user_id=?" ;
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -342,8 +342,6 @@ public class MemberDao extends SuperDao {
 		String sql = "select count(*) as cnt from members";
 
 		int cnt = 0;
-
-		List<Member> member_lists = new ArrayList<Member>();
 
 		try {
 			if (conn == null) {

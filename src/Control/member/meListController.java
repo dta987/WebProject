@@ -19,9 +19,8 @@ public class meListController implements SuperController {
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		ControllerForward forward = new ControllerForward();
-		FlowParameters parameters = new FlowParameters();
 		MemberDao dao = new MemberDao();
 		
 		String mode = req.getParameter("mode");
@@ -33,11 +32,18 @@ public class meListController implements SuperController {
 		String keyword = req.getParameter("keyword") ;
 		if ( keyword == null || keyword.equals("null")   ) {
 			keyword = "" ;
-		} 
+		}
+		
+		String pageNumber = req.getParameter("pageNumber");
+		String pageSize = req.getParameter("pageSize");
+		
+		FlowParameters parameters = new FlowParameters();
+		parameters.setKeyword(keyword);
+		parameters.setMode(mode);
+		parameters.setPageNumber(pageNumber);
+		parameters.setPageSize(pageSize);
 		
 
-		String _pageNumber = req.getParameter("pageNumber");
-		String _pageSize = req.getParameter("pageSize");
 		int totalCount = dao.selectCount();
 		System.out.println("totalCount : " + totalCount);
 
@@ -45,7 +51,7 @@ public class meListController implements SuperController {
 		
 		
 
-		Paging pageInfo = new Paging(_pageNumber, _pageSize, totalCount, myurl, mode, keyword);
+		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl, mode, keyword);
 
 		List<Member> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword);
 		

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%!String[] carousel_img = { "/View/images/산타니05.jpg",
-			"/View/images/산타니05.jpg", "/View/images/산타니05.jpg",
-			"/View/images/산타니05.jpg" };%>
+<%@ include file="./../common/common.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,9 +47,14 @@
 </head>
 <body>
 	<div align="center" id="main">
+<<<<<<< HEAD
 		<a href="Main.jsp"><img alt="main_img" src="../View/images/나뭇잎.png"></a>
 		<br><br>
 		<a href="Main.jsp"><button type="button" class="mybutton mybutton1">Y A M A M A N</button></a>
+
+<!-- 		<a href="./Main.jsp"><img alt="main_img" src="./../View/images/나뭇잎.png"></a> <br> <img
+			alt="YAMAMAN" src="">
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git -->
 	</div>
 </body>
 </html>

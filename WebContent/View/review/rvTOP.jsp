@@ -1,27 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="Model.Member"%>
-<%@ include file="../../common/common.jsp"%>
-
-<%
-	String myurl = request.getRequestURI().toString();
-	String uri = request.getRequestURI();
-	int idx = myurl.indexOf(uri);
-
-	String url = "/View/Main.jsp";
-	//웹 서버의 이미지를 올릴경로
-	String uploadPath = "/upload/";
-	String uploadedFolder = myurl.substring(0, idx) + contextPath
-			+ uploadPath;
-
-	/* 	out.print("url=" + myurl + "<br>");
-	 out.print("uri=" + uri + "<br>");
-	 out.print("uploadedFolder=" + uploadedFolder + "<br>");
-
-	 String realPath1 = application.getRealPath(uploadPath);
-	 out.print("realPath1=" + realPath1 + "<br>");  */
-%>
-
+<%@ include file="./../../common/common.jsp"%>
 <%
 	Member loginfo = (Member) session.getAttribute("loginfo");
 
@@ -47,6 +27,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP</title>
+<style type="text/css">
+.navbar-right {
+	margin-right: 5px;
+}
+</style>
 
 <style type="text/css">
 .topmybutton {
@@ -81,6 +66,7 @@
 
 	<nav id="scrollMenu" class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
+<<<<<<< HEAD
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -95,6 +81,43 @@
 								<li><a href="<%=MyCtrlCommand%>boList">회원정보</a></li>
 								<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
 							</c:if>
+<%-- ======
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<table>
+				<td>
+					<ul class="nav navbar-nav navbar">
+						<li>
+							<ul class="nav navbar-nav">
+								<li>
+									<p class="navbar-text">
+										<a href="#">MOUNTAIN</a>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="<%=MyCtrlCommand%>boList">BOARD</a>
+									</p>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</td>
+				<td>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<ul class="nav navbar-nav">
+								<c:if test="${sessionScope.whologin == 0}">
+									<li><button id="loginbtn" type="button" class="btn btn-default navbar-btn">Login</button></li>
+								</c:if>
+								<c:if test="${sessionScope.whologin != 0}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+										role="button" aria-expanded="false">Memu <span class="caret"></span></a>
+										<ul class="dropdown-menu" role="menu">
+											<c:if test="${sessionScope.whologin == 1}">
+												<li><a href="<%=MyCtrlCommand%>boList">내 게시글 목록</a></li>
+												<li><a href="<%=MyCtrlCommand%>boList">내 댓글 목록</a></li>
+												<li><a href="<%=MyCtrlCommand%>boList">회원정보</a></li>
+												<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
+											</c:if>
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git --%>
+
 
 							<c:if test="${sessionScope.whologin == 2}">
 								<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
@@ -132,13 +155,28 @@
 				</li> --%>
 
 			</ul>
+
+											<c:if test="${sessionScope.whologin == 2}">
+												<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
+												<li><a href="<%=MyCtrlCommand%>meList">회원 목록</a></li>
+												<li><a href="<%=MyCtrlCommand%>boList">타이틀 관리</a></li>
+												<li><a href="<%=MyCtrlCommand%>boList">산 관리</a></li>
+											</c:if>
+										</ul></li>
+								
+							</ul>
+						</li>
+					</ul>
+				</td>
+			</table>
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
 		</div>
 	</div>
 	</nav>
 
 
-
 	<div class="container-fluid">
+<<<<<<< HEAD
 		<ul class="nav navbar-nav">
 			<c:if test="${whologin == 0}">
 				<li>
@@ -171,6 +209,32 @@
 		</ul>
 
 		<%-- <ul class="nav navbar-nav navbar-right">
+=======
+		<ul class="nav navbar-nav navbar-left">
+			<c:if test="${sessionScope.whologin != 0}">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+					role="button" aria-expanded="false">Memu <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<c:if test="${sessionScope.whologin == 1}">
+							<li><a href="<%=MyCtrlCommand%>boList">내 게시글 목록</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">내 댓글 목록</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">회원정보</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
+						</c:if>
+
+						<c:if test="${sessionScope.whologin == 2}">
+							<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
+							<li><a href="<%=MyCtrlCommand%>meList">회원 목록</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">타이틀 관리</a></li>
+							<li><a href="<%=MyCtrlCommand%>boList">산 관리</a></li>
+						</c:if>
+					</ul></li>
+			</c:if>
+
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
 			<c:if test="${whologin == 0}">
 				<ul class="pager">
 					<li>
@@ -181,8 +245,13 @@
 			</c:if>
 			<c:if test="${whologin != 0}">
 				<ul class="pager">
+<<<<<<< HEAD
 					<li><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
 					<li><a href="<%=MyCtrlCommand%>meLogout">LOGOUT</a></li>
+=======
+					<li><a href="<%=MyCtrlCommand%>meDetailView&id=<%=loginfo.getUser_id()%>"><%=loginfo.getUser_nickname()%></a></li>
+					<li><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
 				</ul>
 			</c:if>
 		</ul> --%>
@@ -194,9 +263,15 @@
 		A N
 	</div>
 	<div class="container-fluid" align="center">
+<<<<<<< HEAD
 		<br> <a href="#">MOUNTAIN</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="<%=MyCtrlCommand%>boList">BOARD</a>
+=======
+		<a href="#">MOUNTAIN</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+			href="<%=MyCtrlCommand%>boList">BOARD</a>
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
 	</div>
 
 	<br>
@@ -208,7 +283,6 @@
 			alert('${requestScope.errmsg}')
 		</script>
 	</c:if>
-
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#scrollMenu").hide();
@@ -220,6 +294,12 @@
 						$("#scrollMenu").fadeOut();
 					}
 				})
+			});
+		});		
+		
+		$(document).ready(function() {
+			$("#loginbtn").click(function() {
+				location.href="<%=MyCtrlCommand%>meLoginForm";
 			});
 		});
 	</script>

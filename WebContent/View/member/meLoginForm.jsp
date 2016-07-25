@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ include file="../review/rvTOP.jsp"%>
 <%-- <%
+=======
+<%@ include file="./../review/rvTOP.jsp"%>
+
+<%
+>>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
 	int myoffset = 4;
 	int mywidth = twelve - 2 * myoffset;
 	int label = 1;

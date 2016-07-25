@@ -48,8 +48,8 @@ public class meDetailViewController implements SuperController {
 		String id = req.getParameter("id");
 
 		bean = dao.SelectDateByPK(id);
-
-		//System.out.println(bean.toString());
+		
+		req.setAttribute("parameters", parameters.toString());
 
 		req.setAttribute("bean", bean);
 		forward.setRedirect(false);
