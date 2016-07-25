@@ -18,7 +18,7 @@ public class hiInsertFormController implements SuperController {
 		ControllerForward forward = new ControllerForward();
 
 		forward.setRedirect(true);
-		forward.setPath("/View/title/tiInsertForm.jsp");
+		forward.setPath("/View/history/hiInsertForm.jsp");
 
 		return forward;
 	}

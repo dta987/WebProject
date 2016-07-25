@@ -5,12 +5,9 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import Control.ControllerForward;
 import Control.SuperController;
-import Model.Mountain;
-import Model.MountainDao;
 import Model.Title;
 import Model.TitleDao;
 
@@ -35,7 +32,7 @@ public class tiUpdateController implements SuperController {
 			
 			forward.setRedirect(false);
 			req.setAttribute("title_no", req.getParameter("title_no"));
-			forward.setPath(req.getContextPath() + "/YamaManCtrl?command=tiDetailView");
+			forward.setPath(req.getContextPath() + "/YamaManCtrl?command=tiUpdate");
 			
 		} else {
 			forward.setRedirect(true);

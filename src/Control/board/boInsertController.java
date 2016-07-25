@@ -25,23 +25,31 @@ public class boInsertController implements SuperController {
 		BoardDao dao = new BoardDao();
 		int cnt = 0;
 
-		Board board = new Board();
-
-		board.setBoard_writer(loginfo.getUser_id());
-		board.setUser_nickname(loginfo.getUser_nickname());
-		board.setBoard_category(req.getParameter("category"));
-		board.setBoard_title(req.getParameter("title"));
-		board.setBoard_content(req.getParameter("content"));
-
-		cnt = dao.InsertBoard(board);
-
-		if (cnt > 0) {
+		if(session.getAttribute("id") == null || session.getAttribute("id").equals("") || session.getAttribute("id").equals("null") ) {
 			forward.setRedirect(true);
-			forward.setPath("/YamaManCtrl?command=boList");
+			forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
 		} else {
-			forward.setRedirect(true);
-			forward.setPath("/View/review/reErrPage.jsp");
+			Board board = new Board();
+	
+			board.setBoard_writer(loginfo.getUser_id());
+			board.setUser_nickname(loginfo.getUser_nickname());
+			board.setBoard_category(req.getParameter("category"));
+			board.setBoard_title(req.getParameter("title"));
+			board.setBoard_content(req.getParameter("content"));
+	
+			cnt = dao.InsertBoard(board);
+	
+			if (cnt > 0) {
+				forward.setRedirect(true);
+				forward.setPath("/YamaManCtrl?command=boList");
+			} else {
+				forward.setRedirect(true);
+				forward.setPath("/View/review/reErrPage.jsp");
+			}
 		}
+		
+		
+		
 
 		return forward;
 

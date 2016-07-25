@@ -24,7 +24,7 @@ public class moInsertController implements SuperController {
 		int cnt = 0;
 		
 		HttpSession session = req.getSession();
-		if(session.getAttribute("id") == null || session.getAttribute("id").equals("")) {
+		if(session.getAttribute("id") == null || session.getAttribute("id").equals("") || session.getAttribute("id").equals("null") ) {
 			forward.setRedirect(true);
 			forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
 		} else {
