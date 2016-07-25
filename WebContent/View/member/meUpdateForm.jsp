@@ -16,10 +16,6 @@
 	String img = contextPath + "/View/images/산타니05.jpg";
 %>
 
-
-<%
-	Member bean = (Member) request.getAttribute("bean");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -60,7 +56,6 @@
 			method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="meUpdate">
 			<table>
-
 				<td>
 					<div id="iddiv" class="form-group has-feedback">
 						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>

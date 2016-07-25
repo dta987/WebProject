@@ -28,6 +28,10 @@ tr:hover{background-color:#cbe7cb}
 					<th>타이틀 명</th>
 					<th>타이틀 컨디션</th>
 					<th>사진</th>
+					<c:if test="${sessionScope.whologin == 2}">
+						<th>수정</th>
+						<th>삭제</th>
+					</c:if>
 				</tr>
 			</thead>
 			
@@ -37,6 +41,10 @@ tr:hover{background-color:#cbe7cb}
 					<td>${bean.title_name}</td>
 					<td>${bean.title_condition}</td>
 					<td>${bean.title_img}</td>
+					<c:if test="${sessionScope.whologin == 2}">
+						<td><a href="<%=MyCtrlCommand%>tiUpdateForm&no=${bean.title_no}&${requestScope.parameters}">수정</a></td>
+						<td><a id="del" href="<%=MyCtrlCommand%>tiDelete&no=${bean.title_no}&${requestScope.parameters}"><input type="hidden" value="${bean.title_no}">삭제</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 			
