@@ -91,15 +91,7 @@
 				</c:forEach>
 			</div>
 		</div>
-	</div>
-		<br><br><br><br>
-	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
-	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
-	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
-	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
-	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
-	<img src="<%=contextPath%>/View/images/일본산이미지/알프스가사가다케.png" style="width: 100%; height: 500px">
-
+	</div>	
 	<script>
 		// Slideshow script
 		var slideIndex = 1;
