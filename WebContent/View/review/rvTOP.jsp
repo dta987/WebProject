@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="Model.Member"%>
 <%@ include file="./../../common/common.jsp"%>
 <%
@@ -66,14 +65,11 @@
 
 	<nav id="scrollMenu" class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
-<<<<<<< HEAD
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<c:if test="${sessionScope.whologin != 0}">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">MY PAGE<span
-							class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+						role="button" aria-expanded="false">MY PAGE<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<c:if test="${sessionScope.whologin == 1}">
 								<li><a href="<%=MyCtrlCommand%>boList">내 게시글 목록</a></li>
@@ -81,43 +77,6 @@
 								<li><a href="<%=MyCtrlCommand%>boList">회원정보</a></li>
 								<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
 							</c:if>
-<%-- ======
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<table>
-				<td>
-					<ul class="nav navbar-nav navbar">
-						<li>
-							<ul class="nav navbar-nav">
-								<li>
-									<p class="navbar-text">
-										<a href="#">MOUNTAIN</a>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="<%=MyCtrlCommand%>boList">BOARD</a>
-									</p>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</td>
-				<td>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<ul class="nav navbar-nav">
-								<c:if test="${sessionScope.whologin == 0}">
-									<li><button id="loginbtn" type="button" class="btn btn-default navbar-btn">Login</button></li>
-								</c:if>
-								<c:if test="${sessionScope.whologin != 0}">
-									<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-										role="button" aria-expanded="false">Memu <span class="caret"></span></a>
-										<ul class="dropdown-menu" role="menu">
-											<c:if test="${sessionScope.whologin == 1}">
-												<li><a href="<%=MyCtrlCommand%>boList">내 게시글 목록</a></li>
-												<li><a href="<%=MyCtrlCommand%>boList">내 댓글 목록</a></li>
-												<li><a href="<%=MyCtrlCommand%>boList">회원정보</a></li>
-												<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-											</c:if>
->>>>>>> branch 'master' of https://github.com/dta987/WebProject.git --%>
-
 
 							<c:if test="${sessionScope.whologin == 2}">
 								<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
@@ -132,51 +91,28 @@
 						<c:forEach var="i" begin="1" end="37" step="1">
 						&nbsp;&nbsp;&nbsp;
 						</c:forEach>
-						<a href="#">MOUNTAIN</a> &nbsp;&nbsp;&nbsp; <a
-							href="<%=MyCtrlCommand%>boList">BOARD</a>
+						<a href="#">MOUNTAIN</a> &nbsp;&nbsp;&nbsp; <a href="<%=MyCtrlCommand%>boList">BOARD</a>
 						<c:forEach var="i" begin="1" end="8" step="1">
 						&nbsp;&nbsp;
 						</c:forEach>
 						<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
-								class="topmybutton topmybutton1">LOGIN</button></a> <a
-							href="<%=MyCtrlCommand%>meSignupForm"><button type="button"
-								class="topmybutton topmybutton1">JOIN</button></a>
+								class="topmybutton topmybutton1">LOGIN</button></a> <a href="<%=MyCtrlCommand%>meSignupForm"><button
+								type="button" class="topmybutton topmybutton1">JOIN</button></a>
 					</p>
 				</li>
-
-				<%-- <li>
-					<p class="navbar-text">
-					<c:forEach var="i" begin="1" end="35" step="1">
-					&nbsp;&nbsp;
-					</c:forEach>
-					<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button" class="mybutton mybutton1">LOGIN</button></a>
-					<a href="<%=MyCtrlCommand%>meSignupForm"><button type="button" class="mybutton mybutton1">JOIN</button></a>
-					</p>
-				</li> --%>
-
 			</ul>
-
-											<c:if test="${sessionScope.whologin == 2}">
-												<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
-												<li><a href="<%=MyCtrlCommand%>meList">회원 목록</a></li>
-												<li><a href="<%=MyCtrlCommand%>boList">타이틀 관리</a></li>
-												<li><a href="<%=MyCtrlCommand%>boList">산 관리</a></li>
-											</c:if>
-										</ul></li>
-								
-							</ul>
-						</li>
-					</ul>
-				</td>
-			</table>
->>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
+			<c:if test="${sessionScope.whologin == 2}">
+				<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
+				<li><a href="<%=MyCtrlCommand%>meList">회원 목록</a></li>
+				<li><a href="<%=MyCtrlCommand%>boList">타이틀 관리</a></li>
+				<li><a href="<%=MyCtrlCommand%>boList">산 관리</a></li>
+			</c:if>
 		</div>
 	</div>
 	</nav>
 
 
 	<div class="container-fluid">
-<<<<<<< HEAD
 		<ul class="nav navbar-nav">
 			<c:if test="${whologin == 0}">
 				<li>
@@ -185,9 +121,8 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						</c:forEach>
 						<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button"
-								class="topmybutton topmybutton1">LOGIN</button></a> <a
-							href="<%=MyCtrlCommand%>meSignupForm"><button type="button"
-								class="topmybutton topmybutton1">JOIN</button></a>
+								class="topmybutton topmybutton1">LOGIN</button></a> <a href="<%=MyCtrlCommand%>meSignupForm"><button
+								type="button" class="topmybutton topmybutton1">JOIN</button></a>
 					</p>
 				</li>
 			</c:if>
@@ -197,7 +132,7 @@
 						<a href="<%=MyCtrlCommand%>meMypage"><button type="button"
 								class="topmybutton topmybutton1"><%=loginfo.getUser_nickname()%></button></a>
 
-						
+
 						<c:forEach var="i" begin="1" end="39" step="1">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						</c:forEach>
@@ -208,70 +143,17 @@
 			</c:if>
 		</ul>
 
-		<%-- <ul class="nav navbar-nav navbar-right">
-=======
-		<ul class="nav navbar-nav navbar-left">
-			<c:if test="${sessionScope.whologin != 0}">
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-					role="button" aria-expanded="false">Memu <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<c:if test="${sessionScope.whologin == 1}">
-							<li><a href="<%=MyCtrlCommand%>boList">내 게시글 목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">내 댓글 목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">회원정보</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">등산목록</a></li>
-						</c:if>
 
-						<c:if test="${sessionScope.whologin == 2}">
-							<li><a href="<%=MyCtrlCommand%>boList">게시글 목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>meList">회원 목록</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">타이틀 관리</a></li>
-							<li><a href="<%=MyCtrlCommand%>boList">산 관리</a></li>
-						</c:if>
-					</ul></li>
-			</c:if>
-
-		</ul>
-
-		<ul class="nav navbar-nav navbar-right">
->>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
-			<c:if test="${whologin == 0}">
-				<ul class="pager">
-					<li>
-					<a href="<%=MyCtrlCommand%>meLoginForm"><button type="button" class="topmybutton topmybutton1">LOGIN</button></a>
-					<a href="<%=MyCtrlCommand%>meSignupForm"><button type="button" class="topmybutton topmybutton1">JOIN</a> 
-					</li>
-				</ul>
-			</c:if>
-			<c:if test="${whologin != 0}">
-				<ul class="pager">
-<<<<<<< HEAD
-					<li><a href="<%=MyCtrlCommand%>meMypage"><%=loginfo.getUser_nickname()%></a></li>
-					<li><a href="<%=MyCtrlCommand%>meLogout">LOGOUT</a></li>
-=======
-					<li><a href="<%=MyCtrlCommand%>meDetailView&id=<%=loginfo.getUser_id()%>"><%=loginfo.getUser_nickname()%></a></li>
-					<li><a href="<%=MyCtrlCommand%>meLogout">로그아웃</a></li>
->>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
-				</ul>
-			</c:if>
-		</ul> --%>
 	</div>
 
 	<div class="container-fluid" align="center" style="font-size: 40px">
-		Y A M A <a href="<%=contextPath%>/View/Main.jsp"><img
-			alt="main_img" src="<%=contextPath%>/View/images/중간나뭇잎.png"></a> M
-		A N
+		Y A M A <a href="<%=contextPath%>/View/Main.jsp"><img alt="main_img"
+			src="<%=contextPath%>/View/images/중간나뭇잎.png"></a> M A N
 	</div>
 	<div class="container-fluid" align="center">
-<<<<<<< HEAD
 		<br> <a href="#">MOUNTAIN</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="<%=MyCtrlCommand%>boList">BOARD</a>
-=======
-		<a href="#">MOUNTAIN</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
 			href="<%=MyCtrlCommand%>boList">BOARD</a>
->>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
 	</div>
 
 	<br>

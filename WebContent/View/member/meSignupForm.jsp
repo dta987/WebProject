@@ -1,25 +1,6 @@
-<%-- <<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../review/rvTOP.jsp"%>
-======= --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
->>>>>>> branch 'master' of https://github.com/dta987/WebProject.git
 
-<%-- <%
-	int myoffset = 3;
-	int mywidth = twelve - 2 * myoffset;
-	int label = 3;
-	int input = twelve - 2 * label;
-
-	boolean idOverlapCheck = false;
-	boolean nicknameOverlapCheck = false;
-	boolean pwOverlapCheck = false;
-	boolean emailOverlapCheck = false;
-	String img = contextPath + "/View/images/산타니05.jpg";
-%>
- --%>
 <%
 	int myoffset = 3;
 	int mywidth = twelve - 2 * myoffset;
@@ -41,123 +22,34 @@
 <title>Insert title here</title>
 <style type="text/css">
 .imabutton {
-    background-color: #cbe7cb;
-    border: none;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-    
+	background-color: #cbe7cb;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 2px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
 }
 
 .imamybutton1 {
-    background-color: white; 
-    color: #cbe7cb; 
-    border: 2px solid #cbe7cb;
-    border-radius: 20px;  
+	background-color: white;
+	color: #cbe7cb;
+	border: 2px solid #cbe7cb;
+	border-radius: 20px;
 }
 
 .imamybutton1:hover {
-    background-color: #cbe7cb;
-    color: white;
-    
+	background-color: #cbe7cb;
+	color: white;
 }
 </style>
 </head>
 <body>
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>"
-			method="post" enctype="multipart/form-data">
-			<input type="hidden" name="command" value="meSignup">
-			<table>
-				<td>
-					<div id="iddiv" class="form-group has-feedback">
-						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
-						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="id" name="id"
-								placeholder="id"> <span id="idspan"
-								class="glyphicon form-control-feedback"></span>
-						</div>
-					</div>
-					<div id="pwdiv" class="form-group has-feedback">
-						<label for="passoword" class="col-sm-<%=label%> control-label">PW</label>
-						<div class="col-sm-<%=input%>">
-							<input type="password" class="form-control" id="password"
-								name="password" placeholder="password"> <span
-								id="pwspan" class="glyphicon form-control-feedback"></span>
-						</div>
-						<div id="pwcheck"></div>
-					</div>
-					<div id="pwdiv" class="form-group has-feedback">
-						<label for="passoword2" class="col-sm-<%=label%> control-label">P.W
-							CHECK</label>
-						<div class="col-sm-<%=input%>">
-							<input type="password" class="form-control" id="password2"
-								name="password2" placeholder="password"> <span
-								id="pwspan" class="glyphicon form-control-feedback"></span>
-						</div>
-						<div id="pwcheck"></div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-<%=label%> control-label">NAME</label>
-						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="name" name="name"
-								placeholder="name">
-						</div>
-					</div>
-					<div id="emaildiv" class="form-group has-feedback">
-						<label for="email" class="col-sm-<%=label%> control-label">E-MAIL</label>
-						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="email" name="email"
-								placeholder="email"> <span id="emailspan"
-								class="glyphicon form-control-feedback"></span>
-						</div>
-						<div id="emailcheck"></div>
-					</div>
-					<div id="nicknamediv" class="form-group has-feedback">
-						<label for="nickname" class="col-sm-<%=label%> control-label">NICKNAME</label>
-						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="nickname"
-								name="nickname" placeholder="nickname"> <span
-								id="nicknamespan" class="glyphicon form-control-feedback"></span>
-						</div>
-						<div id="nicknamecheck"></div>
-					</div></td>
-				<td>
-					
-					<div class="form-group" align="center">
-						&nbsp;&nbsp; <img id="user_img" src="<%=img%>" class="img-rounded"
-							alt="Cinque Terre" width="200px" height="200px">
-					</div>
-								<div class="form-group" align="center">
-						<button type="button" id="image_add"
-							class="imamybutton imamybutton1">IMAGE</button>
-						&nbsp;&nbsp;
-						<button type="button" id="image_remove"
-							class="imamybutton imamybutton1">DELETE</button>
-						<input type="file" name="image" id="image" class="hide">
-					</div>
-					<div class="form-group" align="right">
-						<br>
-						<button type="submit" class="topmybutton topmybutton1">JOIN</button>
-						&nbsp;
-						<button type="reset" class="topmybutton topmybutton1">BACK</button>
-						<br>
-					</div>
-				</td>
-
-			</table>
-		</form>
-	</div>
-
-
-	<%-- <div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel-heading">회원가입</div>
 		<form id="signup" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" name="command" value="meSignup">
@@ -182,7 +74,7 @@
 						<div id="pwcheck"></div>
 					</div>
 					<div id="pwdiv" class="form-group has-feedback">
-						<label for="passoword2" class="col-sm-<%=label%> control-label">PwCheck</label>
+						<label for="passoword2" class="col-sm-<%=label%> control-label">P.W CHECK</label>
 						<div class="col-sm-<%=input%>">
 							<input type="password" class="form-control" id="password2" name="password2"
 								placeholder="password" data-toggle="popover" data-trigger="focus" data-placement="top"
@@ -196,7 +88,7 @@
 						</div>
 					</div>
 					<div id="emaildiv" class="form-group has-feedback">
-						<label for="email" class="col-sm-<%=label%> control-label">eMail</label>
+						<label for="email" class="col-sm-<%=label%> control-label">E-MAIL</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="email" name="email" placeholder="email"
 								data-toggle="popover" data-trigger="focus" data-placement="top" data-content=""> <span
@@ -204,7 +96,7 @@
 						</div>
 					</div>
 					<div id="nicknamediv" class="form-group has-feedback">
-						<label for="nickname" class="col-sm-<%=label%> control-label">NickName</label>
+						<label for="nickname" class="col-sm-<%=label%> control-label">NICKNAME</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="nickname" name="nickname" placeholder="nickname"
 								data-toggle="popover" data-trigger="focus" data-placement="top" data-content=""> <span
@@ -214,27 +106,31 @@
 				</td>
 
 				<td>
+
 					<div class="form-group" align="center">
-						<button type="button" id="image_add" class="btn btn-default">이미지 추가</button>
-						&nbsp;&nbsp;
-						<button type="button" id="image_remove" class="btn btn-default">삭제</button>
-						<input type="file" name="image" id="image" class="hide">
+						&nbsp;&nbsp; <img id="user_img" src="<%=img%>" class="img-rounded" alt="Cinque Terre"
+							width="200px" height="200px">
 					</div>
 					<div class="form-group" align="center">
-						<img id="user_img" src="<%=img%>" class="img-rounded" alt="Cinque Terre" width="200px"
-							height="200px">
+						<button type="button" id="image_add" class="imamybutton imamybutton1">IMAGE</button>
+						&nbsp;&nbsp;
+						<button type="button" id="image_remove" class="imamybutton imamybutton1">DELETE</button>
+						<input type="file" name="image" id="image" class="hide">
+					</div>
+					<div class="form-group" align="right">
+						<br>
+						<button type="submit" class="topmybutton topmybutton1">JOIN</button>
+						&nbsp;
+						<button type="reset" class="topmybutton topmybutton1">BACK</button>
+						<br>
 					</div>
 				</td>
 			</table>
-			<hr>
-			<div align="center">
-				<button type="submit" class="btn btn-success">저장</button>
-				<button id="reset" type="reset" class="btn btn-danger">다시 작성</button>
-			</div>
-			<br>
-
 		</form>
-	</div> --%>
+	</div>
+
+
+
 
 	<script type="text/javascript">	
 	$(document).ready(function() {
@@ -534,8 +430,8 @@
 				$("#email").attr("data-content", "이메일을 입력해주세요");
 				
 				$("#user_img").attr("src", "<%=img%>");
-			})
-		});
+				});
+			});
 	</script>
 </body>
 </html>
