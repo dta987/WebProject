@@ -35,7 +35,7 @@ public class tiUpdateController implements SuperController {
 			
 			forward.setRedirect(false);
 			req.setAttribute("title_no", req.getParameter("title_no"));
-			forward.setPath(req.getContextPath() + "/YamaManCtrl?command=moDetailView");
+			forward.setPath(req.getContextPath() + "/YamaManCtrl?command=tiDetailView");
 			
 		} else {
 			forward.setRedirect(true);

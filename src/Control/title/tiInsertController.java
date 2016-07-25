@@ -27,7 +27,7 @@ public class tiInsertController implements SuperController {
 		HttpSession session = req.getSession();
 		if(session.getAttribute("title_no") == null || session.getAttribute("title_no").equals("")) {
 			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/tiInsertForm.jsp");
+			forward.setPath(req.getContextPath() + "/View/title/tiInsertForm.jsp");
 		} else {
 			Title title = new Title();
 			

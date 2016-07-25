@@ -25,9 +25,9 @@ public class hiInsertController implements SuperController {
 		int cnt = 0;
 		
 		HttpSession session = req.getSession();
-		if(session.getAttribute("title_no") == null || session.getAttribute("title_no").equals("")) {
+		if(session.getAttribute("history_no") == null || session.getAttribute("history_no").equals("")) {
 			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/tiInsertForm.jsp");
+			forward.setPath(req.getContextPath() + "/View/history/tiInsertForm.jsp");
 		} else {
 			Title title = new Title();
 			
