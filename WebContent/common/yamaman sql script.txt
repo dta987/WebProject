@@ -33,7 +33,7 @@ create table members(
 );
 
 --包府磊 酒捞叼 积己
-insert into members values( 'admin',	'1234',	'包府磊',	null, null,	null, null, null	);
+insert into members values( 'admin',	'1234',	'包府磊',	null, '包府磊',	null, null, null	);
 commit;
 
 create table boards(
