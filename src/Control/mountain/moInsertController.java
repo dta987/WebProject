@@ -37,8 +37,9 @@ public class moInsertController implements SuperController {
 
 		if (cnt > 0) {
 			forward.setRedirect(false);
-			forward.setPath("/YamaManCtrl?command=moInsertForm");
-			//forward.setPath("/YamaManCtrl?command=moList");
+			//forward.setPath("/YamaManCtrl?command=moInsertForm");
+			forward.setPath("/YamaManCtrl?command=moAdminList");
+			//forward.setPath("/View/mountain/moAdminList.jsp");
 		} else {
 			forward.setRedirect(true);
 			forward.setPath("/View/review/reErrPage.jsp");

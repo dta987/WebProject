@@ -2,9 +2,8 @@
 
 --grant connect, resource to yamaman_db;
 
---2016/07/22 수정 성진
---mountain history 컬럼 수정
---title 테이블 이름 titles로 변경
+--2016/07/26 성민짱
+--mountains 테이블 thema컬럼 변경
 
 --테이블, 시퀀스 삭제
 --drop table boards;
