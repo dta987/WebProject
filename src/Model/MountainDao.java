@@ -66,7 +66,7 @@ public class MountainDao extends SuperDao {
 			pstmt.setString(3, mountain.getMountain_address());
 			pstmt.setString(4, mountain.getMountain_img());
 			pstmt.setString(5, mountain.getMountain_introduce());
-			pstmt.setInt(6, mountain.getMountain_thema());
+			pstmt.setString(6, mountain.getMountain_thema());
 			pstmt.setInt(7, mountain.getMountain_no());
 
 			cnt = pstmt.executeUpdate();
@@ -101,8 +101,8 @@ public class MountainDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
 
-		String sql = "insert into mountains(mountain_no, mountain_name, mountain_area, mountain_address, mountain_img, mountain_introduce, mountain_thema, updatedate)"
-		        + " values(mountain_no_seq.nextval, ?, ?, ?, ?, ?, ? , to_date(sysdate, 'yyyy/MM/dd HH:mm:ss')   )";
+		String sql = "insert into mountains(mountain_no, mountain_name, mountain_area, mountain_address, mountain_img, mountain_introduce, mountain_thema)"
+		        + " values(mountain_no_seq.nextval, ?, ?, ?, ?, ?, ?)";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
@@ -113,7 +113,7 @@ public class MountainDao extends SuperDao {
 			pstmt.setString(3, mountain.getMountain_address());
 			pstmt.setString(4, mountain.getMountain_img());
 			pstmt.setString(5, mountain.getMountain_introduce());
-			pstmt.setInt(6, mountain.getMountain_thema());
+			pstmt.setString(6, mountain.getMountain_thema());
 
 			cnt = pstmt.executeUpdate();
 
@@ -176,7 +176,7 @@ public class MountainDao extends SuperDao {
 				mountain.setMountain_img(rs.getString("mountain_img"));
 				mountain.setMountain_introduce(rs.getString("mountain_introduce"));
 				mountain.setMountain_name(rs.getString("mountain_name"));
-				mountain.setMountain_thema(rs.getInt("mountain_thema"));
+				mountain.setMountain_thema(rs.getString("mountain_thema"));
 				mountain.setUpdatedate(rs.getString("updatedate"));
 				mountain_lists.add(mountain);
 			}
@@ -224,7 +224,7 @@ public class MountainDao extends SuperDao {
 				mountain.setMountain_img(rs.getString("mountain_img"));
 				mountain.setMountain_introduce(rs.getString("mountain_introduce"));
 				mountain.setMountain_name(rs.getString("mountain_name"));
-				mountain.setMountain_thema(rs.getInt("mountain_thema"));
+				mountain.setMountain_thema(rs.getString("mountain_thema"));
 				mountain.setUpdatedate(rs.getString("updatedate"));
 				mountain_lists.add(mountain);
 

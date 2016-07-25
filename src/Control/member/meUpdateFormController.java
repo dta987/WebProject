@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import Control.ControllerForward;
 import Control.SuperController;
@@ -19,7 +21,7 @@ public class meUpdateFormController implements SuperController {
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
 		Member bean = new Member();
@@ -47,7 +49,7 @@ public class meUpdateFormController implements SuperController {
 
 		String id = req.getParameter("id");
 		bean = dao.SelectDateByPK(id);
-
+		
 		req.setAttribute("bean", bean);
 		forward.setRedirect(false);
 		forward.setPath("/View/member/meUpdateForm.jsp");

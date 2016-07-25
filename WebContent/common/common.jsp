@@ -14,8 +14,13 @@
 %>
 
 <%
-	String myurl = request.getRequestURI().toString();
+	String myurl = request.getRequestURL().toString();
 	String uri = request.getRequestURI();
+	String relativeWebPath = "/View/images/일본산이미지";
+	String absoluteWebPath = getServletContext().getRealPath(relativeWebPath);
+	
+	
+	
 	int idx = myurl.indexOf(uri);
 
 	String url = "/View/Main.jsp";
@@ -24,12 +29,14 @@
 	String uploadedFolder = myurl.substring(0, idx) + contextPath
 			+ uploadPath;
 
-	 /* out.print("url=" + myurl + "<br>");
-	 out.print("uri=" + uri + "<br>");
-	 out.print("uploadedFolder=" + uploadedFolder + "<br>");
-
-	 String realPath1 = application.getRealPath(uploadPath);
-	 out.print("realPath1=" + realPath1 + "<br>");  */
+  	/*
+  	out.print("url=" + myurl + "<br>");
+	out.print("uri=" + uri + "<br>");
+	out.print("uploadedFolder=" + uploadedFolder + "<br>");
+	out.print("absoluteWebPath : "+absoluteWebPath+"<Br>");
+	String realPath1 = application.getRealPath(uploadPath);
+	out.print("realPath1=" + realPath1 + "<br>");
+	*/   
 %>
 <html>
 <head>
@@ -41,10 +48,6 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- 부트스트랩 -->
 
-<!-- jQuery
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script  src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
-jQuery -->
 
 
 <link rel="stylesheet" href="<%=contextPath%>/View/layout/Style.css">

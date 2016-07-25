@@ -1,9 +1,27 @@
+<%@page import="java.util.Random, java.io.File, java.util.HashSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./review/rvTOP.jsp"%>
 <% 
-	String[] carousel_img = {"/View/images/일본산이미지/알프스가사가다케.png",
+	
+	File file = new File(absoluteWebPath);
+	File[] imgFiles = file.listFiles();
+	Random ran = new Random();
+	HashSet<String> imgset = new HashSet<String>();
+	for( int i=0 ; imgset.size() < 5; i++){
+		String randomIMG = null;
+		int j = ran.nextInt(imgFiles.length);
+		randomIMG = imgFiles[j].toString();
+		int num = randomIMG.indexOf("\\View\\images\\일본산이미지");
+		randomIMG = randomIMG.substring(num);
+		imgset.add(randomIMG);
+	}
+	
+	String[] carousel_img = imgset.toArray(new String[0]);
+	 /*
+	 String[] carousel_img = {"/View/images/일본산이미지/알프스가사가다케.png",
 			"/View/images/일본산이미지/큐슈기리시마야마봄1.png", "/View/images/일본산이미지/알프스다테야마.png",
-			"/View/images/일본산이미지/혼슈기타다케여름2.jpg"};
+			"/View/images/일본산이미지/혼슈기타다케여름2.jpg"};*/ 
+	
 %>
 <%
 	int myoffset = 3;
@@ -54,7 +72,7 @@
 		<c:forEach var="carousel_img" items="<%=carousel_img%>">
 			<div class="w3-display-container mySlides col-sm-offset-1 col-sm-7">
 				<div class="container-fluid">
-					<img src="<%=contextPath%>${carousel_img}" style="width:150%; height:330px">
+					<img src="<%=contextPath %>${carousel_img}" style="width:150%; height:500px">
 					<br><br><br>
 				</div>
 			</div>

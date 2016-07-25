@@ -26,7 +26,7 @@ public class meSignupController implements SuperController {
 		ControllerForward forward = new ControllerForward();
 		MemberDao dao = new MemberDao();
 		Member member = new Member();
-
+		
 		member.setUser_id(multi.getParameter("id"));
 		member.setUser_password(multi.getParameter("password"));
 		member.setUser_name(multi.getParameter("name"));

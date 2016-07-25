@@ -9,7 +9,7 @@ public class Mountain {
 	private String mountain_img;
 	private String mountain_introduce;
 	private String updatedate;
-	private int mountain_thema;
+	private String mountain_thema;
 	@Override
     public String toString() {
 	    return "Mountain [mountain_no=" + mountain_no + ", mountain_name=" + mountain_name + ", mountain_area=" + mountain_area
@@ -58,10 +58,10 @@ public class Mountain {
 	public void setUpdatedate(String updatedate) {
 		this.updatedate = updatedate;
 	}
-	public int getMountain_thema() {
+	public String getMountain_thema() {
 		return mountain_thema;
 	}
-	public void setMountain_thema(int mountain_thema) {
+	public void setMountain_thema(String mountain_thema) {
 		this.mountain_thema = mountain_thema;
 	}
 	
