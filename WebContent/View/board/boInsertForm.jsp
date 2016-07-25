@@ -26,16 +26,16 @@
 </head>
 <body>
 
-	<div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel-heading">게시물 작성</div>
-		<div class="panel-body">
+	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<!-- <div class="panel-heading">게시물 작성</div> -->
+		<!-- <div class="panel-body"> -->
 			<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm">
 				<input type="hidden" name="command" value="boInsert">
 				<div class="form-group ">
-					<label class="control-label col-sm-<%=formleft%>" for="subject">글 제목</label>
+					<label class="control-label col-sm-<%=formleft%>" for="subject">TITLE</label>
 					<div class="col-sm-<%=myoffset%>">
 						<select class="form-control " name="category" id="category">
-							<option value="-" selected="selected">-- 분류 선택---------
+							<option value="-" selected="selected">--분류 선택--
 							<option value="자유게시판">자유게시판
 						</select>
 					</div>
@@ -43,9 +43,9 @@
 						<input type="text" class="form-control" name="title" id="title" value="${bean.board_title}">
 					</div>
 				</div>
+				<br>
 				<div class="form-group">
-
-					<label class="control-label col-sm-<%=formleft%>" for="content">글 내용</label>
+					<label class="control-label col-sm-<%=formleft%>" for="content">NOTE</label>
 					<div class="col-sm-<%=formright%>">
 						<textarea class="form-control" rows="10" cols="30" id="content" name="content"
 							style="width: 100%; height: 5;"></textarea>
@@ -78,12 +78,11 @@
 							</script>
 					</div>
 				</div>
-				<hr>
 				<div class="form-group">
-					<div align="center" class="col-sm-offset-3 col-sm-6">
-						<button class="btn btn-default" type="button" id="savebtn">저장</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-default" type="button" id="gotoback">뒤로가기</button>
+					<div align="center" class="col-sm-offset-5 col-sm-10">
+						<button class="topmybutton topmybutton1" type="button" id="savebtn">SAVE</button>
+						&nbsp;&nbsp;&nbsp;	
+						<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
 					</div>
 				</div>
 			</form>

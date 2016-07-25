@@ -26,9 +26,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 	<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm">
-		<div class="panel panel-success col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-			<div class="panel-heading">답글 작성</div>
+			<!-- <div class="panel-heading">답글 작성</div> -->
 			<div class="panel-body">
 				<input type="hidden" name="group_no" value="${requestScope.group_no}"> <input
 					type="hidden" name="order_no" value="${requestScope.order_no}"> <input type="hidden"
