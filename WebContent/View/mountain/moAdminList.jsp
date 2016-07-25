@@ -9,7 +9,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 <%-- <script type="text/javascript">
 	function gotoForm(){
 		location.href='<%=MyCtrlCommand%>boInsertForm';
@@ -23,25 +22,23 @@ tr:hover{background-color:#cbe7cb}
 
 </style>
 
+
 </head>
 <body>
 <br><br>
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<!-- <div class="panel-heading">게시판</div> -->
-		<label>BOARD LIST</label><br><br>
 		<table class="table" align="center">
 			<thead>
 				<tr> 
 					<th>&nbsp;&nbsp;&nbsp;&nbsp;번호</th>
-					<th>제목</th>
-					<th>작성자</th>
+					<th>지역</th>
+					<th>산 이름</th>
 					<th>작성일자</th>
 					<th>수정일자</th>
-					<th>조회수</th>
 					<c:if test="${sessionScope.whologin == 2}">
 						<th>수정</th>
 						<th>삭제</th>
-						<th>답글</th>
 					</c:if>
 				</tr>
 			</thead>
@@ -74,7 +71,7 @@ tr:hover{background-color:#cbe7cb}
 
 				</tr>
 			</c:forEach>
-
+			
 			<tr>
 				<td colspan="10" align="center">
 					<form class="form-inline" role="form" name="myform" action="<%=MyCtrlByForm%>boListForm"
@@ -91,7 +88,7 @@ tr:hover{background-color:#cbe7cb}
 							<input type="text" class="form-control btn-xs" name="keyword" id="keyword"
 								placeholder="검색 키워드">
 						</div>
-						<button id="search" class="topmybutton topmybutton1" type="submit">SEARCH</button>
+						<button class="topmybutton topmybutton1" type="submit">SEARCH</button>
 						<button class="topmybutton topmybutton1" type="button" id="searchAll">ALL</button>
 						<button class="topmybutton topmybutton1" type="button" id="insertForm">WRITE</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -107,25 +104,6 @@ tr:hover{background-color:#cbe7cb}
 	</div>
 
 	<script type="text/javascript">
-	
-	$(document).ready(function() {
-		$("#search").click(function() {
-			if($("#mode").val() != "-") {
-				if($("#keyword").val() != "" || $("#keyword").val() != null) {
-					alert($("#keyword").val());
-					return true;
-				} else {
-					alert("키워드 값을 입력해주세요");
-					return false;
-				}
-			} else {
-				alert("검색 모드를 선택해주세요");
-				return false;
-			}
-			
-		});
-	});
-	
 	$(document).ready(function() {
 		$("#searchAll").click(function() {
 			location.href = '<%=MyCtrlCommand%>boList'
