@@ -87,7 +87,7 @@
 				<c:forEach begin="1" var="i" end="<%=carousel_img.length%>" step="1">
 					<span class="w3-tag demodots w3-border w3-transparent w3-hover-green"
 						onclick="currentDiv(${i})"></span>
-				</c:forEach>
+				</c:forEach>	
 			</div>
 		</div>
 	</div>
