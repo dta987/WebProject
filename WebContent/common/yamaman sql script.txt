@@ -32,6 +32,10 @@ create table members(
 	user_title varchar2(1000)
 );
 
+--包府磊 酒捞叼 积己
+insert into members values( 'admin',	'1234',	'包府磊',	null, null,	null, null, null	);
+commit;
+
 create table boards(
 	board_no number primary key,	
 	board_category varchar2(20),
