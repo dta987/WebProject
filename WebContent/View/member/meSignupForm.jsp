@@ -75,6 +75,7 @@
 			method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="meSignup">
 			<table>
+			<tr>
 				<td>
 					<div id="iddiv" class="form-group has-feedback">
 						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
@@ -128,6 +129,7 @@
 						</div>
 						<div id="nicknamecheck"></div>
 					</div></td>
+					
 				<td>
 					
 					<div class="form-group" align="center">
