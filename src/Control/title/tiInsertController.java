@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import Control.ControllerForward;
 import Control.SuperController;
 import Model.Board;
@@ -22,29 +24,21 @@ public class tiInsertController implements SuperController {
 		
 		ControllerForward forward = new ControllerForward();
 		TitleDao dao = new TitleDao();
-		int cnt = 0;
+		MultipartRequest multi = (MultipartRequest) req.getAttribute("multi") ;
 		
-		HttpSession session = req.getSession();
-		if(session.getAttribute("id") == null || session.getAttribute("id").equals("") || session.getAttribute("id").equals("null") ) {
-			forward.setRedirect(true);
-			forward.setPath(req.getContextPath() + "/View/meLoginForm.jsp");
+		Title bean = new Title();
+		bean.setTitle_condition(multi.getParameter("condition"));
+		bean.setTitle_img(multi.getFilesystemName("image"));
+		bean.setTitle_name(multi.getParameter("name"));
+		
+		int cnt = dao.InsertData(bean);
+
+		if (cnt > 0) {
+			forward.setRedirect(false);
+			forward.setPath("/YamaManCtrl?command=tiList");
 		} else {
-			Title title = new Title();
-			
-			title.setTitle_condition(req.getParameter("title_condition"));
-			title.setTitle_img(req.getParameter("title_img"));
-			title.setTitle_name(req.getParameter("title_name"));
-			
-			cnt = dao.InsertData(title);
-			
-			
-			if(cnt > 0 ) {
-				forward.setRedirect(false);
-				forward.setPath("/YamaManCtrl?command=tiList");
-			} else {
-				forward.setRedirect(true);
-				forward.setPath("/View/review/reErrPage.jsp");
-			}
+			forward.setRedirect(true);
+			forward.setPath("/View/review/rvErrPage.jsp");
 
 		}
 
