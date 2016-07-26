@@ -101,8 +101,8 @@
 					<br>
 				</c:if>
 
-				<c:forEach var="bean" items="${requestScope.lists}">
-					<c:if test="${requestScope.selecter != '지역별'}">
+				 <c:forEach var="bean" items="${requestScope.lists}">
+					<%--<c:if test="${requestScope.selecter != '지역별'}">
 						<c:if test='${fn:indexOf("${bean.mountain_thama}", "${requestScope.selecter}") != -1}'>
 							<div class="w3-third w3-container w3-margin-bottom">
 								<div class="w3-container">
@@ -116,7 +116,7 @@
 								</div>
 							</div>
 						</c:if>
-					</c:if>
+					</c:if> --%>
 
 					<c:if test="${requestScope.selecter == '지역별'}">
 						<div class="w3-third w3-container w3-margin-bottom">
