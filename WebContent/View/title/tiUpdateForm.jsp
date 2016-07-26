@@ -85,7 +85,7 @@
 			<td>
 				<div class="form-group" align="center">
 					&nbsp;&nbsp; <img id="title_img"
-						src="<%=uploadedFolder%>${bean.title_img}" class="img-rounded"
+						src="<%=img%>" class="img-rounded"
 						alt="Cinque Terre" width="200px" height="200px">
 				</div>
 				<div class="form-group" align="center">
@@ -101,7 +101,7 @@
 					<br>
 					<button type="submit" class="topmybutton topmybutton1">CORRECT</button>
 					&nbsp;
-					<button type="reset" class="topmybutton topmybutton1" onclick="" >BACK</button>
+					<button type="reset" class="topmybutton topmybutton1" onclick="goBack()" >BACK</button>
 					<br>
 				</div>
 			</td>
@@ -111,6 +111,14 @@
 	</form>
 </div>
 <script>
+$(document).ready(function() {
+	$("#image_remove").click(function() {
+		$("#title_img").attr("src", "<%=img%>");
+	});
+});
+function goBack() {
+	window.history.back();
+}
 	$(document).ready(function() {
 		$("#image").change(function() {
 			var ext = $('#image').val().split('.').pop().toLowerCase();
