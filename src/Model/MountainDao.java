@@ -150,9 +150,6 @@ public class MountainDao extends SuperDao {
 		ResultSet rs = null;
 		String sql = " select mountain_no, mountain_name, mountain_area, mountain_thema, mountain_thema2, mountain_img from mountains";
 
-		
-		
-
 		List<Mountain> mountain_list = new ArrayList<Mountain>();
 
 		try {
@@ -244,6 +241,7 @@ public class MountainDao extends SuperDao {
 		}
 		return mountain;
 	}
+	
 
 	public int selectCount() {
 		PreparedStatement pstmt = null;
@@ -316,6 +314,48 @@ public class MountainDao extends SuperDao {
 				mountain.setMountain_area(rs.getString("mountain_area"));
 				mountain.setMountain_thema(rs.getString("mountain_thema"));
 				mountain.setUpdate_date(rs.getString("update_date"));
+				lists.add(mountain);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return lists;
+	}
+	
+	// 지역(혼슈, 홋카이도, 알프스지역, 큐슈)에 따른 산들의 목록(산 관리번호랑 산 이름만 필요함)을 뽑아오기 위한 select문
+	public List<Mountain> AreaSelectDataList(String mountain_area) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Mountain> lists = new ArrayList<Mountain>();
+		String sql = " select mountain_no, mountain_name from mountains where mountain_area = ?";
+		
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setString(1, mountain_area);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Mountain mountain = new Mountain();
+				mountain.setMountain_no(rs.getInt("mountain_no"));
+				mountain.setMountain_name(rs.getString("mountain_name"));
 				lists.add(mountain);
 			}
 
