@@ -3,7 +3,6 @@
 <%
 	int myoffset = 1;
 	int mywidth = twelve - 2 * myoffset;
-	String img = contextPath + "/View/images/산타니05.jpg";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

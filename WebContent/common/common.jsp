@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	int twelve = 12;
 %>
@@ -49,6 +48,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- 부트스트랩 -->
 
+<script type="text/javascript" src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js" charset="utf-8"> </script>
 
 
 <link rel="stylesheet" href="<%=contextPath%>/View/layout/Style.css">

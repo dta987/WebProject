@@ -12,8 +12,6 @@
 	boolean idOverlapCheck = false;
 	boolean nicknameOverlapCheck = false;
 	boolean pwOverlapCheck = false;
-
-	String img = contextPath + "/View/images/산타니05.jpg";
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -71,8 +69,7 @@
 		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>"
 			method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="tiUpdate"> <label>TITLE
-				UPDATE</label><br>
-			<br>
+				UPDATE</label><br> <br>
 			<table>
 				<td>
 					<div id="iddiv" class="form-group has-feedback">
@@ -135,8 +132,7 @@
 	<script>
 $(document).ready(function() {
 	$("#image_remove").click(function() {
-		$("#title_img").attr("src", "<%=img%>
-		");
+		$("#title_img").attr("src", "<%=img%>");
 			});
 		});
 		function goBack() {
@@ -160,11 +156,39 @@ $(document).ready(function() {
 				}
 			});
 		});
+	$(document).ready(function() {
+		$("#image_remove").click(function() {
+			$("#title_img").attr("src", "<%=img%>");
+		});
+	});
+	function goBack() {
+		window.history.back();
+	}
+	$(document).ready(function() {
+		$("#image").change(function() {
+			var ext = $('#image').val().split('.').pop().toLowerCase();
+			if ($.inArray(ext, [ 'gif', 'png', 'jpg', 'jpeg' ]) == -1 && $("#image").val() !="") {
+				alert("gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.");
+				$("#image").val("");
+			} else {
+				var thisDom = $("#image")[0];
+				if (thisDom.files && thisDom.files[0]) {
+					var file = new FileReader();
+					file.onload = function(e) {
+						$("#title_img").attr("src", e.target.result);
+					}
+				}
+			}
+		});
+	});
+		
+
 		$(document).ready(function() {
 			$("#image_add").click(function() {
 				$("#image").click();
 			});
 		});//이미지 추가
+
 	</script>
 </body>
 </html>

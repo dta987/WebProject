@@ -12,8 +12,6 @@
 	boolean idOverlapCheck = false;
 	boolean nicknameOverlapCheck = false;
 	boolean pwOverlapCheck = false;
-
-	String img = contextPath + "/View/images/산타니05.jpg";
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -141,7 +139,7 @@
 	$(document).ready(function() {
 			$("#image").change(function(){
 				var ext = $('#image').val().split('.').pop().toLowerCase();
-				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1 && $("#image").val() !="") {
 					alert("gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.");
 					$("#image").val("");
 					} else {
@@ -166,6 +164,7 @@
 		$(document).ready(function() {
 			$("#image_remove").click(function() {
 				$("#user_img").attr("src", "<%=img%>");
+				$("#image").val("");
 			});
 		});//이미지 삭제 기본이미지가 들어간다
 		

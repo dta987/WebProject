@@ -14,34 +14,43 @@
 <title>Insert title here</title>
 
 <style>
-th {
-	border-color: #cbe7cb;
-	color: gray;
+th { 
+	
+	color
+	:gray;
 }
-
-
 </style>
 
 </head>
 <body>
-	<%-- <div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>"
-		style="border-color: #cbe7cb">
-		<div class="panel" style="border-color: #cbe7cb">
+
+	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<div class="panel panel-default" style="border-color: #cbe7cb">
+
 			<c:if test="${bean.order_no == 0}">
-				<div class="panel-head" style="background-color:#cbe7cb" >
-				
-					<h5><font color="green"><strong>${bean.board_title}</strong></font></h5>
-					<c:forEach var="i" begin="1" end="30" step="1">
-								&nbsp;&nbsp;&nbsp;
-							</c:forEach>
-					<font> ${bean.user_nickname} &nbsp;&nbsp;
-						${bean.board_writ_date}</font><br>
+
+				<div class="panel-heading" style="background-color: #cbe7cb">
+					<table>
+						<tr>
+
+							<th>
+								<h1>${bean.board_title}</h1> <font> 작성자 :
+									${bean.user_nickname} &nbsp;&nbsp; 작성시간 :
+									${bean.board_writ_date}</font><br>
+
+							</th>
+						</tr>
+
+					</table>
+
+
 				</div>
 				<!-- <hr style="border: 2px solid #cbe7cb"> -->
 				<div class="panel-body">${bean.board_content}</div>
 			</c:if>
 		</div>
-	</div> --%>
+	</div>
+
 	<c:if test="<%=loginfo != null%>">
 		<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 			<form id="replyForm" action="<%=MyCtrlByForm%>" method="post">
@@ -54,21 +63,23 @@ th {
 					type="hidden" name="depth" value="${bean.depth}">
 				<table>
 					<tr>
+
 						<td><label class="control-label col-sm-<%=formleft%>"></label>sdafsdaff</td>
+						<td><textarea name="content"
+								style="resize: none; border-color: #cbe7cb;"></textarea></td>
+
+						<td><label class="control-label col-sm-<%=formleft%>"></label><%=loginfo.getUser_nickname()%></td>
 						<td><textarea name="content"
 								style="resize: none; border-color: #cbe7cb;"
 								class="col-sm-<%=formright%>" rows="3" cols=""></textarea></td>
 						<td><button type="submit" class="topmybutton topmybutton1">ADD</button></td>
+					</tr>
 
-					</tr>
-					<tr>
-					</tr>
 				</table>
+				<hr>
 			</form>
-
-
-
 		</div>
+
 	</c:if>
 
 	<c:forEach var="rebean" items="${requestScope.lists}">
@@ -76,6 +87,8 @@ th {
 			<table>
 				<tr>
 					<td>${rebean.user_nickname}&nbsp;&nbsp;<font>${rebean.board_writ_date}</font>
+					</td>
+					<td align="right"><a href="#">수정</a>&nbsp;&nbsp;<a href="#">삭제</a>
 					</td>
 
 				</tr>
@@ -106,8 +119,9 @@ th {
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>
-		boList&${requestScope.parameter}';
+
+				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
+
 											});
 						});
 	</script>

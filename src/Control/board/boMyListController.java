@@ -49,11 +49,11 @@ public class boMyListController implements SuperController {
 		int totalCount = dao.selectMyListCount(id);
 		System.out.println("totalCount : " + totalCount);
 
-		String myurl = req.getContextPath() + "/YamaManCtrl?command=boList";
+		String myurl = req.getContextPath() + "/YamaManCtrl?command=boMyList";
 
 		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl, mode, keyword);
 		 	
-		List<Board> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword, id);
+		List<Board> lists = dao.SelectMyDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword, id);
 
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());

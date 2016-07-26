@@ -11,7 +11,7 @@
 	boolean nicknameOverlapCheck = false;
 	boolean pwOverlapCheck = false;
 	boolean emailOverlapCheck = false;
-	String img = contextPath + "/View/images/산타니05.jpg";
+	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -60,7 +60,8 @@
 						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="id" name="id"
-								placeholder="id"> <span id="idspan"
+								placeholder="id" data-toggle="popover" data-trigger="top" data-placement="top"
+								data-content=""> <span id="idspan"
 								class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
@@ -94,7 +95,8 @@
 						<label for="email" class="col-sm-<%=label%> control-label">E-MAIL</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="email" name="email"
-								placeholder="email"> <span id="emailspan"
+								placeholder="email" data-toggle="popover" data-trigger="top" data-placement="top"
+								data-content=""> <span id="emailspan"
 								class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="emailcheck"></div>
@@ -103,7 +105,8 @@
 						<label for="nickname" class="col-sm-<%=label%> control-label">NICKNAME</label>
 						<div class="col-sm-<%=input%>">
 							<input type="text" class="form-control" id="nickname"
-								name="nickname" placeholder="nickname"> <span
+								name="nickname" placeholder="nickname" data-toggle="popover" data-trigger="top" data-placement="top"
+								data-content=""> <span
 								id="nicknamespan" class="glyphicon form-control-feedback"></span>
 						</div>
 						<div id="nicknamecheck"></div>
@@ -382,7 +385,7 @@
 		$(document).ready(function() {
 			$("#image").change(function() {
 				var ext = $('#image').val().split('.').pop().toLowerCase();
-				if ($.inArray(ext, [ 'gif', 'png', 'jpg', 'jpeg' ]) == -1) {
+				if ($.inArray(ext, [ 'gif', 'png', 'jpg', 'jpeg' ]) == -1 && $("#image").val() !="") {
 					alert("gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.");
 					$("#image").val("");
 				} else {
@@ -406,6 +409,7 @@
 		$(document).ready(function() {
 			$("#image_remove").click(function() {
 				$("#user_img").attr("src", "<%=img%>");
+				$("#image").val("");
 			});
 		});
 

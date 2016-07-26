@@ -49,13 +49,13 @@ public class boMyReplyListController implements SuperController {
 		int totalCount = dao.selectMyReplyCount(id);
 		System.out.println("totalCount : " + totalCount);
 
-		String myurl = req.getContextPath() + "/YamaManCtrl?command=boList";
+		String myurl = req.getContextPath() + "/YamaManCtrl?command=boMyReplyList";
 
 		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myurl, mode, keyword);
 		
 		
 
-		List<Board> lists = dao.SelectDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword, id);
+		List<Board> lists = dao.SelectMyReplyDataList(pageInfo.getBeginRow(), pageInfo.getEndRow(), mode, keyword, id);
 
 		req.setAttribute("lists", lists);
 		req.setAttribute("pagingHtml", pageInfo.getPagingHtml());
@@ -67,7 +67,7 @@ public class boMyReplyListController implements SuperController {
 		req.setAttribute("parameters", parameters.toString());
 
 		forward.setRedirect(false);
-		forward.setPath("/View/board/boMyList.jsp");
+		forward.setPath("/View/board/boMyReplyList.jsp");
 
 		return forward;
 		
