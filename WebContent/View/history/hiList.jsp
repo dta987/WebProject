@@ -38,6 +38,7 @@ tr:hover {
 			</thead>
 
 			<c:forEach var="bean" items="${requestScope.lists}">
+			
 				<tr>
 					<td>${bean.history_no}</td>
 					<td>${bean.mountain_name}</td>
