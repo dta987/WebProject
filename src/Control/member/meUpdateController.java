@@ -35,6 +35,7 @@ public class meUpdateController implements SuperController {
 		bean.setUser_id(multi.getParameter("id"));
 		bean.setUser_name(multi.getParameter("name"));
 		bean.setUser_img(multi.getFilesystemName("image"));
+		
 		MemberDao dao = new MemberDao();
 		
 		int cnt = - 99999 ;
@@ -42,7 +43,7 @@ public class meUpdateController implements SuperController {
 		
 		req.setAttribute("bean", bean);
 		forward.setRedirect(false);
-		forward.setPath("/YamaManCtrl?command=meList&");
+		forward.setPath("/YamaManCtrl?command=meList");
 		//forward.setPath("/View/member/meDetailView.jsp");
 		
 		return forward;

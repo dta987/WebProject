@@ -118,7 +118,7 @@
 						<br>
 						<button type="submit" class="topmybutton topmybutton1">CORRECT</button>
 						&nbsp;
-						<button type="reset" class="topmybutton topmybutton1">BACK</button>
+						<button type="reset" class="topmybutton topmybutton1" onclick="goBack()">BACK</button>
 						<br>
 					</div>
 				</td>
@@ -129,9 +129,17 @@
 
 	<script>
 	$(document).ready(function() {
+		$("#image_remove").click(function() {
+			$("#user_img").attr("src", "<%=img%>");
+		});
+	});
+	function goBack(){
+		window.history.back();
+	}
+	$(document).ready(function() {
 			$("#image").change(function(){
 				var ext = $('#image').val().split('.').pop().toLowerCase();
-				if($.inArray(ext, ['png','jpg','jpeg']) == -1) {
+				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1 && $("#image").val() !="") {
 					alert("gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.");
 					$("#image").val("");
 					} else {
@@ -156,6 +164,7 @@
 		$(document).ready(function() {
 			$("#image_remove").click(function() {
 				$("#user_img").attr("src", "<%=img%>");
+				$("#image").val("");
 			});
 		});//이미지 삭제 기본이미지가 들어간다
 		
