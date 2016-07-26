@@ -1,0 +1,22 @@
+남은 목록들 :  
+
+1. mountain_history 등록, 수정, 삭제
+2. 히스토리 내역에 따른 타이틀 획득
+3. 자잘한 버그들
+4. 성민이 너가 하다 말았던 mountain View 영역		
+5. PPT 대충이라도 손 좀 봐주길.. 다 못하면 내일 아침에 다른 조들 발표할 때 급하게라도 완성합시다
+
+참고할 사항들
+
+1. MountainDao 에 
+	AreaSelectData(String mountain_area) 메소드, return 타입 = List<Mountain>
+2. Mountain_history Bean에 Mountain_name 컬럼 추가
+	mountain_historyDao 에 select 만 innerjoin해서 mountain_name을 집어넣어 놨고
+	다른 insert, update, delete는 필요 없으니까 원래 그대로
+
+
+
+3. 발표용 피피티 하나 더 만들었으니 참조.
+4. yamaman4.txt ->> yamaman6.txt 참조(더 많은 산 데이터들이 기록되어 있음)
+5. 타이틀 insert, update, delete 만들었지만, 검토 바람
+6. 발표는 내가(성진) 담당
