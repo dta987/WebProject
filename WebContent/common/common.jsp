@@ -47,7 +47,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- 부트스트랩 -->
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
 <script type="text/javascript" src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js" charset="utf-8"> </script>
 
 

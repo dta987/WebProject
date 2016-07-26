@@ -77,7 +77,7 @@
 				</div>
 				<div class="col-sm-<%=myoffset%>" id="thema2div">
 					<select class="form-control hide" name="thema2" id="thema2">
-						<option value="-" selected="thema">--테 마--
+						<option value="-" selected="selected">--테 마--
 						<option value="봄">봄
 						<option value="여름">여름
 						<option value="가을">가을
@@ -102,7 +102,7 @@
 						<button type="button" id="image_add" class="imamybutton imamybutton1">IMAGE</button>
 						&nbsp;&nbsp;
 						<button type="button" id="image_remove" class="imamybutton imamybutton1">DELETE</button>
-						<input type="hidden" id="name=" image" id="image">
+						<input type="hidden" id="name=" id="image">
 					</div>
 				</div>
 			</div>
@@ -128,7 +128,6 @@
 										// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
 										bUseModeChanger : true,			
 										fOnBeforeUnload : function(){
-											
 										}
 									}, 
 									fOnAppLoad : function(){
@@ -154,8 +153,13 @@
 	<script type="text/javascript">
 	
 	$(document).ready(function() {
-		$("#thema").val().change(function() {
-			alert("asdfsdfa");
+		$("#thema").change(function() {
+			if($("#thema").val() == "계절") {
+				$("#thema2").removeClass("hide");
+			} else {
+				$("#thema2").addClass("hide");
+			}
+			
 		});
 	});
 	
@@ -182,11 +186,11 @@
 		$("#image_add").click(function() {
 			$("#image").click();	
 		});
-	});
+	}(jQuery));
 	
 	$(document).ready(function() {
 		$("#image_remove").click(function() {
-			$("#user_img").attr("src", <%=img%>);
+			$("#user_img").attr("src", "<%=img%>");
 		});
 	});
 	
@@ -256,5 +260,6 @@
 											});
 						});//뒤로가기
 	</script>
+
 </body>
 </html>
