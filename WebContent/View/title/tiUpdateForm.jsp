@@ -49,16 +49,24 @@
 
 .floating-box0 {
 	display: inline-block;
-	width: 150px;
-	height: 50px;
+	width: 80px;
+	height: 30px;
 	margin: 10px;
 	border: 3px solid #cbe7cb;
 }
 
 .floating-box1 {
 	display: inline-block;
+	width: 130px;
+	height: 30px;
+	margin: 10px;
+	border: 3px solid #cbe7cb;
+}
+
+.floating-box2 {
+	display: inline-block;
 	width: 200px;
-	height: 75px;
+	height: 100px;
 	margin: 10px;
 	border: 3px solid #cbe7cb;
 }
@@ -69,7 +77,8 @@
 		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>"
 			method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="tiUpdate"> <label>TITLE
-				UPDATE</label><br> <br>
+				UPDATE</label><br>
+				<hr style="border: solid; color:#cbe7cb ">
 			<table>
 				<td>
 					<div id="iddiv" class="form-group has-feedback">
@@ -86,16 +95,18 @@
 						<label for="name" class="col-sm-<%=label%> control-label">타이틀
 							이름</label>
 						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="name" name="name"
-								value="${bean.title_name}">
+							<div class="floating-box1">${bean.title_name}</div>
+							<%-- <input type="text" class="form-control" id="name" name="name"
+								value="${bean.title_name}"> --%>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="condition" class="col-sm-<%=label%> control-label">타이틀
 							조건</label>
 						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="condition"
-								name="condition" value="${bean.title_condition}">
+							<div class="floating-box2">${bean.title_condition}</div>
+						<%-- 	<input type="text" class="form-control" id="condition"
+								name="condition" value="${bean.title_condition}"> --%>
 						</div>
 					</div>
 
