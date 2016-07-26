@@ -5,12 +5,13 @@ public class Mountains_history {
 	private int history_no;
 	private String user_id;
 	private int mountain_no;
+	private String mountain_name;
 	private String hiking_date;
 	private String hiking_memo;
 	@Override
     public String toString() {
 	    return "Mountains_history [history_no=" + history_no + ", user_id=" + user_id + ", mountain_no=" + mountain_no
-	            + ", hiking_date=" + hiking_date + ", hiking_memo=" + hiking_memo + "]";
+	            + ", mountain_name=" + mountain_name + ", hiking_date=" + hiking_date + ", hiking_memo=" + hiking_memo + "]";
     }
 	public int getHistory_no() {
 		return history_no;
@@ -41,6 +42,12 @@ public class Mountains_history {
 	}
 	public void setHiking_memo(String hiking_memo) {
 		this.hiking_memo = hiking_memo;
+	}
+	public String getMountain_name() {
+		return mountain_name;
+	}
+	public void setMountain_name(String mountain_name) {
+		this.mountain_name = mountain_name;
 	}
 	
 	

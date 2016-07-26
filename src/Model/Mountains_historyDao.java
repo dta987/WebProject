@@ -139,7 +139,8 @@ public class Mountains_historyDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select history_no, user_id, mountain_no, hiking_date, hiking_memo from mountains_history where history_no=?";
+		String sql = "select h.history_no, h.user_id, h.hiking_date, h.hiking_memo, h.mountain_no, m.mountain_name from("
+				+ "  mountains_history h inner join mountains m on h.mountain_no = m.mountain_no) where h.history_no=?;";
 		Mountains_history mountains_history = null;
 		try {
 			if (conn == null) {
@@ -156,6 +157,7 @@ public class Mountains_historyDao extends SuperDao {
 				mountains_history.setHiking_memo(rs.getString("hiking_memo"));
 				mountains_history.setHistory_no(rs.getInt("history_no"));
 				mountains_history.setMountain_no(rs.getInt("mountain_no"));
+				mountains_history.setMountain_name(rs.getString("mountain_name"));
 			}
 
 		} catch (Exception e) {
@@ -177,21 +179,25 @@ public class Mountains_historyDao extends SuperDao {
 		return mountains_history;
 	}
 
-	public List<Mountains_history> SelectDataList(int beginRow, int endRow, String mode,
-			String keyword) {
+	public List<Mountains_history> SelectDataList(int beginRow, int endRow, String mode, String keyword) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select history_no, user_id, mountain_no, hiking_date, hiking_memo , ranking";
+		String sql = "select *";
 		sql += " from";
 		sql += " (";
-		sql += " select history_no, user_id, mountain_no, hiking_date, hiking_memo, rank() over( order by history_no desc ) as ranking";
-		sql += " from mountains_history ";
+		sql += " 		select history_no, user_id, hiking_date, hiking_memo, mountain_no, mountain_name, rank() over( order by history_no desc ) as ranking from ";
+		sql += "		 		( select h.history_no, h.USER_ID, h.HIKING_DATE, h.HIKING_MEMO, h.MOUNTAIN_NO, m.MOUNTAIN_NAME as mountain_name from ";
+		sql += " 						(MOUNTAINS_HISTORY h inner join MOUNTAINS m on h.MOUNTAIN_NO = m.MOUNTAIN_NO) ";
+		sql += " 				)";
+		
 		if(!mode.equals("all")) {
 			sql += "where " + mode + " like '%" + keyword + "%'";
 		}
+		
 		sql += " )";
 		sql += " where ranking between ? and ? ";
+	
 		List<Mountains_history> mountains_history_list = new ArrayList<Mountains_history>();
 
 		try {
@@ -211,6 +217,7 @@ public class Mountains_historyDao extends SuperDao {
 				mountains_history.setHiking_memo(rs.getString("hiking_memo"));
 				mountains_history.setHistory_no(rs.getInt("history_no"));
 				mountains_history.setMountain_no(rs.getInt("mountain_no"));
+				mountains_history.setMountain_name(rs.getString("mountain_name"));
 				mountains_history_list.add(mountains_history);
 			}
 
