@@ -15,38 +15,33 @@
 
 <style>
 th {
-    background-color: #cbe7cb;
-    color: gray;
+	border-color: #cbe7cb;
+	color: gray;
 }
+
+
 </style>
 
 </head>
 <body>
-	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel">
+	<%-- <div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>"
+		style="border-color: #cbe7cb">
+		<div class="panel" style="border-color: #cbe7cb">
 			<c:if test="${bean.order_no == 0}">
-				<div class="panel-heading">
-					<table>
-						<tr>
-						
-							<th>
-								<h5>${bean.board_title}</h5>
-							<c:forEach var="i" begin="1" end="30" step="1">
+				<div class="panel-head" style="background-color:#cbe7cb" >
+				
+					<h5><font color="green"><strong>${bean.board_title}</strong></font></h5>
+					<c:forEach var="i" begin="1" end="30" step="1">
 								&nbsp;&nbsp;&nbsp;
 							</c:forEach>
-							<font> ${bean.user_nickname} &nbsp;&nbsp; ${bean.board_writ_date}</font><br>
-							
-							</th>
-						</tr>
-
-					</table>
-
+					<font> ${bean.user_nickname} &nbsp;&nbsp;
+						${bean.board_writ_date}</font><br>
 				</div>
-
+				<!-- <hr style="border: 2px solid #cbe7cb"> -->
 				<div class="panel-body">${bean.board_content}</div>
 			</c:if>
 		</div>
-	</div>
+	</div> --%>
 	<c:if test="<%=loginfo != null%>">
 		<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 			<form id="replyForm" action="<%=MyCtrlByForm%>" method="post">
@@ -60,7 +55,8 @@ th {
 				<table>
 					<tr>
 						<td><label class="control-label col-sm-<%=formleft%>"></label>sdafsdaff</td>
-						<td><textarea name="content" style="resize: none; border-color:#cbe7cb ;"
+						<td><textarea name="content"
+								style="resize: none; border-color: #cbe7cb;"
 								class="col-sm-<%=formright%>" rows="3" cols=""></textarea></td>
 						<td><button type="submit" class="topmybutton topmybutton1">ADD</button></td>
 
@@ -110,9 +106,10 @@ th {
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
-				});
-			});
+				location.href='<%=MyCtrlCommand%>
+		boList&${requestScope.parameter}';
+											});
+						});
 	</script>
 </body>
 </html>
