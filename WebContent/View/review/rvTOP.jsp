@@ -129,7 +129,7 @@
 			<c:if test="${sessionScope.whologin == 1}">
 				<a href="<%=MyCtrlCommand%>boMyList&id=<%=loginfo.getUser_id()%>">내가 쓴글</a>
 				<a href="<%=MyCtrlCommand%>boMyReplyList&id=<%=loginfo.getUser_id()%>">내가 단 덧글</a>
-				<a href="<%=MyCtrlCommand%>boList">등산목록</a>
+				<a href="<%=MyCtrlCommand%>hiList">등산목록</a>
 				<a href="<%=MyCtrlCommand%>tiList">타이틀</a>
 			</c:if>
 		</div>
@@ -166,7 +166,7 @@ function closeNav() {
 						<hr>
 						<a href="<%=MyCtrlCommand%>boList">내가 쓴글</a>
 						<a href="<%=MyCtrlCommand%>meList">내가 단 덧글</a>
-						<a href="<%=MyCtrlCommand%>boList">등산목록</a>
+						<a href="<%=MyCtrlCommand%>hiList">등산목록</a>
 						<a href="<%=MyCtrlCommand%>tiList">타이틀</a>
 					</c:if>
 				</div>
