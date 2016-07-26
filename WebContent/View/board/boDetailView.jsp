@@ -63,11 +63,6 @@ th {
 					type="hidden" name="depth" value="${bean.depth}">
 				<table>
 					<tr>
-
-						<td><label class="control-label col-sm-<%=formleft%>"></label>sdafsdaff</td>
-						<td><textarea name="content"
-								style="resize: none; border-color: #cbe7cb;"></textarea></td>
-
 						<td><label class="control-label col-sm-<%=formleft%>"></label><%=loginfo.getUser_nickname()%></td>
 						<td><textarea name="content"
 								style="resize: none; border-color: #cbe7cb;"
