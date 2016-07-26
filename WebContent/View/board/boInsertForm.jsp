@@ -22,12 +22,11 @@
 <body>
 
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<!-- <div class="panel-heading">게시물 작성</div> -->
-		<!-- <div class="panel-body"> -->
 			<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm">
 				<input type="hidden" name="command" value="boInsert">
-					<label>BOARD WRITE</label><br><br>
-				<div class="form-group ">
+					<label>BOARD WRITE</label><br>
+					<hr style="border: solid;">
+					<div class="form-group ">
 					<label class="control-label col-sm-<%=formleft%>" for="subject">TITLE</label>
 					<div class="col-sm-<%=myoffset%>">
 						<select class="form-control " name="category" id="category">

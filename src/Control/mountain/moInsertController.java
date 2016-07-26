@@ -28,6 +28,7 @@ public class moInsertController implements SuperController {
 		
 		mountain.setMountain_area(multi.getParameter("area"));
 		mountain.setMountain_thema(multi.getParameter("thema"));
+		mountain.setMountain_thema2(multi.getParameter("thema2"));
 		mountain.setMountain_name(multi.getParameter("name"));
 		mountain.setMountain_address(multi.getParameter("address"));
 		mountain.setMountain_img(multi.getFilesystemName("image"));
