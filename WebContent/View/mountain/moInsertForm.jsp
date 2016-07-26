@@ -50,7 +50,7 @@
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm"
 			enctype="multipart/form-data">
-			<input type="hidden" name="command" value="moAdminList"> <label>MOUNTAIN WRITE</label><br>
+			<input type="hidden" name="command" value="moInsert"> <label>MOUNTAIN WRITE</label><br>
 			<hr style="border: solid;">
 			<br>
 			<div class="form-group ">
@@ -58,7 +58,10 @@
 				<div class="col-sm-<%=myoffset%>">
 					<select class="form-control " name="area" id="area">
 						<option value="-" selected="selected">--지역 선택--
-						<option value="자유게시판">자유게시판
+						<option value="훗카이도">훗카이도
+						<option value="혼슈">혼슈
+						<option value="알프스 지역">알프스 지역
+						<option value="규슈">규슈
 					</select>
 				</div>
 				<div class="col-sm-<%=formright - myoffset%>">
@@ -100,9 +103,9 @@
 						alt="Cinque Terre" width="400px" height="250px"><br> <br>
 					<div class="form-group">
 						<button type="button" id="image_add" class="imamybutton imamybutton1">IMAGE</button>
-						&nbsp;&nbsp;
+						<input type="file" name="image" id="image" class="hide"> &nbsp;&nbsp;
 						<button type="button" id="image_remove" class="imamybutton imamybutton1">DELETE</button>
-						<input type="hidden" id="name=" id="image">
+
 					</div>
 				</div>
 			</div>
@@ -186,11 +189,11 @@
 		$("#image_add").click(function() {
 			$("#image").click();	
 		});
-	}(jQuery));
+	});
 	
 	$(document).ready(function() {
 		$("#image_remove").click(function() {
-			$("#user_img").attr("src", "<%=img%>");
+			$("#thumbnailt").attr("src", "<%=img%>");
 		});
 	});
 	
@@ -199,14 +202,9 @@
 			if($("#image").val() != null || $("#image").val() != "") {
 				if($("#area").val() != "-"){
 					if($("#name").val() != null || $("#name").val() != "") {
-						if($("#address").val() != null || $("#address").val() != "") {
-							oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-							$("#frm").submit();
+						oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+						$("#frm").submit();
 				        	//폼 submit
-						} else {
-							alert("주소를 입력해주세요");
-							return false;
-						}
 					} else {
 						alert("이름을 입력해주세요");
 						return false;
@@ -221,34 +219,6 @@
 			}
 		});
 	});
-
-	$(document).ready(function() {
-		var oEditors = [];
-		$(function(){
-			nhn.husky.EZCreator.createInIFrame({
-				oAppRef: oEditors,
-				elPlaceHolder: "ir1",
-				//SmartEditor2Skin.html 파일이 존재하는 경로
-				sSkinURI: "../SmartEditor/SmartEditor2Skin.html",	
-				htParams : {
-					// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-					bUseToolbar : true,				
-					// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-					bUseVerticalResizer : true,		
-					// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-					bUseModeChanger : true,			
-					fOnBeforeUnload : function(){
-						
-					}
-				}, 
-				fOnAppLoad : function(){
-					//기존 저장된 내용의 text 내용을 에디터상에 뿌려주고자 할때 사용
-					oEditors.getById["ir1"].exec("PASTE_HTML", ["기존 DB에 저장된 내용을 에디터에 적용할 문구"]);	
-				},
-				fCreator: "createSEditor2"
-				});
-			});
-		});
 	
 		$(document).ready(function() {
 			$('[data-toggle="tooltip"]').tooltip();

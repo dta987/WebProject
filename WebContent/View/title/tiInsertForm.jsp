@@ -51,7 +51,8 @@
 <body>
 <div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 	<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="command" value="tiInsert"> <label>TITLE UPDATE</label><br><br>
+		<input type="hidden" name="command" value="tiInsert"> <label>TITLE UPDATE</label><br>
+		<hr style="border: solid;">
 		<table>
 			<td>
 				<div id="iddiv" class="form-group has-feedback">

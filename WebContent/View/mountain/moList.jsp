@@ -83,7 +83,7 @@
 
 				<c:if test="${requestScope.selecter == '계절'}">
 					<h3>
-						<font color="green"><strong>AREA</strong></font>
+						<font color="green"><strong>SEASON</strong></font>
 					</h3>
 					<h5>
 						<font color="#009933"><strong>&nbsp;&nbsp;일본 계절별 명산</strong></font>
@@ -93,21 +93,24 @@
 
 				<c:if test="${requestScope.selecter == '꽃'}">
 					<h3>
-						<font color="green"><strong>AREA</strong></font>
+						<font color="green"><strong>FLOWER</strong></font>
 					</h3>
 					<h5>
 						<font color="#009933"><strong>&nbsp;&nbsp;일본 꽃 명산</strong></font>
 					</h5>
 					<br>
 				</c:if>
+			</div>
 
-				<c:forEach var="bean" items="${requestScope.lists}">
-					<c:if test="${requestScope.selecter != '지역별'}">
-						<c:if test='${fn:indexOf("${bean.mountain_thama}", "${requestScope.selecter}") != -1}'>
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '지역별'}">
+					<h2>훗카이도</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_area == '훗카이도'}">
 							<div class="w3-third w3-container w3-margin-bottom">
 								<div class="w3-container">
 
-									<p>${bean.mountain_thema}</p>
+									<p>${bean.mountain_name}</p>
 								</div>
 								<div class="col-sm-12 col-md-12">
 									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
@@ -116,26 +119,221 @@
 								</div>
 							</div>
 						</c:if>
-					</c:if>
-
-					<c:if test="${requestScope.selecter == '지역별'}">
-						<div class="w3-third w3-container w3-margin-bottom">
-							<div class="w3-container">
-								<p>${bean.mountain_name}</p>
-							</div>
-							<div class="col-sm-12 col-md-12">
-								<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
-									class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
-									class="w3-hover-opacity thumbnail"></a>
-							</div>
-						</div>
-					</c:if>
-
-				</c:forEach>
-
+					</c:forEach>
+				</c:if>
 			</div>
-			<br> <br>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '지역별'}">
+					<h2>혼슈</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_area == '혼슈'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '지역별'}">
+					<h2>알프스 지역</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_area == '알프스 지역'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '지역별'}">
+					<h2>큐슈</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_area == '큐슈'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '계절'}">
+					<h2>봄</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_thema2 == '봄'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '계절'}">
+					<h2>여름</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_thema2 == '여름'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '계절'}">
+					<h2>가을</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_thema2 == '가을'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '계절'}">
+					<h2>겨울</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_thema2 == '겨울'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '꽃'}">
+					<h2>훗카이도</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_area == '훗카이도'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '꽃'}">
+					<h2>혼슈</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_area == '혼슈'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
+
+			<div class="w3-twothird w3-container ">
+				<c:if test="${requestScope.selecter == '꽃'}">
+					<h2>큐슈</h2>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<c:if test="${bean.mountain_area == '큐슈'}">
+							<div class="w3-third w3-container w3-margin-bottom">
+								<div class="w3-container">
+
+									<p>${bean.mountain_name}</p>
+								</div>
+								<div class="col-sm-12 col-md-12">
+									<a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}" class="thumbnail"><img
+										class="resize" src="<%=uploadedFolder%>${bean.mountain_img}" alt=""
+										class="w3-hover-opacity thumbnail"></a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
+			</div>
 		</div>
+		<br> <br>
 	</div>
 </body>
 </html>

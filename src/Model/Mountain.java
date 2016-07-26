@@ -10,11 +10,13 @@ public class Mountain {
 	private String mountain_introduce;
 	private String update_date;
 	private String mountain_thema;
+	private String mountain_thema2;
+	
 	@Override
     public String toString() {
 	    return "Mountain [mountain_no=" + mountain_no + ", mountain_name=" + mountain_name + ", mountain_area=" + mountain_area
 	            + ", mountain_address=" + mountain_address + ", mountain_img=" + mountain_img + ", mountain_introduce="
-	            + mountain_introduce + ", updatedate=" + update_date + ", mountain_thema=" + mountain_thema + "]";
+	            + mountain_introduce + ", updatedate=" + update_date + ", mountain_thema=" + mountain_thema + ", mountain_thema2=" + mountain_thema2 + "]";
     }
 	public int getMountain_no() {
 		return mountain_no;
@@ -63,6 +65,12 @@ public class Mountain {
 	}
 	public void setMountain_thema(String mountain_thema) {
 		this.mountain_thema = mountain_thema;
+	}
+	public String getMountain_thema2() {
+		return mountain_thema2;
+	}
+	public void setMountain_thema2(String mountain_thema2) {
+		this.mountain_thema2 = mountain_thema2;
 	}
 	
 	
