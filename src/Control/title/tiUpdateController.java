@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import Control.ControllerForward;
 import Control.SuperController;
 import Model.Title;
@@ -19,21 +21,20 @@ public class tiUpdateController implements SuperController {
 		
 		ControllerForward forward = new ControllerForward();
 		TitleDao dao = new TitleDao();
-
-		Title title = new Title();
-		title.setTitle_no(Integer.parseInt(req.getParameter("title_no")));
-		title.setTitle_condition(req.getParameter("title_condition"));
-		title.setTitle_img(req.getParameter("title_img"));
-		title.setTitle_name(req.getParameter("title_name"));
+		Title bean = new Title();
+		MultipartRequest multi = (MultipartRequest) req.getAttribute("multi") ;
 		
-		int cnt = dao.UpdateData(title);
+		
+		bean.setTitle_no(Integer.parseInt(multi.getParameter("no")));
+		bean.setTitle_condition(multi.getParameter("condition"));
+		bean.setTitle_img(multi.getFilesystemName("image"));
+		bean.setTitle_name(multi.getParameter("name"));
+		
+		int cnt = dao.UpdateData(bean);
 
 		if (cnt > 0) {
-			
 			forward.setRedirect(false);
-			req.setAttribute("title_no", req.getParameter("title_no"));
-			forward.setPath(req.getContextPath() + "/YamaManCtrl?command=tiUpdate");
-			
+			forward.setPath("/YamaManCtrl?command=tiList");
 		} else {
 			forward.setRedirect(true);
 			forward.setPath("/View/review/rvErrPage.jsp");
