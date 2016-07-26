@@ -74,7 +74,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="condition" class="col-sm-<%=label%> control-label">상태</label>
+					<label for="condition" class="col-sm-<%=label%> control-label">타이틀 조건</label>
 					<div class="col-sm-<%=input%>">
 						<input type="text" class="form-control" id="condition"
 							name="condition" value="${bean.title_condition}">
@@ -85,7 +85,7 @@
 			<td>
 				<div class="form-group" align="center">
 					&nbsp;&nbsp; <img id="title_img"
-						src="<%=uploadedFolder%>${bean.title_img}" class="img-rounded"
+						src="<%=img%>" class="img-rounded"
 						alt="Cinque Terre" width="200px" height="200px">
 				</div>
 				<div class="form-group" align="center">
@@ -101,7 +101,7 @@
 					<br>
 					<button type="submit" class="topmybutton topmybutton1">CORRECT</button>
 					&nbsp;
-					<button type="reset" class="topmybutton topmybutton1">BACK</button>
+					<button type="reset" class="topmybutton topmybutton1" onclick="goBack()" >BACK</button>
 					<br>
 				</div>
 			</td>
@@ -111,11 +111,37 @@
 	</form>
 </div>
 <script>
-		$(document).ready(function() {
-			$("#image_add").click(function() {
-				$("#image").click();
-			});
-		});//이미지 추가
-		</script>
+$(document).ready(function() {
+	$("#image_remove").click(function() {
+		$("#title_img").attr("src", "<%=img%>");
+	});
+});
+function goBack() {
+	window.history.back();
+}
+	$(document).ready(function() {
+		$("#image").change(function() {
+			var ext = $('#image').val().split('.').pop().toLowerCase();
+			if ($.inArray(ext, [ 'gif', 'png', 'jpg', 'jpeg' ]) == -1) {
+				alert("gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.");
+				$("#image").val("");
+			} else {
+				var thisDom = $("#image")[0];
+				if (thisDom.files && thisDom.files[0]) {
+					var file = new FileReader();
+					file.onload = function(e) {
+						$("#title_img").attr("src", e.target.result);
+					}
+					file.readAsDataURL(thisDom.files[0]);
+				}
+			}
+		});
+	});
+	$(document).ready(function() {
+		$("#image_add").click(function() {
+			$("#image").click();
+		});
+	});//이미지 추가
+</script>
 </body>
 </html>

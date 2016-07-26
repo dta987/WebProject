@@ -1,4 +1,4 @@
-package Control.member;
+package Control.title;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,40 +11,41 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-
-
 import Control.ControllerForward;
 import Control.SuperController;
+import Model.Member;
 import Model.MemberDao;
-import Model.Title;
 import Model.TitleDao;
 import Utility.FlowParameters;
-public class meDeleteController implements SuperController {
+
+public class tiDeleteController implements SuperController {
 
 	@Override
 	public ControllerForward doProcess(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 
 		ControllerForward forward = new ControllerForward();
-		MemberDao dao = new MemberDao();
+		TitleDao dao = new TitleDao();
 		
-		String id = req.getParameter("id");
+		int no = Integer.parseInt(req.getParameter("no"));
 		//String password = req.getParameter("password");
 		
-		
+		System.out.println(dao.SelectDataByPk(no).toString());
 		FlowParameters parameters = new FlowParameters() ;
 		parameters.setKeyword( req.getParameter("keyword") ); 
 		parameters.setMode( req.getParameter("mode") ); 
 		parameters.setPageNumber( req.getParameter("pageNumber") );
 		parameters.setPageSize( req.getParameter("pageSize") );
-
-		int cnt = dao.DeleteDate(id);
+		
+		
+		
+		int cnt = dao.DeleteDate(Integer.parseInt(req.getParameter("no")));
 		
 		
 		
 		if(cnt > 0 ) {
 			forward.setRedirect(true);
-			forward.setPath("/YamaManCtrl?command=meList&" + parameters.toString() ) ;
+			forward.setPath("/YamaManCtrl?command=tiList&" + parameters.toString() ) ;
 		} else {
 			forward.setRedirect(true);
 			forward.setPath("/View/review/reErrPage.jsp");
@@ -55,3 +56,4 @@ public class meDeleteController implements SuperController {
 	}
 
 }
+
