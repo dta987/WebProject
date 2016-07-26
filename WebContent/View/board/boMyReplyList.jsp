@@ -28,7 +28,7 @@ tr:hover {
 	<br>
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 		<!-- <div class="panel-heading">게시판</div> -->
-		<label>MY BOARD LIST</label><br> <br>
+		<label>MY BOARD REPLY LIST</label><br> <br>
 		<table class="table" align="center">
 			<thead>
 				<tr>

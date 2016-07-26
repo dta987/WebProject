@@ -2,7 +2,10 @@
 <%@ page import="Model.Member"%>
 <%@ include file="./../../common/common.jsp"%>
 <%
+
 	Member loginfo = (Member) session.getAttribute("loginfo");
+
+	String img = contextPath + "/View/images/산타니05.jpg"; //기본 이미지
 
 	int whologin = 0; // 0 : 미로그인,  1 : 회원 로그인, 2 : 관리자 로그인
 
@@ -121,8 +124,7 @@ function function1(  ){
 <div class="container-fluid">
 	<c:if test="${sessionScope.whologin != 0}">
 		<div id="mySidenav" class="sidenav">
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span
-				class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><spanclass="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 			<c:if test="${sessionScope.whologin == 2}">
 				<a href="<%=MyCtrlCommand%>meList">MEMBER</a>
 				<a href="<%=MyCtrlCommand%>boList">BOARD</a>

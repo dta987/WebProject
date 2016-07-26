@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
 	int myoffset = 2;
@@ -15,27 +14,23 @@
 
 <style>
 th {
-    background-color: #cbe7cb;
-    color: gray;
+	color: gray;
 }
 </style>
 
 </head>
 <body>
 	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel">
+		<div class="panel panel-default">
 			<c:if test="${bean.order_no == 0}">
 				<div class="panel-heading">
 					<table>
 						<tr>
-						
+
 							<th>
-								<h5>${bean.board_title}</h5>
-							<c:forEach var="i" begin="1" end="30" step="1">
-								&nbsp;&nbsp;&nbsp;
-							</c:forEach>
-							<font> ${bean.user_nickname} &nbsp;&nbsp; ${bean.board_writ_date}</font><br>
-							
+								<h1>${bean.board_title}</h1> <font> 작성자 : ${bean.user_nickname} &nbsp;&nbsp; 작성시간 :
+									${bean.board_writ_date}</font><br>
+
 							</th>
 						</tr>
 
@@ -50,29 +45,24 @@ th {
 	<c:if test="<%=loginfo != null%>">
 		<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
 			<form id="replyForm" action="<%=MyCtrlByForm%>" method="post">
-				<input type="hidden" name="command" value="boReplyInsert"> <input
-					type="hidden" name="id" value="<%=loginfo.getUser_id()%>">
-				<input type="hidden" name="nickname"
-					value="<%=loginfo.getUser_nickname()%>"> <input
-					type="hidden" name="group_no" value="${bean.group_no}"> <input
-					type="hidden" name="order_no" value="${bean.order_no}"> <input
-					type="hidden" name="depth" value="${bean.depth}">
+				<input type="hidden" name="command" value="boReplyInsert"> <input type="hidden"
+					name="id" value="<%=loginfo.getUser_id()%>"> <input type="hidden" name="nickname"
+					value="<%=loginfo.getUser_nickname()%>"> <input type="hidden" name="group_no"
+					value="${bean.group_no}"> <input type="hidden" name="order_no" value="${bean.order_no}">
+				<input type="hidden" name="depth" value="${bean.depth}">
 				<table>
 					<tr>
-						<td><label class="control-label col-sm-<%=formleft%>"></label>sdafsdaff</td>
-						<td><textarea name="content" style="resize: none; border-color:#cbe7cb ;"
+						<td><label class="control-label col-sm-<%=formleft%>"></label><%=loginfo.getUser_nickname()%></td>
+						<td><textarea name="content" style="resize: none; border-color: #cbe7cb;"
 								class="col-sm-<%=formright%>" rows="3" cols=""></textarea></td>
 						<td><button type="submit" class="topmybutton topmybutton1">ADD</button></td>
-
 					</tr>
-					<tr>
-					</tr>
+					
 				</table>
+				<hr>
 			</form>
-
-
-
 		</div>
+
 	</c:if>
 
 	<c:forEach var="rebean" items="${requestScope.lists}">
@@ -80,6 +70,9 @@ th {
 			<table>
 				<tr>
 					<td>${rebean.user_nickname}&nbsp;&nbsp;<font>${rebean.board_writ_date}</font>
+					</td>
+					<td align="right">
+					<a href="#">수정</a>&nbsp;&nbsp;<a href="#">삭제</a>
 					</td>
 
 				</tr>
@@ -90,14 +83,12 @@ th {
 			<hr>
 		</div>
 	</c:forEach>
-	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>"
-		align="center">
+	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>" align="center">
 		<footer>${requestScope.pagingHtml}</footer>
 	</div>
 
 
-	<div class="container col-sm-offset-5 col-sm-<%=mywidth%>"
-		align="center">
+	<div class="container col-sm-offset-5 col-sm-<%=mywidth%>" align="center">
 		<br>
 		<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
 	</div>
@@ -111,8 +102,8 @@ th {
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
 				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameter}';
-				});
-			});
+											});
+						});
 	</script>
 </body>
 </html>

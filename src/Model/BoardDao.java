@@ -639,7 +639,7 @@ public class BoardDao extends SuperDao {
 		return cnt;
 	}
 
-	public List<Board> SelectDataList(int beginRow, int endRow, String mode,
+	public List<Board> SelectMyReplyDataList(int beginRow, int endRow, String mode,
 			String keyword, String id) {
 
 		PreparedStatement pstmt = null;
@@ -780,5 +780,71 @@ public class BoardDao extends SuperDao {
 			}
 		}
 		return cnt;
+	}
+
+	public List<Board> SelectMyDataList(int beginRow, int endRow, String mode,
+			String keyword, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select board_no, board_title, board_writ_date, board_update, board_readhit, user_nickname, board_writer, group_no, order_no, depth, ranking";
+		sql += " from";
+		sql += " (";
+		sql += " select board_no, board_title, board_writ_date, board_update, board_readhit, user_nickname, board_writer, group_no, order_no, depth, rank() over( order by group_no desc) as ranking";
+		sql += " from boards where order_no = 0 and board_writer = ?";
+		if (!mode.equals("all")) {
+			sql += "where " + mode + " like '%" + keyword + "%'";
+		}
+		;
+		sql += " )";
+		sql += " where ranking between ? and ? ";
+
+		List<Board> board_lists = new ArrayList<Board>();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, beginRow);
+			pstmt.setInt(3, endRow);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Board board = new Board();
+				board.setBoard_no(rs.getInt("board_no"));
+				board.setBoard_title(rs.getString("board_title"));
+				// board.setBoard_writ_date(rs.getString("board_writ_date"));
+				board.setBoard_writ_date(format.format(rs
+						.getDate("board_writ_date")));
+				board.setBoard_update(format.format(rs.getDate("board_update")));
+				board.setBoard_readhit(rs.getString("board_readhit"));
+				board.setUser_nickname(rs.getString("user_nickname"));
+				board.setBoard_writer(rs.getString("board_writer"));
+				board.setGroup_no(rs.getInt("group_no"));
+				board.setOrder_no(rs.getInt("order_no"));
+				board.setDepth(rs.getInt("depth"));
+				board_lists.add(board);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return board_lists;
 	}
 }

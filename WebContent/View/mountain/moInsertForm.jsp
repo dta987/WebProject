@@ -1,27 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
-	int myoffset = 3;
+	int myoffset = 2;
 	int mywidth = twelve - 2 * myoffset;
 	int formleft = 2;
 	int formright = twelve - formleft;
 %>
-
-<!-- SmartEditor -->
-<script type="text/javascript" src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"> </script>
-<!-- SmartEditor -->
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+
 <style type="text/css">
 #contents {
 	height: 500px;
 }
-</style>
 
-<style type="text/css">
 .imabutton {
 	background-color: #cbe7cb;
 	border: none;
@@ -55,8 +48,10 @@
 <body>
 
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm" enctype="multipart/form-data">
-			<input type="hidden" name="command" value="moInsert"> <label>MOUNTAIN WRITE</label><br>
+		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm"
+			enctype="multipart/form-data">
+			<input type="hidden" name="command" value="moAdminList"> <label>MOUNTAIN WRITE</label><br>
+			<hr style="border: solid;">
 			<br>
 			<div class="form-group ">
 				<label class="control-label col-sm-<%=formleft%>" for="subject">NAME</label>
@@ -72,12 +67,21 @@
 			</div>
 			<br>
 			<div class="form-group ">
-			<label class="control-label col-sm-<%=formleft%>" for="subject">THEMA</label>
-			<div class="col-sm-<%=myoffset%>">
+				<label class="control-label col-sm-<%=formleft%>" for="subject">THEMA</label>
+				<div class="col-sm-<%=myoffset%>">
 					<select class="form-control " name="thema" id="thema">
-						<option value="-" selected="thema">--테 마--
+						<option value="-" selected="selected">--테 마--
 						<option value="꽃">꽃
 						<option value="계절">계절
+					</select>
+				</div>
+				<div class="col-sm-<%=myoffset%>" id="thema2div">
+					<select class="form-control hide" name="thema2" id="thema2">
+						<option value="-" selected="thema">--테 마--
+						<option value="봄">봄
+						<option value="여름">여름
+						<option value="가을">가을
+						<option value="겨울">겨울
 					</select>
 				</div>
 			</div>
@@ -93,12 +97,12 @@
 				<label class="control-label col-sm-<%=formleft%>" for="content">THUMBNAIL</label>
 				<div class="col-sm-<%=formright%>" align="center">
 					<img id="thumbnailt" src="<%=contextPath%>/View/images/산타니05.jpg" class="img-rounded"
-						alt="Cinque Terre" width="400px" height="250px"><br><br>
+						alt="Cinque Terre" width="400px" height="250px"><br> <br>
 					<div class="form-group">
 						<button type="button" id="image_add" class="imamybutton imamybutton1">IMAGE</button>
 						&nbsp;&nbsp;
 						<button type="button" id="image_remove" class="imamybutton imamybutton1">DELETE</button>
-						<input type="file" name="image" id="image" class="hide">
+						<input type="hidden" id="name=" image" id="image">
 					</div>
 				</div>
 			</div>
@@ -108,7 +112,7 @@
 				<div class="col-sm-<%=formright%>">
 					<textarea class="form-control" rows="10" cols="30" id="content" name="content"
 						style="width: 100%; height: 5;"></textarea>
-					<script>
+					<script type="text/javascript">
 							var oEditors = [];
 							$(function(){
 								nhn.husky.EZCreator.createInIFrame({
@@ -147,7 +151,13 @@
 		</form>
 	</div>
 
-	<script>
+	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#thema").val().change(function() {
+			alert("asdfsdfa");
+		});
+	});
 	
 	$(document).ready(function() {
 		$("#image").change(function() {
@@ -167,9 +177,16 @@
 			}
 		});
 	});
+	
 	$(document).ready(function() {
 		$("#image_add").click(function() {
 			$("#image").click();	
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#image_remove").click(function() {
+			$("#user_img").attr("src", <%=img%>);
 		});
 	});
 	
@@ -236,8 +253,8 @@
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
 				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameters}';
-				});
-			});//뒤로가기
+											});
+						});//뒤로가기
 	</script>
 </body>
 </html>
