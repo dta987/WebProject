@@ -27,7 +27,7 @@ tr:hover {
 			<thead>
 				<tr>
 					<th>&nbsp;&nbsp;&nbsp;&nbsp;번호</th>
-					<th>산 관리번호</th>
+					<th>산 이름</th>
 					<th>등산 날짜</th>
 					<th>등산 메모</th>
 					<c:if test="${sessionScope.whologin == 2}">
@@ -40,7 +40,7 @@ tr:hover {
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<tr>
 					<td>${bean.history_no}</td>
-					<td>${bean.mountain_no}</td>
+					<td>${bean.mountain_name}</td>
 					<td>${bean.hiking_date}</td>
 					<td>${bean.hiking_memo}</td>
 					<c:if test="${sessionScope.whologin == 2}">
