@@ -83,7 +83,8 @@ th {
 				<tr>
 					<td>${rebean.user_nickname}&nbsp;&nbsp;<font>${rebean.board_writ_date}</font>
 					</td>
-					<td align="right"><a href="#">수정</a>&nbsp;&nbsp;<a href="#">삭제</a>
+					<td align="right"><a href="#">수정</a>&nbsp;&nbsp;
+					<a href="<%=MyCtrlCommand%>boReplyDelete&reno=${rebean.board_no}&no=${bean.group_no}">삭제</a>
 					</td>
 
 				</tr>

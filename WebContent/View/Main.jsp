@@ -71,7 +71,7 @@
 
 	<div class="container-fluid ">
 		<c:forEach var="carousel_img" items="<%=carousel_img%>">
-			<div class="w3-display-container mySlides col-sm-offset-1 col-sm-7">
+			<div class="w3-display-container mySlides col-sm-offset-1 col-sm-7 ">
 				<div class="container-fluid">
 					<img src="<%=contextPath %>${carousel_img}" style="width:150%; height:500px">
 					<br><br><br>

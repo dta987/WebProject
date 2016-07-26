@@ -27,20 +27,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript">
-function function1(  ){
-	alert('') ;
-}
-</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP</title>
 <style type="text/css">
+
 .navbar-right {
 	margin-right: 5px;
 }
-</style>
 
-<style type="text/css">
 .topmybutton {
 	background-color: #4CAF50; /* Green */
 	border: none;
@@ -124,7 +119,7 @@ function function1(  ){
 <div class="container-fluid">
 	<c:if test="${sessionScope.whologin != 0}">
 		<div id="mySidenav" class="sidenav">
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><spanclass="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 			<c:if test="${sessionScope.whologin == 2}">
 				<a href="<%=MyCtrlCommand%>meList">MEMBER</a>
 				<a href="<%=MyCtrlCommand%>boList">BOARD</a>
