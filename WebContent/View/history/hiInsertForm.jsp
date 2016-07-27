@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
-	int myoffset = 2;
+	int myoffset = 4;
 	int mywidth = twelve - 2 * myoffset;
 	int formleft = 2;
 	int formright = twelve - formleft;
@@ -53,35 +53,16 @@
 </head>
 <body>
 
-
-<!-- <div class="container">
-  <h2>Horizontal form</h2>
-  <form class="form-horizontal" role="form">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Email:</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="email" placeholder="Enter email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Password:</label>
-      <div class="col-sm-10">          
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-      </div>
-    </div>
-	
- -->
-
 	<div class=" container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" id="frm"
-			enctype="multipart/form-data">
+		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post" enctype="multipart/form-data">
+
 			<input type="hidden" name="command" value="hiInsert"> <label>HISTORY INSERT</label><br>
-			<hr style="border: solid; color:#cbe7cb ">
+			<hr style="border: solid; color: #cbe7cb">
 			<br>
-			 <div class="form-group">
+			<div class="form-group" id="themadiv">
 				<label class="control-label col-sm-<%=formleft%>" for="subject">NAME</label>
-				<div class="col-sm-3">
-					<select class="form-control " name="area" id="area">
+				<div class="col-sm-<%=formright%>">
+					<select class="form-control " name="thema" id="thema">
 						<option value="-" selected="selected">--지역 선택---
 						<option value="훗카이도">훗카이도
 						<option value="혼슈">혼슈
@@ -89,41 +70,48 @@
 						<option value="큐슈">큐슈
 					</select>
 				</div>
-				<div class="col-sm-3" id="mountain_list_div">
-					<select class="form-control hide" name="mountain_list" id="mountain_list">
-						<option value="-" selected="selected">--테 마--
-						<c:forEach var="bean" items="${mountain_list}">
-							<option value="${bean.mountain_no }">${bean.mountain_no }
-						</c:forEach>
-					</select>
-					</div>
 			</div>
-			
-		<%--  <div class="form-group">
-				<label class="control-label col-sm-<%=formleft%>" for="subject">NO</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" name="no" id="no" >
+
+			<div class="form-group hide" id="subthemadiv">
+				<label class="control-label col-sm-<%=formleft%>" for="subject">NAME</label>
+				<div class="col-sm-<%=formright / 2%>">
+					<select class="form-control" name="subthema" id="subthema">
+						<option value="-" selected="selected">--지역 선택---
+						<option value="훗카이도">훗카이도
+						<option value="혼슈">혼슈
+						<option value="알프스 지역">알프스 지역
+						<option value="큐슈">큐슈
+					</select>
 				</div>
-		</div> --%>
-		
-			
-		<div class="form-group">
+				<div class="form-group" id="areadiv">
+					<div class="col-sm-<%=formright / 2%>">
+						<select class="form-control" name="area" id="area">
+							<option value=리시리다케>리시리다케
+							<option value="보로시리다케">보로시리다케
+						</select>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="form-group">
 				<label class="control-label col-sm-<%=formleft%>" for="subject">DATE</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" name="date" id="date">
+				<div class="col-sm-<%=formright%>">
+					<input type="text" id="datepicker" name="datepicker">
 				</div>
-		</div>
-		
-		<div class="form-group">
+			</div>
+
+			<div class="form-group">
 				<label class="control-label col-sm-<%=formleft%>" for="subject">MEMO</label>
-				<div class="col-sm-3">
+				<div class="col-sm-<%=formright%>">
 					<input type="text" class="form-control" name="memo" id="memo">
 				</div>
-		</div>
-			
+			</div>
+
 			<div class="form-group">
 				<div align="center" class="col-sm-offset-5 col-sm-10">
-					<button class="topmybutton topmybutton1" type="button" id="savebtn">SAVE</button>
+					<button class="topmybutton topmybutton1" type="submit" id="savebtn">SAVE</button>
 					&nbsp;&nbsp;&nbsp;
 					<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
 				</div>
@@ -132,58 +120,49 @@
 	</div>
 
 	<script type="text/javascript">
+	$( function() {
+	    $( "#datepicker" ).datepicker();
+	  } );
 	
 	$(document).ready(function() {
-		$("#area").change(function() {
-			if($("#area").val() == "홋카이도") {
-				$("#mountain_list").removeClass("hide");
-				mountain_area = $("#area").val();
-				  
-			} else if($("#area").val() == "혼슈") {
-				$("#mountain_list").removeClass("hide");
-				mountain_area = $("#area").val();
-			} else if( $("#area").val() == "알프스지역" ){
-				$("#mountain_list").removeClass("hide");
-				mountain_area = $("#area").val();
-			} else if( $("#area").val() == "큐슈" ){
-				$("#mountain_list").removeClass("hide");
-				mountain_area = $("#area").val();
-			} else{
-				$("#mountain_list").addClass("hide");
-				
-			}
-			
-		});
-	});
-	
-	$(document).ready(function() {
-		$("#savebtn").click(function() {	
-			if($("#image").val() != null || $("#image").val() != "") {
-				if($("#area").val() != "-"){
-					if($("#name").val() != null || $("#name").val() != "") {
-						oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-						$("#frm").submit();
-				        	//폼 submit
-					} else {
-						alert("이름을 입력해주세요");
-						return false;
-					}
-				} else {
-					alert("지역을 선택해주세요");
-					return false;
-				}
-			} else {
-				alert("THUMBNAIL을 추가해주세요");
-				return false;
-			}
-		});
-	});
-	
-		$(document).ready(function() {
-			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>hiList&${requestScope.parameters}';
+		$("#gotoback").click(function() {
+			location.href='<%=MyCtrlCommand%>hiList&${requestScope.parameters}';
 											});
 						});//뒤로가기
+
+		$(document).ready(function() {
+			$("#thema").change(function() {
+				if ($("#thema").val() == "훗카이도") {
+					$("#sebthema option").each(function(index) {
+						if ($(this).val() == $("#thema").val()) {
+							$(this).attr("selected", "selected");
+						}
+					});
+					
+					$("#subthemadiv").attr("class", "form-group");
+					$("#areadiv").attr("class", "form-group");
+					$("#themadiv").attr("class", "form-group hide");
+				} else {
+					$("#subthemadiv").attr("class", "form-group hide");
+					$("#areadiv").attr("class", "form-group hide");
+					$("#themadiv").attr("class", "form-group");
+				}
+
+			});
+		});
+						
+		$.datepicker.setDefaults({
+		    dateFormat: 'yy-mm-dd',
+		    prevText: '이전 달',
+		    nextText: '다음 달',
+		    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		    showMonthAfterYear: true,
+		    yearSuffix: '년'
+		  });
 	</script>
 
 </body>

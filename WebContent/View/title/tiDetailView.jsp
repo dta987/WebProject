@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../review/rvTOP.jsp"%>
 <%
 	int myoffset = 3;
@@ -51,16 +50,14 @@
 <body>
 
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>"
-			method="post" enctype="multipart/form-data">
-			<input type="hidden" name="command" value="tiUpdate"> <label>TITLE
-				DetailView</label><br>
+		<form class="form-horizontal" role="form" action="<%=MyCtrlByForm%>" method="post"
+			enctype="multipart/form-data">
+			<input type="hidden" name="command" value="tiUpdate"> <label>TITLE DetailView</label><br>
 			<hr style="border: solid; color: #cbe7cb">
 			<table>
 				<td>
 					<div id="iddiv" class="form-group has-feedback">
-						<label for="name" class="col-sm-<%=label%> control-label">타이틀
-							이름</label>
+						<label for="name" class="col-sm-<%=label%> control-label">타이틀 이름</label>
 						<div class="col-sm-<%=input%>">
 							<div class="floating-box1">${bean.title_name}</div>
 
@@ -69,8 +66,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="condition" class="col-sm-<%=label%> control-label">타이틀
-							조건</label>
+						<label for="condition" class="col-sm-<%=label%> control-label">타이틀 조건</label>
 						<div class="col-lg-<%=input%>">
 							<div class="floating-box2">${bean.title_condition}</div>
 
@@ -82,26 +78,21 @@
 				</td>
 				<td>
 					<div class="form-group" align="center">
-						&nbsp;&nbsp; <img id="title_img" src="<%=img%>"
-							class="img-rounded" alt="Cinque Terre" width="200px"
-							height="200px">
+						&nbsp;&nbsp; <img id="title_img" src="<%=img%>" class="img-rounded" alt="Cinque Terre"
+							width="200px" height="200px">
 					</div>
 				</td>
 				<tr>
-				<td>
+					<td>
 						<div class="form-group" align="right">
 							<br>
 							<button type="submit" class="topmybutton topmybutton1">UPDATE</button>
 							&nbsp;
-							<button class="topmybutton topmybutton1" type="button"
-								id="gotoback">BACK</button>
+							<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
 						</div>
 					</td>
 
 				</tr>
-
-
-
 
 			</table>
 			<div id="iddiv" class="form-group has-feedback">

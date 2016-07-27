@@ -17,10 +17,9 @@
 	String myurl = request.getRequestURI().toString();
 	String uri = request.getRequestURI();
 	String relativeWebPath = "/View/images/일본산이미지";
-	String absoluteWebPath = getServletContext().getRealPath(relativeWebPath);
-	
-	
-	
+	String absoluteWebPath = getServletContext().getRealPath(
+			relativeWebPath);
+
 	int idx = myurl.indexOf(uri);
 
 	String url = "/View/Main.jsp";
@@ -29,14 +28,14 @@
 	String uploadedFolder = myurl.substring(0, idx) + contextPath
 			+ uploadPath;
 
-  	/*
-  	out.print("url=" + myurl + "<br>");
+	/*
+	out.print("url=" + myurl + "<br>");
 	out.print("uri=" + uri + "<br>");
 	out.print("uploadedFolder=" + uploadedFolder + "<br>");
 	out.print("absoluteWebPath : "+absoluteWebPath+"<Br>");
 	String realPath1 = application.getRealPath(uploadPath);
 	out.print("realPath1=" + realPath1 + "<br>");
-	*/   
+	 */
 %>
 <html>
 <head>
@@ -48,8 +47,14 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- 부트스트랩 -->
 
-<script type="text/javascript" src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js" charset="utf-8"> </script>
+<script type="text/javascript" src="<%=contextPath%>/SmartEditor/js/HuskyEZCreator.js"
+	charset="utf-8">
+	
+</script>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
 <link rel="stylesheet" href="<%=contextPath%>/View/layout/Style.css">
 

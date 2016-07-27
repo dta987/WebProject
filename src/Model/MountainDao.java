@@ -144,6 +144,7 @@ public class MountainDao extends SuperDao {
 
 	}
 
+	
 	public List<Mountain> SelectDataList(String selecter) {
 
 		PreparedStatement pstmt = null;
@@ -285,10 +286,10 @@ public class MountainDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select mountain_no, mountain_name, mountain_area, mountain_thema, update_date, ranking";
+		String sql = "select mountain_no, mountain_name, mountain_area, mountain_thema, mountain_thema2, update_date, ranking";
 		sql += " from";
 		sql += " (";
-		sql += " select mountain_no, mountain_name, mountain_area, mountain_thema, update_date, rank() over( order by mountain_no desc ) as ranking";
+		sql += " select mountain_no, mountain_name, mountain_area, mountain_thema, mountain_thema2, update_date, rank() over( order by mountain_no desc ) as ranking";
 		sql += " from mountains ";
 		if (!mode.equals("all")) {
 			sql += "where " + mode + " like '%" + keyword + "%'";
@@ -313,6 +314,7 @@ public class MountainDao extends SuperDao {
 				mountain.setMountain_name(rs.getString("mountain_name"));
 				mountain.setMountain_area(rs.getString("mountain_area"));
 				mountain.setMountain_thema(rs.getString("mountain_thema"));
+				mountain.setMountain_thema2(rs.getString("mountain_thema2"));
 				mountain.setUpdate_date(rs.getString("update_date"));
 				lists.add(mountain);
 			}

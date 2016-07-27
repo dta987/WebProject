@@ -36,6 +36,7 @@ tr:hover {
 					<th>산 이름</th>
 					<th>작성일자</th>
 					<th>테 마</th>
+					<th>상세테마</th>
 					<c:if test="${sessionScope.whologin == 2}">
 						<th>수정</th>
 						<th>삭제</th>
@@ -50,6 +51,7 @@ tr:hover {
 					<td><a href="<%=MyCtrlCommand%>moDetailView&no=${bean.mountain_no}&${requestScope.parameters}">${bean.mountain_name}</a></td>
 					<td>${bean.update_date}</td>
 					<td>${bean.mountain_thema}</td>
+					<td>${bean.mountain_thema2}</td>
 					<td><c:if test="${sessionScope.whologin == 2}">
 							<a href="<%=MyCtrlCommand%>moUpdateForm&no=${bean.mountain_no}&${requestScope.parameters}">
 								수정 </a>

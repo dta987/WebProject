@@ -1,11 +1,14 @@
 package Control.board;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.Board;
+import Model.BoardDao;
 import Utility.FlowParameters;
 import Control.ControllerForward;
 import Control.SuperController;
@@ -17,6 +20,9 @@ public class boInsertFormController implements SuperController {
 			HttpServletResponse resp) throws ServletException, IOException {
 
 		ControllerForward forward = new ControllerForward();
+		BoardDao dao = new BoardDao();
+		Board board = null;
+		List<Board> reply_lists = null;
 
 		// 뒤로가기 시 보던페이지로 이동
 		String mode = req.getParameter("mode");
@@ -39,6 +45,12 @@ public class boInsertFormController implements SuperController {
 		parameters.setPageNumber(pageNumber);
 		parameters.setPageSize(pageSize);
 		
+		
+		int no = Integer.parseInt(req.getParameter("no"));
+		
+		board = dao.SelectBoard(no);
+
+		req.setAttribute("bean", board);		
 		req.setAttribute("parameters", parameters.toString());
 
 		forward.setRedirect(true);

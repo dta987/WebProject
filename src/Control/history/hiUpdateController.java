@@ -33,7 +33,7 @@ public class hiUpdateController implements SuperController {
 		history.setUser_id(multi.getParameter("user_id"));
 		history.setHiking_date(multi.getParameter("hiking_date"));
 		history.setHiking_memo(multi.getParameter("hiking_memo"));
-		history.setMountain_no(Integer.parseInt(multi.getParameter("mountain_no")));
+		history.setMountain(multi.getParameter("mountain"));
 		history.setHistory_no(Integer.parseInt(multi.getParameter("history_no")));
 		
 		

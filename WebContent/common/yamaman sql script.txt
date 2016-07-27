@@ -68,14 +68,12 @@ create table mountains(
 create table mountains_history(
 	history_no number primary key,
 	user_id varchar2(15),
-	mountain_no number,
+	mountain varchar2(20),
 	hiking_date date default sysdate,
-	hiking_memo varchar2(50),
+	hiking_memo varchar2(100),
 	constraint history_user_id_fk
 	foreign key(user_id) references members(user_id) 
 	on delete set null,
-	constraint history_mountain_no_fk
-	foreign key(mountain_no) references mountains(mountain_no)
 );
 
 create table titles(

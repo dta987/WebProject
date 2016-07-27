@@ -61,7 +61,7 @@
 						<option value="훗카이도">훗카이도
 						<option value="혼슈">혼슈
 						<option value="알프스 지역">알프스 지역
-						<option value="규슈">규슈
+						<option value="큐슈">큐슈
 					</select>
 				</div>
 				<div class="col-sm-<%=formright - myoffset%>">
@@ -226,7 +226,7 @@
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>boList&${requestScope.parameters}';
+				location.href='<%=MyCtrlCommand%>moAdminList&${requestScope.parameters}';
 											});
 						});//뒤로가기
 	</script>

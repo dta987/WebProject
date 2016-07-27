@@ -21,7 +21,7 @@ tr:hover {
 	<br>
 	<br>
 	<div class="col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<label>TITLE LIST</label><br>
+		<label>HISTORY LIST</label><br>
 		<br>
 		<table class="table" align="center">
 			<thead>
@@ -72,7 +72,7 @@ tr:hover {
 						</div>
 						<button id="search" class="topmybutton topmybutton1" type="submit">SEARCH</button>
 						<button class="topmybutton topmybutton1" type="button" id="searchAll">ALL</button>
-						<button class="topmybutton topmybutton1" type="button" id="insertForm">WRITE</button>
+						<button class="topmybutton topmybutton1" type="button" id="insertForm">ADD</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<p class="form-control-static">${requestScope.pagingStatus}</p>
 					</form>
@@ -111,7 +111,7 @@ tr:hover {
 	$(document).ready(function() {
 		$("#insertForm").click(function() {
 			if("${sessionScope.whologin}" != 0) { 
-				location.href = "<%=MyCtrlCommand%>tiInsertForm";
+				location.href = "<%=MyCtrlCommand%>hiInsertForm";
 			} else {
 				alert("로그인 해주세요");
 				location.href = "<%=MyCtrlCommand%>meLoginForm";

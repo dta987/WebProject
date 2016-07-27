@@ -109,6 +109,8 @@ public class TitleDao extends SuperDao {
 			pstmt.setString(3, title.getTitle_img());
 
 			cnt = pstmt.executeUpdate();
+			
+			conn.commit();
 
 		} catch (Exception e) {
 			SQLException err = (SQLException) e;

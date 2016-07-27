@@ -56,14 +56,14 @@ public class Mountains_historyDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
-		String sql = "update mountains_history set user_id, mountain_no, hiking_date, hiking_memo where history_no=? ";
+		String sql = "update mountains_history set user_id, mountain, hiking_date, hiking_memo where history_no=? ";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setString(1, mountains_history.getUser_id());
-			pstmt.setInt(2, mountains_history.getMountain_no());
+			pstmt.setString(2, mountains_history.getMountain());
 			pstmt.setString(3, mountains_history.getHiking_date());
 			pstmt.setString(4, mountains_history.getHiking_memo());
 			pstmt.setInt(5, mountains_history.getHistory_no());
@@ -99,15 +99,15 @@ public class Mountains_historyDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		int cnt = MyInterface.ERROR_DEFALT;
 
-		String sql = " insert into mountains_history(user_id, mountain_no, hiking_date, hiking_memo, history_no)"
-				+ " values(?, ?, ?, ?, history_no_seq.nextval)";
+		String sql = " insert into mountains_history(user_id, mountain, hiking_date, hiking_memo, history_no)"
+				+ " values(?, ?, to_date(?,'yyyy-MM-dd'), ?, history_no_seq.nextval)";
 		try {
 			if (conn == null) {
 				super.conn = super.getConnection();
 			}
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setString(1, mountains_history.getUser_id());
-			pstmt.setInt(2, mountains_history.getMountain_no());
+			pstmt.setString(2, mountains_history.getMountain());
 			pstmt.setString(3, mountains_history.getHiking_date());
 			pstmt.setString(4, mountains_history.getHiking_memo());
 
@@ -139,8 +139,8 @@ public class Mountains_historyDao extends SuperDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select h.history_no, h.user_id, h.hiking_date, h.hiking_memo, h.mountain_no, m.mountain_name from("
-				+ "  mountains_history h inner join mountains m on h.mountain_no = m.mountain_no) where h.history_no=?;";
+		String sql = "select h.history_no, h.user_id, h.hiking_date, h.hiking_memo, h.mountain, m.mountain_name from("
+				+ "  mountains_history h inner join mountains m on h.mountain = m.mountain) where h.history_no=?;";
 		Mountains_history mountains_history = null;
 		try {
 			if (conn == null) {
@@ -156,7 +156,7 @@ public class Mountains_historyDao extends SuperDao {
 				mountains_history.setHiking_date(rs.getString("hiking_date"));
 				mountains_history.setHiking_memo(rs.getString("hiking_memo"));
 				mountains_history.setHistory_no(rs.getInt("history_no"));
-				mountains_history.setMountain_no(rs.getInt("mountain_no"));
+				mountains_history.setMountain(rs.getString("mountain"));
 				mountains_history.setMountain_name(rs.getString("mountain_name"));
 			}
 
@@ -186,9 +186,9 @@ public class Mountains_historyDao extends SuperDao {
 		String sql = "select *";
 		sql += " from";
 		sql += " (";
-		sql += " 		select history_no, user_id, hiking_date, hiking_memo, mountain_no, mountain_name, rank() over( order by history_no desc ) as ranking from ";
-		sql += "		 		( select h.history_no, h.USER_ID, h.HIKING_DATE, h.HIKING_MEMO, h.MOUNTAIN_NO, m.MOUNTAIN_NAME as mountain_name from ";
-		sql += " 						(MOUNTAINS_HISTORY h inner join MOUNTAINS m on h.MOUNTAIN_NO = m.MOUNTAIN_NO) ";
+		sql += " 		select history_no, user_id, hiking_date, hiking_memo, mountain, mountain_name, rank() over( order by history_no desc ) as ranking from ";
+		sql += "		 		( select h.history_no, h.USER_ID, h.HIKING_DATE, h.HIKING_MEMO, h.mountain, m.MOUNTAIN_NAME as mountain_name from ";
+		sql += " 						(MOUNTAINS_HISTORY h inner join MOUNTAINS m on h.mountain = m.mountain) ";
 		sql += " 				)";
 		
 		if(!mode.equals("all")) {
@@ -216,7 +216,7 @@ public class Mountains_historyDao extends SuperDao {
 				mountains_history.setHiking_date(rs.getString("hiking_date"));
 				mountains_history.setHiking_memo(rs.getString("hiking_memo"));
 				mountains_history.setHistory_no(rs.getInt("history_no"));
-				mountains_history.setMountain_no(rs.getInt("mountain_no"));
+				mountains_history.setMountain(rs.getString("mountain"));
 				mountains_history.setMountain_name(rs.getString("mountain_name"));
 				mountains_history_list.add(mountains_history);
 			}

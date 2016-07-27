@@ -18,7 +18,7 @@ public class boUpdateFormController implements SuperController{
 		ControllerForward forward = new ControllerForward();
 		
 		forward.setRedirect(true);
-		forward.setPath("/View/board/boUpdateFrom.jsp");
+		forward.setPath("/View/board/boUpdateForm.jsp");
 
 		return forward;
 	}
