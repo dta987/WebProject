@@ -101,11 +101,11 @@ th {
 	</div>
 
 
-	<div class="container col-sm-offset-5 col-sm-<%=mywidth%>"
+	<%-- <div class="container col-sm-offset-5 col-sm-<%=mywidth%>"
 		align="center">
 		<br>
 		<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
-	</div>
+	</div> --%>
 
 
 	<script>

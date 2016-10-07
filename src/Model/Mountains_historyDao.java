@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 public class Mountains_historyDao extends SuperDao {
 
 	public Mountains_historyDao() {

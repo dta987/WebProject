@@ -105,7 +105,7 @@ tr:hover {
 	
 	$(document).ready(function() {
 		$("#searchAll").click(function() {
-			location.href = '<%=MyCtrlCommand%>tiList'
+			location.href = '<%=MyCtrlCommand%>hiList'
 		});
 	});
 	$(document).ready(function() {

@@ -36,7 +36,6 @@ tr:hover {
 					<th>게시글 번호</th>
 					<th>작성자</th>
 					<th>작성일자</th>
-					<th>수정일자</th>
 					<th>수정</th>
 					<th>삭제</th>
 

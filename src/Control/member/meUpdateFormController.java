@@ -2,14 +2,10 @@ package Control.member;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
-
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import Control.ControllerForward;
 import Control.SuperController;
 import Model.Member;

@@ -20,64 +20,67 @@
 <body>
 
 	<div class="col-md-offset-<%=myoffset%> col-md-<%=mywidth%>">
-
-		<form id="DetailView" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post" >
+		<form id="DetailView" class="form-horizontal" action="<%=MyCtrlByForm%>" method="post">
 			<input type="hidden" name="command" value="meUpdateForm">
-			
+
 			<table>
-			<tr>
-				<td>
-					<div id="iddiv" class="form-group has-feedback">
-						<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
-						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="fake" name="fake" disabled="disabled" value="${bean.user_id}">
-							<input type="hidden" id="id" name="id" value="${bean.user_id}" >
+				<tr>
+					<td>
+						<div id="iddiv" class="form-group has-feedback">
+							<label for="ID" class="col-sm-<%=label%> control-label">ID</label>
+							<div class="col-sm-<%=input%>">
+								<input type="text" class="form-control" id="fake" name="fake" disabled="disabled"
+									value="${bean.user_id}"> <input type="hidden" id="id" name="id"
+									value="${bean.user_id}">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-<%=label%> control-label">NAME</label>
-						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="name" name="name" disabled="disabled"
-								value="${bean.user_name}">
-							<input type="hidden" id="name" name="name" value="${bean.user_name}" >	
+						<div class="form-group">
+							<label for="name" class="col-sm-<%=label%> control-label">NAME</label>
+							<div class="col-sm-<%=input%>">
+								<input type="text" class="form-control" id="name" name="name" disabled="disabled"
+									value="${bean.user_name}"> <input type="hidden" id="name" name="name"
+									value="${bean.user_name}">
+							</div>
 						</div>
-					</div>
-					<div id="emaildiv" class="form-group has-feedback">
-						<label for="email" class="col-sm-<%=label%> control-label">E-MAIL</label>
-						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="email" name="email" disabled="disabled"
-								value="${bean.user_email}"> 
-							<input type="hidden" id="email" name="email" value="${bean.user_email}" >	
-								<span id="emailspan" class="glyphicon form-control-feedback"></span>
+						<div id="emaildiv" class="form-group has-feedback">
+							<label for="email" class="col-sm-<%=label%> control-label">E-MAIL</label>
+							<div class="col-sm-<%=input%>">
+								<input type="text" class="form-control" id="email" name="email" disabled="disabled"
+									value="${bean.user_email}"> <input type="hidden" id="email" name="email"
+									value="${bean.user_email}"> <span id="emailspan"
+									class="glyphicon form-control-feedback"></span>
+							</div>
+							<div id="emailcheck"></div>
 						</div>
-						<div id="emailcheck"></div>
-					</div>
-				<div id="nicknamediv" class="form-group has-feedback">
-						<label for="nickname" class="col-sm-<%=label%> control-label">NICKNAME</label>
-						<div class="col-sm-<%=input%>">
-							<input type="text" class="form-control" id="nickname" disabled="disabled"
-								name="nickname" value="${bean.user_nickname}">
-							<input type="hidden" id="nickname" name="nickname" value="${bean.user_nickname}" >	
-								 <span
-								id="nicknamespan" class="glyphicon form-control-feedback"></span>
+						<div id="nicknamediv" class="form-group has-feedback">
+							<label for="nickname" class="col-sm-<%=label%> control-label">NICKNAME</label>
+							<div class="col-sm-<%=input%>">
+								<input type="text" class="form-control" id="nickname" disabled="disabled" name="nickname"
+									value="${bean.user_nickname}"> <input type="hidden" id="nickname" name="nickname"
+									value="${bean.user_nickname}"> <span id="nicknamespan"
+									class="glyphicon form-control-feedback"></span>
+							</div>
+							<div id="nicknamecheck"></div>
 						</div>
-						<div id="nicknamecheck"></div>
-					</div>
-			</td>
-			<td>
-				<div class="form-group" align="center">
-						&nbsp;&nbsp; <img id="user_img" src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded"
-							alt="Cinque Terre" width="200px" height="200px">
-					</div>
-			</td>
-			</tr>
-			<tr>
-			<td><br>
-					<button type="submit" class="topmybutton topmybutton1" >UPDATE</button>
-					<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
-			</td>		
-			</tr>
-			</table>		
+					</td>
+					<td>
+						<div class="form-group" >
+							&nbsp;&nbsp; <img id="user_img" src="<%=uploadedFolder%>${bean.user_img}" class="img-rounded"
+								alt="Cinque Terre" width="200px" height="200px">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><br>
+						<div class="form-group" align="right">
+							<br>
+							<button type="submit" class="topmybutton topmybutton1">UPDATE</button>
+							&nbsp;
+							<button class="topmybutton topmybutton1" type="button" id="gotoback">BACK</button>
+							<br>
+						</div></td>
+				</tr>
+			</table>
 		</form>
 	</div>
 
@@ -116,9 +119,10 @@
 		
 		$(document).ready(function() {
 			$("#gotoback").click(function() {
-				location.href='<%=MyCtrlCommand%>meList&${requestScope.parameters}';
-				});
-			});//뒤로가기
+				location.href='<%=MyCtrlCommand%>
+		meList&${requestScope.parameters}';
+											});
+						});//뒤로가기
 	</script>
 </body>
 </html>

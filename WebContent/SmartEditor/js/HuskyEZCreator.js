@@ -111,7 +111,6 @@ nhn.husky.EZCreator = new (function(){
 			elBlocker.style.left = 0;
 			elBlocker.style.backgroundColor = "#FFFFFF";
 			elBlocker.style.width = "100%";
-
 			document.body.appendChild(elBlocker);
 			
 			nhn.husky.EZCreator.elBlocker = elBlocker;

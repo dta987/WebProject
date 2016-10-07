@@ -46,11 +46,7 @@ public class boInsertFormController implements SuperController {
 		parameters.setPageSize(pageSize);
 		
 		
-		int no = Integer.parseInt(req.getParameter("no"));
 		
-		board = dao.SelectBoard(no);
-
-		req.setAttribute("bean", board);		
 		req.setAttribute("parameters", parameters.toString());
 
 		forward.setRedirect(true);

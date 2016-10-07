@@ -44,11 +44,7 @@
 					</table>
 				</div>
 				<div class="col-sm-<%=rightside%> col-sm-<%=rightside%>">
-					<table class="table table-hover table-condensed">
-						<tr>
-							<td width="25%" align="center">산 관리번호</td>
-							<td width="75%" align="left">${bean.mountain_no}</td>
-						</tr>						
+					<table class="table table-hover table-condensed">				
 						<tr>
 							<td width="25%" align="center">산 이름</td>
 							<td width="75%" align="left">${bean.mountain_name}</td>
